@@ -4,7 +4,7 @@
 > More Instructions on how to use the app will be posted once the development begins
 
 ## Team Information
-* Debarati Bhattacharya
+* Debarati Bhattacharyya
 * Tharun Chintham
 * Melissa Day
 * Abhinab Mohanty
