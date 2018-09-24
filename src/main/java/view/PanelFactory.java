@@ -1,9 +1,10 @@
-package View;
+package view;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.DocumentListener;
 
 /**
  * Will contain the mappings of the div/row on the Jframe to the elements that
@@ -51,6 +52,8 @@ public class PanelFactory extends AbstractViewPanel {
 	private static JScrollPane createTextPanel() {
 		JTextArea editableArea = new JTextArea();
 		editableArea.setLineWrap(true);
+		DocumentListener textChangeListener = new TextChangeListener();
+		editableArea.getDocument().addDocumentListener(textChangeListener);
 		JScrollPane scrollableArea = new JScrollPane(editableArea);
 		return scrollableArea;
 	}

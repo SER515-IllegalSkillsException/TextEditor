@@ -1,9 +1,12 @@
-package View;
+package view;
 
 public class Main {
-
+	
+	/**
+	 * The main method to run the application
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ViewFrame().initializeView();
 	}
 
