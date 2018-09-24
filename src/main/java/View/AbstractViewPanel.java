@@ -1,8 +1,15 @@
 package View;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-/**All common elements and functions for Panel Views go here**/
+/**
+ * All common elements and functions for Panel Views go here
+ **/
 public abstract class AbstractViewPanel extends JPanel {
-    public AbstractViewPanel() {}
+	/**
+	 * Default serial version id
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
 }
