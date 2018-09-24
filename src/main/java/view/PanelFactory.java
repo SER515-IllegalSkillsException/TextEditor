@@ -6,6 +6,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.DocumentListener;
 
+import listener.TextChangeListener;
+
 /**
  * Will contain the mappings of the div/row on the Jframe to the elements that
  * need to passed for the given position
