@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class FooterInfoModel implements ModelInterface {
     /**Singleton Object creation ensures there is only a single instance created which is to be reused**/
