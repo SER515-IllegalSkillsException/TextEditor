@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**+
  * Class that holds the logic for the file stack execution for tracing every cut/copy/paste action performed
