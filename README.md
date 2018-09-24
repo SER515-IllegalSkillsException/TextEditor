@@ -1,7 +1,11 @@
 # TextEditor
 > A desktop based text editor software. 
 
-> More Instructions on how to use the app will be posted once the development begins
+
+## Running instructions - 
+1. Clone the project
+2. Do a mvn clean install
+3. Run the main class (Main.java) in the src folder (Executable jar will be available soon)
 
 ## Team Information
 * Debarati Bhattacharyya
