@@ -3,10 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 /**
  * An Abstract Factory Pattern layout for the views all the View Frame has to do
