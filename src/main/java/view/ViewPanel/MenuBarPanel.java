@@ -8,6 +8,11 @@ public class MenuBarPanel extends JPanel {
     JMenuBar menuBar;
     JMenu fileMenu;
     JMenuItem[] fileMenuItems;
+    
+    String[] fileMenuItemLabels = {"New File", "Open File", "Save File", "Save As", "Print"};
+    int fileMenuItemsNumber = 5;
+    int menuBarPanelSizeWidth = 800;
+    int menuBarPanelSizeHeight = 800;
 
 
     public MenuBarPanel() {
@@ -22,23 +27,27 @@ public class MenuBarPanel extends JPanel {
         menuBarPanel.setLayout(new BorderLayout());
         this.createMenuBar();
         menuBarPanel.add(menuBar, BorderLayout.NORTH);
-        menuBarPanel.setSize(800, 800);
+        menuBarPanel.setSize(menuBarPanelSizeWidth, menuBarPanelSizeHeight);
         menuBarPanel.setVisible(true);
-
-
-
     }
 
     private void createMenuBar() {
         menuBar = new JMenuBar();
         this.setFileMenu();
         menuBar.add(fileMenu);
-
     }
 
 
     private void setFileMenu(){
         fileMenu = new JMenu("File");
+        fileMenuItems = new JMenuItem[fileMenuItemsNumber];
 
+        for (int i = 0; i < fileMenuItemsNumber; i++) {
+            fileMenuItems[i] = new JMenuItem(fileMenuItemLabels[i]);
+        }
+        
+        for (int i = 0; i < fileMenuItemsNumber; i++) {
+            fileMenu.add(fileMenuItems[i]);
+        }
     }
 }
