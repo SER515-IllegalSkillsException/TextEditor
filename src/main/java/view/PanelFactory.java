@@ -1,12 +1,10 @@
 package view;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.event.DocumentListener;
 
 import listener.TextChangeListener;
+import view.ViewPanel.MenuBarPanel;
 
 /**
  * Will contain the mappings of the div/row on the Jframe to the elements that
@@ -34,7 +32,8 @@ public class PanelFactory extends AbstractViewPanel {
 	 */
 	public static JComponent CreatePanel(final String componentName) {
 		if(componentName.equalsIgnoreCase("MenuPanel")) {
-			//TODO: Add menu panel 
+			//TODO: Add menu panel
+			return new MenuBarPanel().getMenuBarPanel();
 		} else if (componentName.equalsIgnoreCase("ToolPanel")) {
 			//TODO: Add ToolBarPanel
 		} else if(componentName.equalsIgnoreCase("TextPanel")) {
@@ -44,6 +43,7 @@ public class PanelFactory extends AbstractViewPanel {
 		}
 		
 		return new JPanel(); //Added only till other components are missing!
+
 	}
 
 
