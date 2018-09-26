@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 
+import constant.EditorConstants;
 import listener.TextChangeListener;
 import view.ViewPanel.MenuBarPanel;
 
@@ -31,14 +32,14 @@ public class PanelFactory extends AbstractViewPanel {
 	 * @return the panel after creating it
 	 */
 	public static JComponent CreatePanel(final String componentName) {
-		if(componentName.equalsIgnoreCase("MenuPanel")) {
+		if(componentName.equalsIgnoreCase(EditorConstants.MENUPANEL)) {
 			//TODO: Add menu panel
 			return new MenuBarPanel().getMenuBarPanel();
-		} else if (componentName.equalsIgnoreCase("ToolPanel")) {
+		} else if (componentName.equalsIgnoreCase(EditorConstants.TOOLPANEL)) {
 			//TODO: Add ToolBarPanel
-		} else if(componentName.equalsIgnoreCase("TextPanel")) {
+		} else if(componentName.equalsIgnoreCase(EditorConstants.TEXTPANEL)) {
 			return createTextPanel();
-		} else if(componentName.equalsIgnoreCase("FooterPanel")){
+		} else if(componentName.equalsIgnoreCase(EditorConstants.FOOTERPANEL)){
 			//TODO: Add FooterPanel
 		}
 		

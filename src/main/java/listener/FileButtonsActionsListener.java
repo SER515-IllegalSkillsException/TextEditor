@@ -3,6 +3,7 @@ package listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import constant.EditorConstants;
 import controller.FileController;
 
 /**
@@ -26,17 +27,17 @@ public class FileButtonsActionsListener implements ActionListener {
 	 * Override action performed function of action listener which adds listeners to buttons of file menu
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if(fileMenuItemLabel.equalsIgnoreCase("New File")) {
+		if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[0])) {
 			//TODO: New file stuff by calling controller
 			System.out.println("New file clicked.");
-		} else if(fileMenuItemLabel.equalsIgnoreCase("Open File")) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[1])) {
 			//TODO: Open file stuff by calling controller
 			System.out.println("Open file clicked");
-		} else if(fileMenuItemLabel.equalsIgnoreCase("Save File")) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[2])) {
 			FileController.saveFile(false);
-		} else if(fileMenuItemLabel.equalsIgnoreCase("Save As")) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[3])) {
 			FileController.saveFile(true);
-		} else if(fileMenuItemLabel.equalsIgnoreCase("Print")) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[4])) {
 			//TODO: Print stuff by calling controller
 			System.out.println("Print clicked");
 		}
