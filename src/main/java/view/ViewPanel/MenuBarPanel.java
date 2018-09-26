@@ -14,6 +14,7 @@ import constant.EditorConstants;
 import listener.FileButtonsActionsListener;
 
 public class MenuBarPanel extends JPanel {
+
 	/**
 	 * Default serial id
 	 */
@@ -67,4 +68,5 @@ public class MenuBarPanel extends JPanel {
 			fileMenu.add(fileMenuItems[i]);
 		}
 	}
+
 }
