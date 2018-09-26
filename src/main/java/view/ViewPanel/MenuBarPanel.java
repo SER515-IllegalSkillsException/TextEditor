@@ -1,10 +1,17 @@
 package view.ViewPanel;
 
 import javax.swing.*;
+
+import listener.FileButtonsActionsListener;
+
 import java.awt.*;
 
 public class MenuBarPanel extends JPanel {
-    JPanel menuBarPanel = new JPanel();
+    /**
+	 * Default serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel menuBarPanel = new JPanel();
     JMenuBar menuBar;
     JMenu fileMenu;
     JMenuItem[] fileMenuItems;
@@ -44,6 +51,7 @@ public class MenuBarPanel extends JPanel {
 
         for (int i = 0; i < fileMenuItemsNumber; i++) {
             fileMenuItems[i] = new JMenuItem(fileMenuItemLabels[i]);
+            fileMenuItems[i].addActionListener(new FileButtonsActionsListener(fileMenuItemLabels[i]));
         }
         
         for (int i = 0; i < fileMenuItemsNumber; i++) {

@@ -20,9 +20,9 @@ public class ViewFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final int FRAME_WIDTH = 200;
+	private static final int FRAME_WIDTH = 600;
 
-	private static final int FRAME_HEIGHT = 200;
+	private static final int FRAME_HEIGHT = 800;
 
 	private JPanel menuPanel;
 	private JPanel ToolPanel;
