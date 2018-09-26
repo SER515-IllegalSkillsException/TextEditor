@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
+import constant.EditorConstants;
+
 /**
  * An Abstract Factory Pattern layout for the views all the View Frame has to do
  * is call the PanelFactory, get the Panel items and lay it out on the fram
@@ -20,10 +22,6 @@ public class ViewFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final int FRAME_WIDTH = 200;
-
-	private static final int FRAME_HEIGHT = 200;
-
 	private JPanel menuPanel;
 	private JPanel ToolPanel;
 	private JScrollPane textPanel;
@@ -33,10 +31,10 @@ public class ViewFrame extends JFrame {
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
 	public void initializeView() {
-		menuPanel = (JPanel) PanelFactory.CreatePanel("menuPanel");
-		ToolPanel =  (JPanel) PanelFactory.CreatePanel("ToolPanel");
-		textPanel = (JScrollPane) PanelFactory.CreatePanel("textPanel");
-		footerPanel = (JPanel) PanelFactory.CreatePanel("footerPanel");
+		menuPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
+		ToolPanel =  (JPanel) PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
+		textPanel = (JScrollPane) PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
+		footerPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
 		layoutHelper();
 	}
 
@@ -50,7 +48,7 @@ public class ViewFrame extends JFrame {
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
 		add(textPanel);
-		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+		setMinimumSize(new Dimension(EditorConstants.FRAME_WIDTH, EditorConstants.FRAME_HEIGHT));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
 	}

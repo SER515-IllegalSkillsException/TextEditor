@@ -13,7 +13,7 @@ public class FileModel implements ModelInterface {
     private String content;
     
     private FileModel() {
-    	
+    	content = "";
     }
 
     /**
