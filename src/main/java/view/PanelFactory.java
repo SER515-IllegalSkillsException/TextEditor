@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package view;
 
 import javax.swing.*;
@@ -61,3 +62,67 @@ public class PanelFactory extends AbstractViewPanel {
 		return scrollableArea;
 	}
 }
+=======
+package view;
+
+import javax.swing.*;
+import javax.swing.event.DocumentListener;
+
+import listener.TextChangeListener;
+import view.ViewPanel.MenuBarPanel;
+
+/**
+ * Will contain the mappings of the div/row on the Jframe to the elements that
+ * need to passed for the given position
+ **/
+
+public class PanelFactory extends AbstractViewPanel {
+	/**
+	 * default serial version id
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Default constructor to perform tasks on initialization
+	 */
+	public PanelFactory() {
+		
+	}
+	
+	
+	/**
+	 * Factory method which takes name of the panel as argument and returns the panel after creating it
+	 * @param componentName
+	 * @return the panel after creating it
+	 */
+	public static JComponent CreatePanel(final String componentName) {
+		if(componentName.equalsIgnoreCase("MenuPanel")) {
+			//TODO: Add menu panel
+			return new MenuBarPanel().getMenuBarPanel();
+		} else if (componentName.equalsIgnoreCase("ToolPanel")) {
+			//TODO: Add ToolBarPanel
+		} else if(componentName.equalsIgnoreCase("TextPanel")) {
+			return createTextPanel();
+		} else if(componentName.equalsIgnoreCase("FooterPanel")){
+			//TODO: Add FooterPanel
+		}
+		
+		return new JPanel(); //Added only till other components are missing!
+
+	}
+
+
+	/**
+	 * Constructs the JTextArea
+	 * @return The editableArea
+	 */
+	private static JScrollPane createTextPanel() {
+		JTextArea editableArea = new JTextArea();
+		editableArea.setLineWrap(true);
+		DocumentListener textChangeListener = new TextChangeListener();
+		editableArea.getDocument().addDocumentListener(textChangeListener);
+		JScrollPane scrollableArea = new JScrollPane(editableArea);
+		return scrollableArea;
+	}
+}
+>>>>>>> d9fa38685eb4e78c42db42702cc4542d3156f5a7
