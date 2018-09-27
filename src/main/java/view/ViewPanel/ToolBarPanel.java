@@ -1,10 +1,12 @@
 package view.ViewPanel;
 
 import constant.EditorConstants;
+import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class ToolBarPanel extends AbstractViewPanel {
             for(int i=0; i< EditorConstants.toolMenuResources.length;i++) {
                 JButton button = new JButton(new ImageIcon("src/resources/"+EditorConstants.toolMenuResources[i]+".png"));
                 button.setToolTipText(EditorConstants.toolMenuItemLabels[i]);
+                ActionListener actionListener = new ToolButtonsActionListener(EditorConstants.toolMenuItemLabels[i]);
+                button.addActionListener(actionListener);
                 button.setBorderPainted(false);
                 button.setFocusPainted(false);
                 button.setOpaque(true);
