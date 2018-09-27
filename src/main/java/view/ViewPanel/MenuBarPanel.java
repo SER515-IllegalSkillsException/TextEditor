@@ -26,6 +26,10 @@ public class MenuBarPanel extends JPanel {
 	int fileMenuItemsNumber = 5;
 	int menuBarPanelSizeWidth = 800;
 	int menuBarPanelSizeHeight = 800;
+    JMenu EditMenu;
+    JMenuItem[] EditMenuItems;
+    String[] EditMenuItemLabels = {"Cut", "Copy", "Paste", "Select all", "Find and replace"};
+    int EditMenuItemsNumber = 5;
 
 	public MenuBarPanel() {
 		this.initialize();
@@ -47,6 +51,7 @@ public class MenuBarPanel extends JPanel {
 		menuBar = new JMenuBar();
 		this.setFileMenu();
 		menuBar.add(fileMenu);
+		menuBar.add(EditMenu);
 	}
 
 	private void setFileMenu() {
@@ -66,5 +71,15 @@ public class MenuBarPanel extends JPanel {
 		for (int i = 0; i < fileMenuItemsNumber; i++) {
 			fileMenu.add(fileMenuItems[i]);
 		}
+		
+	EditMenu = new JMenu("Edit");
+        EditMenuItems = new JMenuItem[EditMenuItemsNumber];
+        for (int i = 0; i < EditMenuItemsNumber; i++) {
+            EditMenuItems[i] = new JMenuItem(EditMenuItemLabels[i]);
+        }
+        
+        for (int i = 0; i < EditMenuItemsNumber; i++) {
+            EditMenu.add(EditMenuItems[i]);
+        }
 	}
 }
