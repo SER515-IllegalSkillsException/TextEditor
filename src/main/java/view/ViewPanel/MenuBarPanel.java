@@ -4,16 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
+import javax.swing.*;
 
 import constant.EditorConstants;
 import listener.FileButtonsActionsListener;
+import view.AbstractViewPanel;
 
-public class MenuBarPanel extends JPanel {
+public class MenuBarPanel extends AbstractViewPanel {
 	/**
 	 * Default serial id
 	 */
@@ -35,11 +32,12 @@ public class MenuBarPanel extends JPanel {
 		this.initialize();
 	}
 
-	public JPanel getMenuBarPanel() {
+	@Override
+	public JComponent getPanel() {
 		return menuBarPanel;
 	}
-
-	private void initialize() {
+	@Override
+	protected void initialize() {
 		menuBarPanel.setLayout(new BorderLayout());
 		this.createMenuBar();
 		menuBarPanel.add(menuBar, BorderLayout.NORTH);

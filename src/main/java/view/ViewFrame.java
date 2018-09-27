@@ -1,7 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 
 import javax.swing.*;
 
@@ -22,19 +21,28 @@ public class ViewFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JPanel menuPanel;
-	private JPanel ToolPanel;
-	private JScrollPane textPanel;
-	private JPanel footerPanel;
+	private JComponent menuPanel;
+	private JComponent ToolPanel;
+	private JPanel headPanel;
+	private JComponent textPanel;
+	private JComponent footerPanel;
+
 
 	/**
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
 	public void initializeView() {
-		menuPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
-		ToolPanel =  (JPanel) PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
-		textPanel = (JScrollPane) PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
-		footerPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
+		headPanel = new JPanel();
+		BoxLayout boxlayout = new BoxLayout(headPanel, BoxLayout.Y_AXIS);
+		headPanel.setLayout(boxlayout);
+
+		menuPanel = PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
+		ToolPanel =  PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
+		textPanel = PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
+		footerPanel = PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
+		headPanel.add(menuPanel,"Menu Panel");
+		headPanel.add(ToolPanel,"Tool Panel");
+		headPanel.setPreferredSize(new Dimension(75,75));
 		layoutHelper();
 	}
 
@@ -43,11 +51,11 @@ public class ViewFrame extends JFrame {
 	 */
 	private void layoutHelper() {
 		setLayout(new BorderLayout());
-		add(menuPanel, BorderLayout.PAGE_START);
-		add(ToolPanel, BorderLayout.LINE_START);
+		add(headPanel, BorderLayout.PAGE_START);
+//		add(ToolPanel,BorderLayout.PAGE_START);
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
-		add(textPanel);
+//		add(textPanel);
 		setMinimumSize(new Dimension(EditorConstants.FRAME_WIDTH, EditorConstants.FRAME_HEIGHT));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);

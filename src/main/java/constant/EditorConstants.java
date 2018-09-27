@@ -8,6 +8,10 @@ public class EditorConstants {
 	// Menu
 	public static final String[] fileMenuItemLabels = { "New", "Open", "Save",
 			"Save As ..", "Print" };
+	public static final String[] toolMenuItemLabels = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
+
+	public static final String[] toolMenuResources = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
+
 	public static final int[] fileMenuItemsShortcuts = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
 			KeyEvent.VK_P };
 
