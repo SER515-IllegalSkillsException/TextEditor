@@ -27,6 +27,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         return toolbarPanel;
     }
 
+    @Override
     protected void initialize() {
         toolbar = new JToolBar("Applications");
         this.initializeButtons();

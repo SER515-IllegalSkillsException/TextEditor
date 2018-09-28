@@ -18,7 +18,7 @@ public class ToolButtonsActionListener implements ActionListener{
     }
 
     /**
-     * Override action performed function of action listener which adds listeners to buttons of file menu
+     * Override action performed function of action listener which adds listeners to buttons of toolbar menu
      */
     public void actionPerformed(ActionEvent e) {
         if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[0])) {
@@ -26,7 +26,8 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("New file clicked.");
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[1])) {
             //TODO: Open file stuff by calling controller
-            System.out.println("Open file clicked");
+            FileController.openFile();
+//            System.out.println("Open file clicked");
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[2])) {
             FileController.saveFile(false);
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[3])) {

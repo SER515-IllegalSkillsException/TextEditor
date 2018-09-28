@@ -18,6 +18,7 @@ public class TextPanel extends AbstractViewPanel {
         return textPane;
     }
 
+    @Override
     protected void initialize() {
         JTextArea editableArea = new JTextArea();
         editableArea.setLineWrap(true);

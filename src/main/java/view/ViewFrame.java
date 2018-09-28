@@ -27,6 +27,9 @@ public class ViewFrame extends JFrame {
 	private JComponent textPanel;
 	private JComponent footerPanel;
 
+	private static int headPanelHeight = 75;
+	private static int headPanelWidth = 75;
+
 
 	/**
 	 * Initializes all the component of the text editor and sets up the layout
@@ -42,7 +45,7 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(ToolPanel,"Tool Panel");
-		headPanel.setPreferredSize(new Dimension(75,75));
+		headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		layoutHelper();
 	}
 
@@ -52,10 +55,8 @@ public class ViewFrame extends JFrame {
 	private void layoutHelper() {
 		setLayout(new BorderLayout());
 		add(headPanel, BorderLayout.PAGE_START);
-//		add(ToolPanel,BorderLayout.PAGE_START);
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
-//		add(textPanel);
 		setMinimumSize(new Dimension(EditorConstants.FRAME_WIDTH, EditorConstants.FRAME_HEIGHT));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);

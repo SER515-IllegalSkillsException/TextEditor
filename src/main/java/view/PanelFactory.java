@@ -5,6 +5,7 @@ import javax.swing.event.DocumentListener;
 
 import constant.EditorConstants;
 import listener.TextChangeListener;
+import view.ViewPanel.FooterPanel;
 import view.ViewPanel.MenuBarPanel;
 import view.ViewPanel.TextPanel;
 import view.ViewPanel.ToolBarPanel;
@@ -44,6 +45,7 @@ public class PanelFactory {
 			return new TextPanel().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.FOOTERPANEL)){
 			//TODO: Add FooterPanel
+			return new FooterPanel().getPanel();
 		}
 		
 		return new JPanel(); //Added only till other components are missing!

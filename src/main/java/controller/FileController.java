@@ -16,6 +16,26 @@ import model.FileModel;
  */
 public class FileController implements ControllerInterface {
 	/**
+	 * Function opens the user's home directory.
+	 */
+	public static void openFile(){
+		String fileName = FileModel.getInstance().getFilename();
+		String filePath = FileModel.getInstance().getFilePath();
+		JFileChooser fileChooser = new JFileChooser();
+		File fileToOpen = null;
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		int result = fileChooser.showOpenDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			filePath = fileChooser.getSelectedFile().getAbsolutePath();
+			fileToOpen = new File(filePath);
+			FileModel.getInstance().setFilePath(filePath);
+			FileModel.getInstance().setFilename(fileChooser.getSelectedFile().getName());
+			System.out.println("Selected file: " + filePath);
+		}
+		else
+			System.out.println("User Cancelled Open");
+	}
+	/**
 	 * Function checks if a dialog box is required for saving or not.
 	 * @param isSaveAs flag which denotes if the save as button was clicked or just save button
 	 */
