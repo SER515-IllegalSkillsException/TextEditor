@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 import javax.swing.text.BadLocationException;
@@ -80,7 +82,9 @@ public class FileController implements ControllerInterface {
 		String filePath = FileModel.getInstance().getFilePath();
 		String content = FileModel.getInstance().getContent();
 		boolean userConfirmedSave = true;
+		boolean fileAlreadyExists = false;
 		File fileToSave = null;
+		
 		if (fileName == null && filePath == null || isSaveAs) {
 			JFileChooser jFileChooser = new JFileChooser();
 			if (filePath != null && !filePath.equals("")) {
@@ -101,6 +105,19 @@ public class FileController implements ControllerInterface {
 		} else {
 			fileToSave = new File(filePath);
 		}
+		
+		try {
+		    if (checkIfFileExists(fileToSave)) {
+		        fileAlreadyExists = true;
+		        System.out.println("File already exists");
+		    }
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		if (Files.exists(fileToSave.toPath())) {
+		    System.out.println("File already exists");
+		}
 
 		if (userConfirmedSave) {
 			try {
@@ -117,5 +134,15 @@ public class FileController implements ControllerInterface {
 			System.out.println("Cancelled save");
 		}
 
+	}
+	
+	public static boolean checkIfFileExists(File fileToSaveName) {
+	    Path filePathName = fileToSaveName.toPath();
+	    if (Files.exists(filePathName)) {
+	        return true;
+	    }
+	    else {
+	        return false;
+	    }
 	}
 }
