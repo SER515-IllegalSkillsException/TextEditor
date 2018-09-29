@@ -104,21 +104,21 @@ public class FileController implements ControllerInterface {
 
 		} else {
 			fileToSave = new File(filePath);
+			try {
+	            if (checkIfFileExists(fileToSave)) {
+	                fileAlreadyExists = true;
+	                System.out.println("File already exists");
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 		}
 		
-		try {
-		    if (checkIfFileExists(fileToSave)) {
-		        fileAlreadyExists = true;
-		        System.out.println("File already exists");
-		    }
-		} catch (Exception e) {
-		    e.printStackTrace();
+		if (fileAlreadyExists) {
+		    saveFile(false);
 		}
 		
-		if (Files.exists(fileToSave.toPath())) {
-		    System.out.println("File already exists");
-		}
-
+		
 		if (userConfirmedSave) {
 			try {
 				FileWriter fw = new FileWriter(fileToSave, false);
