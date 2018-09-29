@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import constant.EditorConstants;
+import model.FileModel;
 
 /**
  * An Abstract Factory Pattern layout for the views all the View Frame has to do
@@ -35,6 +36,7 @@ public class ViewFrame extends JFrame {
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
 	public void initializeView() {
+		setTitle("TextEditor");
 		headPanel = new JPanel();
 		BoxLayout boxlayout = new BoxLayout(headPanel, BoxLayout.Y_AXIS);
 		headPanel.setLayout(boxlayout);
