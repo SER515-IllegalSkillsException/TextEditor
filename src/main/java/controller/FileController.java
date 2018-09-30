@@ -42,8 +42,6 @@ public class FileController implements ControllerInterface {
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
             fileToOpen = new File(filePath);
 
-            System.out.println("Selected file: " + filePath);
-
             FileReader fileReader;
             try {
                 fileReader = new FileReader(fileToOpen);
@@ -133,6 +131,7 @@ public class FileController implements ControllerInterface {
                     FileModel.getInstance().setFilename(jFileChooser.getSelectedFile().getName());
                 } else {
                     userConfirmedSave = false;
+                    break; //To exit the while loop if user says no and cancels
                 }
                 fileAlreadyExists = checkIfFileExists(fileToSave);
             }
