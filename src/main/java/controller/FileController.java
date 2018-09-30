@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
@@ -83,6 +84,7 @@ public class FileController implements ControllerInterface {
 		String content = FileModel.getInstance().getContent();
 		boolean userConfirmedSave = true;
 		boolean fileAlreadyExists = false;
+		boolean keepExistingFile = true;
 		File fileToSave = null;
 		
 		if (fileName == null && filePath == null || isSaveAs) {
@@ -111,6 +113,15 @@ public class FileController implements ControllerInterface {
             if (checkIfFileExists(fileToSave)) {
                 fileAlreadyExists = true;
                 System.out.println("File already exists");
+                int saveResponse = JOptionPane.showConfirmDialog(null, "File already exists. Do you wish to "
+                        + "replace it?", "Replace file?", JOptionPane.YES_NO_OPTION);
+                if (saveResponse == JOptionPane.YES_OPTION) {
+                    System.out.println("Yes is clicked");
+                    keepExistingFile = false;
+                }
+                else if (saveResponse == JOptionPane.NO_OPTION) {
+                    System.out.println("No is clicked");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +129,7 @@ public class FileController implements ControllerInterface {
 		
 		
 		
-		if (userConfirmedSave) {
+		if (userConfirmedSave && (!fileAlreadyExists || !keepExistingFile)) {
 			try {
 				FileWriter fw = new FileWriter(fileToSave, false);
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -135,6 +146,13 @@ public class FileController implements ControllerInterface {
 
 	}
 	
+	/**
+	 * Checks if a file is already saved in the system
+	 * 
+	 * @param fileToSaveName
+	 *                 File name given as input to use for filepath
+	 * @return whether the file already exists
+	 */
 	public static boolean checkIfFileExists(File fileToSaveName) {
 	    Path filePathName = fileToSaveName.toPath();
 	    if (Files.exists(filePathName)) {
