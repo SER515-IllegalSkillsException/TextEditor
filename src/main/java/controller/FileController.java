@@ -116,11 +116,11 @@ public class FileController implements ControllerInterface {
                 int saveResponse = JOptionPane.showConfirmDialog(null, "File already exists. Do you wish to "
                         + "replace it?", "Replace file?", JOptionPane.YES_NO_OPTION);
                 if (saveResponse == JOptionPane.YES_OPTION) {
-                    System.out.println("Yes is clicked");
                     keepExistingFile = false;
                 }
                 else if (saveResponse == JOptionPane.NO_OPTION) {
-                    System.out.println("No is clicked");
+                    fileAlreadyExists = false;
+                    saveFile(false);
                 }
             }
         } catch (Exception e) {
@@ -143,7 +143,6 @@ public class FileController implements ControllerInterface {
 		} else {
 			System.out.println("Cancelled save");
 		}
-
 	}
 	
 	/**
