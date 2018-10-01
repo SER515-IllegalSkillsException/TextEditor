@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.BufferedReader;
@@ -163,10 +164,6 @@ public class FileController implements ControllerInterface {
      */
     public static boolean checkIfFileExists(File fileToSaveName) {
         Path filePathName = fileToSaveName.toPath();
-        if (Files.exists(filePathName)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Files.exists(filePathName);
     }
 }
