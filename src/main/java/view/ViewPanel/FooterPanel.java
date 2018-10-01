@@ -1,9 +1,13 @@
 package view.ViewPanel;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import view.AbstractViewPanel;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class FooterPanel extends AbstractViewPanel {
 

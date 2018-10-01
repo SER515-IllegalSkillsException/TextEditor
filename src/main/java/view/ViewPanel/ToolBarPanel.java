@@ -4,11 +4,16 @@ import constant.EditorConstants;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;
@@ -41,10 +46,10 @@ public class ToolBarPanel extends AbstractViewPanel {
 
 
     private void initializeButtons() {
-            for(int i=0; i< EditorConstants.toolMenuResources.length;i++) {
-                JButton button = new JButton(new ImageIcon("src/resources/"+EditorConstants.toolMenuResources[i]+".png"));
-                button.setToolTipText(EditorConstants.toolMenuItemLabels[i]);
-                ActionListener actionListener = new ToolButtonsActionListener(EditorConstants.toolMenuItemLabels[i]);
+            for(int i=0; i< EditorConstants.TOOL_MENU_RESOURCES.length;i++) {
+                JButton button = new JButton(new ImageIcon("src/resources/"+EditorConstants.TOOL_MENU_RESOURCES[i]+".png"));
+                button.setToolTipText(EditorConstants.TOOL_MENU_ITEM_LABELS[i]);
+                ActionListener actionListener = new ToolButtonsActionListener(EditorConstants.TOOL_MENU_ITEM_LABELS[i]);
                 button.addActionListener(actionListener);
                 button.setBorderPainted(false);
                 button.setFocusPainted(false);

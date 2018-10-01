@@ -4,7 +4,9 @@ import listener.TextChangeListener;
 import model.FileModel;
 import view.AbstractViewPanel;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.event.DocumentListener;
 
 public class TextPanel extends AbstractViewPanel {

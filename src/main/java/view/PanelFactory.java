@@ -1,10 +1,9 @@
 package view;
 
-import javax.swing.*;
-import javax.swing.event.DocumentListener;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import constant.EditorConstants;
-import listener.TextChangeListener;
 import view.ViewPanel.FooterPanel;
 import view.ViewPanel.MenuBarPanel;
 import view.ViewPanel.TextPanel;
@@ -34,7 +33,7 @@ public class PanelFactory {
 	 * @param componentName
 	 * @return the panel after creating it
 	 */
-	public static JComponent CreatePanel(final String componentName) {
+	public static JComponent createPanel(final String componentName) {
 		if(componentName.equalsIgnoreCase(EditorConstants.MENUPANEL)) {
 			//TODO: Add menu panel
 			return new MenuBarPanel().getPanel();
