@@ -65,8 +65,9 @@ public class FileController implements ControllerInterface {
             FileModel.getInstance().setFilePath(filePath);
             FileModel.getInstance().setFilename(fileChooser.getSelectedFile().getName());
 
-        } else
+        } else {
             System.out.println("User Cancelled Open");
+        }
     }
 
     /**

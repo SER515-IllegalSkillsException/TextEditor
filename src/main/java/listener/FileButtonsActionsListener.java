@@ -27,17 +27,17 @@ public class FileButtonsActionsListener implements ActionListener {
 	 * Override action performed function of action listener which adds listeners to buttons of file menu
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[0])) {
+		if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[0])) {
 			//TODO: New file stuff by calling controller
 			System.out.println("New file clicked.");
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[1])) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[1])) {
 			//TODO: Open file stuff by calling controller
 			System.out.println("Open file clicked");
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[2])) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[2])) {
 			FileController.saveFile(false);
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[3])) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[3])) {
 			FileController.saveFile(true);
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.fileMenuItemLabels[4])) {
+		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[4])) {
 			//TODO: Print stuff by calling controller
 			System.out.println("Print clicked");
 		}
