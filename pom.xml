@@ -44,6 +44,23 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Creates an app for mac os -->
+			<plugin>
+				<groupId>sh.tak.appbundler</groupId>
+				<artifactId>appbundle-maven-plugin</artifactId>
+				<version>1.2.0</version>
+				<configuration>
+					<mainClass>view.Main</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
