@@ -2,10 +2,8 @@ package view;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.event.DocumentListener;
 
 import constant.EditorConstants;
-import listener.TextChangeListener;
 import view.ViewPanel.FooterPanel;
 import view.ViewPanel.MenuBarPanel;
 import view.ViewPanel.TextPanel;

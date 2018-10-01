@@ -4,11 +4,16 @@ import constant.EditorConstants;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;

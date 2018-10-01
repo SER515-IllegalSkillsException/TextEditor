@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
-import model.FileModel;
 
 /**
  * An Abstract Factory Pattern layout for the views all the View Frame has to do
