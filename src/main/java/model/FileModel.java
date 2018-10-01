@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.JTextArea;
+
 /**
  * Model class to store all information regarding the current file.
  * Data includes - filename, filepath, content of the file
@@ -11,9 +13,10 @@ public class FileModel implements ModelInterface {
     private String filename;
     private String filePath;
     private String content;
+    private JTextArea textArea;
     
     private FileModel() {
-    	
+    	content = "";
     }
 
     /**
@@ -49,6 +52,14 @@ public class FileModel implements ModelInterface {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+
+	public void setTextArea(JTextArea textArea) {
+		this.textArea = textArea;
 	}
     
     
