@@ -32,7 +32,7 @@ public class FileButtonsActionsListener implements ActionListener {
 			System.out.println("New file clicked.");
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[1])) {
 			//TODO: Open file stuff by calling controller
-			System.out.println("Open file clicked");
+			FileController.openFile();
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[2])) {
 			FileController.saveFile(false);
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[3])) {
