@@ -1,6 +1,7 @@
 package view;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.event.DocumentListener;
 
 import constant.EditorConstants;
@@ -34,7 +35,7 @@ public class PanelFactory {
 	 * @param componentName
 	 * @return the panel after creating it
 	 */
-	public static JComponent CreatePanel(final String componentName) {
+	public static JComponent createPanel(final String componentName) {
 		if(componentName.equalsIgnoreCase(EditorConstants.MENUPANEL)) {
 			//TODO: Add menu panel
 			return new MenuBarPanel().getPanel();

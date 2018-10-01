@@ -1,8 +1,15 @@
 package view;
 
-import java.awt.*;
 
-import javax.swing.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
 import model.FileModel;
@@ -23,7 +30,7 @@ public class ViewFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JComponent menuPanel;
-	private JComponent ToolPanel;
+	private JComponent toolPanel;
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
@@ -41,12 +48,12 @@ public class ViewFrame extends JFrame {
 		BoxLayout boxlayout = new BoxLayout(headPanel, BoxLayout.Y_AXIS);
 		headPanel.setLayout(boxlayout);
 
-		menuPanel = PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
-		ToolPanel =  PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
-		textPanel = PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
-		footerPanel = PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
+		menuPanel = PanelFactory.createPanel(EditorConstants.MENUPANEL);
+		toolPanel =  PanelFactory.createPanel(EditorConstants.TOOLPANEL);
+		textPanel = PanelFactory.createPanel(EditorConstants.TEXTPANEL);
+		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
-		headPanel.add(ToolPanel,"Tool Panel");
+		headPanel.add(toolPanel,"Tool Panel");
 		headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		layoutHelper();
 	}
