@@ -1,9 +1,15 @@
 package view;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
 
@@ -22,19 +28,32 @@ public class ViewFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JPanel menuPanel;
-	private JPanel ToolPanel;
-	private JScrollPane textPanel;
-	private JPanel footerPanel;
+	private JComponent menuPanel;
+	private JComponent toolPanel;
+	private JPanel headPanel;
+	private JComponent textPanel;
+	private JComponent footerPanel;
+
+	private static int headPanelHeight = 75;
+	private static int headPanelWidth = 75;
+
 
 	/**
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
 	public void initializeView() {
-		menuPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
-		ToolPanel =  (JPanel) PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
-		textPanel = (JScrollPane) PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
-		footerPanel = (JPanel) PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
+		setTitle("TextEditor");
+		headPanel = new JPanel();
+		BoxLayout boxlayout = new BoxLayout(headPanel, BoxLayout.Y_AXIS);
+		headPanel.setLayout(boxlayout);
+
+		menuPanel = PanelFactory.createPanel(EditorConstants.MENUPANEL);
+		toolPanel =  PanelFactory.createPanel(EditorConstants.TOOLPANEL);
+		textPanel = PanelFactory.createPanel(EditorConstants.TEXTPANEL);
+		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
+		headPanel.add(menuPanel,"Menu Panel");
+		headPanel.add(toolPanel,"Tool Panel");
+		headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		layoutHelper();
 	}
 
@@ -43,11 +62,9 @@ public class ViewFrame extends JFrame {
 	 */
 	private void layoutHelper() {
 		setLayout(new BorderLayout());
-		add(menuPanel, BorderLayout.PAGE_START);
-		add(ToolPanel, BorderLayout.LINE_START);
+		add(headPanel, BorderLayout.PAGE_START);
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
-		add(textPanel);
 		setMinimumSize(new Dimension(EditorConstants.FRAME_WIDTH, EditorConstants.FRAME_HEIGHT));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);

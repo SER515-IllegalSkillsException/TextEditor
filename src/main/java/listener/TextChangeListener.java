@@ -6,6 +6,7 @@ import javax.swing.text.BadLocationException;
 
 import model.FileModel;
 
+
 /**
  * The listener class which acts whenever some data is changed in the text area.
  * This class updates the singleton class which stores the file information

@@ -1,18 +1,20 @@
 package view;
 
-import javax.swing.*;
-import javax.swing.event.DocumentListener;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import constant.EditorConstants;
-import listener.TextChangeListener;
+import view.ViewPanel.FooterPanel;
 import view.ViewPanel.MenuBarPanel;
+import view.ViewPanel.TextPanel;
+import view.ViewPanel.ToolBarPanel;
 
 /**
  * Will contain the mappings of the div/row on the Jframe to the elements that
  * need to passed for the given position
  **/
 
-public class PanelFactory extends AbstractViewPanel {
+public class PanelFactory {
 	/**
 	 * default serial version id
 	 */
@@ -31,16 +33,18 @@ public class PanelFactory extends AbstractViewPanel {
 	 * @param componentName
 	 * @return the panel after creating it
 	 */
-	public static JComponent CreatePanel(final String componentName) {
+	public static JComponent createPanel(final String componentName) {
 		if(componentName.equalsIgnoreCase(EditorConstants.MENUPANEL)) {
 			//TODO: Add menu panel
-			return new MenuBarPanel().getMenuBarPanel();
+			return new MenuBarPanel().getPanel();
 		} else if (componentName.equalsIgnoreCase(EditorConstants.TOOLPANEL)) {
 			//TODO: Add ToolBarPanel
+			return new ToolBarPanel().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.TEXTPANEL)) {
-			return createTextPanel();
+			return new TextPanel().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.FOOTERPANEL)){
 			//TODO: Add FooterPanel
+			return new FooterPanel().getPanel();
 		}
 		
 		return new JPanel(); //Added only till other components are missing!
@@ -52,12 +56,5 @@ public class PanelFactory extends AbstractViewPanel {
 	 * Constructs the JTextArea
 	 * @return The editableArea
 	 */
-	private static JScrollPane createTextPanel() {
-		JTextArea editableArea = new JTextArea();
-		editableArea.setLineWrap(true);
-		DocumentListener textChangeListener = new TextChangeListener();
-		editableArea.getDocument().addDocumentListener(textChangeListener);
-		JScrollPane scrollableArea = new JScrollPane(editableArea);
-		return scrollableArea;
-	}
+
 }
