@@ -57,10 +57,10 @@ public class MenuBarPanel extends AbstractViewPanel {
 		fileMenuItems = new JMenuItem[fileMenuItemsNumber];
 
 		for (int i = 0; i < fileMenuItemsNumber; i++) {
-			fileMenuItems[i] = new JMenuItem(EditorConstants.fileMenuItemLabels[i]);
-			ActionListener actionListener = new FileButtonsActionsListener(EditorConstants.fileMenuItemLabels[i]);
+			fileMenuItems[i] = new JMenuItem(EditorConstants.FILE_MENU_ITEM_LABELS[i]);
+			ActionListener actionListener = new FileButtonsActionsListener(EditorConstants.FILE_MENU_ITEM_LABELS[i]);
 			// Adding shortcut keys for the file menu
-			KeyStroke keyStroke = KeyStroke.getKeyStroke(EditorConstants.fileMenuItemsShortcuts[i],
+			KeyStroke keyStroke = KeyStroke.getKeyStroke(EditorConstants.FILE_MENU_ITEMS_SHORTCUTS[i],
 					KeyEvent.CTRL_DOWN_MASK);
 			fileMenuItems[i].setAccelerator(keyStroke);
 			fileMenuItems[i].addActionListener(actionListener);
