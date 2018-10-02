@@ -69,4 +69,26 @@ public class ViewFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
 	}
+
+	public JComponent getMenuPanel() {
+		return menuPanel;
+	}
+
+	public JComponent getToolPanel() {
+		return toolPanel;
+	}
+
+	public JPanel getHeadPanel() {
+		return headPanel;
+	}
+
+
+	public JComponent getTextPanel() {
+		return textPanel;
+	}
+
+	public JComponent getFooterPanel() {
+		return footerPanel;
+	}
+	
 }
