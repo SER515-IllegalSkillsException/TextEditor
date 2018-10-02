@@ -35,15 +35,16 @@ public class PanelFactory {
 	 */
 	public static JComponent createPanel(final String componentName) {
 		if(componentName.equalsIgnoreCase(EditorConstants.MENUPANEL)) {
-			//TODO: Add menu panel
+			
 			return new MenuBarPanel().getPanel();
 		} else if (componentName.equalsIgnoreCase(EditorConstants.TOOLPANEL)) {
-			//TODO: Add ToolBarPanel
+			
 			return new ToolBarPanel().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.TEXTPANEL)) {
+			
 			return new TextPanel().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.FOOTERPANEL)){
-			//TODO: Add FooterPanel
+			
 			return new FooterPanel().getPanel();
 		}
 		
