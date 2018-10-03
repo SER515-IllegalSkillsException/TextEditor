@@ -6,13 +6,13 @@ public class EditorConstants {
 
 	// List of options and their shortcut keys in the following two arrays for File
 	// Menu
-	public static final String[] fileMenuItemLabels = { "New", "Open", "Save",
+	public static final String[] FILE_MENU_ITEM_LABELS = { "New", "Open", "Save",
 			"Save As ..", "Print" };
-	public static final String[] toolMenuItemLabels = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
+	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final String[] toolMenuResources = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
+	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final int[] fileMenuItemsShortcuts = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
+	public static final int[] FILE_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
 			KeyEvent.VK_P };
 
 	public static final int FRAME_WIDTH = 600;

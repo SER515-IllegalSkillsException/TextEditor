@@ -1,8 +1,15 @@
 package view;
 
-import java.awt.*;
 
-import javax.swing.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
 
@@ -22,7 +29,7 @@ public class ViewFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JComponent menuPanel;
-	private JComponent ToolPanel;
+	private JComponent toolPanel;
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
@@ -35,16 +42,17 @@ public class ViewFrame extends JFrame {
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
 	public void initializeView() {
+		setTitle("TextEditor");
 		headPanel = new JPanel();
 		BoxLayout boxlayout = new BoxLayout(headPanel, BoxLayout.Y_AXIS);
 		headPanel.setLayout(boxlayout);
 
-		menuPanel = PanelFactory.CreatePanel(EditorConstants.MENUPANEL);
-		ToolPanel =  PanelFactory.CreatePanel(EditorConstants.TOOLPANEL);
-		textPanel = PanelFactory.CreatePanel(EditorConstants.TEXTPANEL);
-		footerPanel = PanelFactory.CreatePanel(EditorConstants.FOOTERPANEL);
+		menuPanel = PanelFactory.createPanel(EditorConstants.MENUPANEL);
+		toolPanel =  PanelFactory.createPanel(EditorConstants.TOOLPANEL);
+		textPanel = PanelFactory.createPanel(EditorConstants.TEXTPANEL);
+		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
-		headPanel.add(ToolPanel,"Tool Panel");
+		headPanel.add(toolPanel,"Tool Panel");
 		headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		layoutHelper();
 	}
@@ -61,4 +69,26 @@ public class ViewFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
 	}
+
+	public JComponent getMenuPanel() {
+		return menuPanel;
+	}
+
+	public JComponent getToolPanel() {
+		return toolPanel;
+	}
+
+	public JPanel getHeadPanel() {
+		return headPanel;
+	}
+
+
+	public JComponent getTextPanel() {
+		return textPanel;
+	}
+
+	public JComponent getFooterPanel() {
+		return footerPanel;
+	}
+	
 }

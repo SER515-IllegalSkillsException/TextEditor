@@ -1,3 +1,8 @@
 language: java
 mvn test -B
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+

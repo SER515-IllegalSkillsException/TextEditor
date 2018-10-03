@@ -1,6 +1,6 @@
 package view;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 /**
  * All common elements and functions for Panel Views go here

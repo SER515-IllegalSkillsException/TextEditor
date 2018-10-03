@@ -1,9 +1,12 @@
 package view.ViewPanel;
 
 import listener.TextChangeListener;
+import model.FileModel;
 import view.AbstractViewPanel;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.event.DocumentListener;
 
 public class TextPanel extends AbstractViewPanel {
@@ -25,6 +28,7 @@ public class TextPanel extends AbstractViewPanel {
         DocumentListener textChangeListener = new TextChangeListener();
         editableArea.getDocument().addDocumentListener(textChangeListener);
         textPane = new JScrollPane(editableArea);
+        FileModel.getInstance().setTextArea(editableArea);
 
 
     }
