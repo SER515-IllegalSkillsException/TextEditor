@@ -22,5 +22,13 @@ public class EditController implements ControllerInterface {
 		return;
 	}
 	
+	public static void CopyText() {
+		c.copy();
+		return;
+	}
 	
+	public static void PasteText() {
+		c.paste();
+		return;
+	}
 }

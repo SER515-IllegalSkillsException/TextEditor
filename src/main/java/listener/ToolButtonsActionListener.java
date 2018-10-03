@@ -45,9 +45,11 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("Cut clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[7])) {
             //TODO: Print stuff by calling controller
+        	EditController.CopyText();
             System.out.println("Copy clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[8])) {
             //TODO: Print stuff by calling controller
+        	EditController.PasteText();
             System.out.println("Paste clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.toolMenuItemLabels[9])) {
             //TODO: Print stuff by calling controller
