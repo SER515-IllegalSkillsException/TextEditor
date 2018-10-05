@@ -2,8 +2,8 @@ package controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextArea;
 
-import javax.swing.*;
 import model.FileModel;
 
 public class EditController implements ControllerInterface {
@@ -22,12 +22,12 @@ public class EditController implements ControllerInterface {
 		return;
 	}
 	
-	public static void CopyText() {
+	public static void copyText() {
 		c.copy();
 		return;
 	}
 	
-	public static void PasteText() {
+	public static void pasteText() {
 		c.paste();
 		return;
 	}
