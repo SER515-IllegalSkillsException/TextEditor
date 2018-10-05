@@ -1,6 +1,7 @@
 package listener;
 
 import constant.EditorConstants;
+import controller.EditController;
 import controller.FileController;
 
 import java.awt.event.ActionEvent;
@@ -40,12 +41,15 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("Print clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
             //TODO: Print stuff by calling controller
+        	EditController.cutText();
             System.out.println("Cut clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
             //TODO: Print stuff by calling controller
+        	EditController.copyText();
             System.out.println("Copy clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[8])) {
             //TODO: Print stuff by calling controller
+        	EditController.pasteText();
             System.out.println("Paste clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[9])) {
             //TODO: Print stuff by calling controller

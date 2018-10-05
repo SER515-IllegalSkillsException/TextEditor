@@ -13,6 +13,7 @@ import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
@@ -86,10 +87,21 @@ public class FileController implements ControllerInterface {
         boolean fileAlreadyExists = true;
         boolean keepExistingFile = true;
         File fileToSave = null;
+        
         JFileChooser jFileChooser;
+        FileNameExtensionFilter fileTypeFilterTxt = new FileNameExtensionFilter("*.txt", "txt");
+        FileNameExtensionFilter fileTypeFilterPDF = new FileNameExtensionFilter("*.pdf", "pdf");
+        FileNameExtensionFilter fileTypeFilterJPEG = new FileNameExtensionFilter("JPEG image", "jpg", "jpeg");
+        FileNameExtensionFilter fileTypeFilterPNG = new FileNameExtensionFilter("PNG image", "png");
+        FileNameExtensionFilter fileTypeFilterWord = new FileNameExtensionFilter("Word document", "docx");
 
         if (fileName == null && filePath == null || isSaveAs) {
             jFileChooser = new JFileChooser();
+            jFileChooser.addChoosableFileFilter(fileTypeFilterPNG);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterJPEG);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterPDF);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterTxt);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterWord);
             if (filePath != null && !filePath.equals("")) {
                 jFileChooser.setCurrentDirectory(new File(filePath));
             } else {
