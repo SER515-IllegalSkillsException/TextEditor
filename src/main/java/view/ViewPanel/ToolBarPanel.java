@@ -51,8 +51,7 @@ public class ToolBarPanel extends AbstractViewPanel {
             try {
                 ImageIcon image = new ImageIcon(
                         classLoader.getResource("toolbar-icons/" + EditorConstants.TOOL_MENU_RESOURCES[i] + ".png"));
-                button.setIcon(image);
-            }
+                button.setIcon(image);}
             catch (Exception e) {
                 e.printStackTrace();
             }
