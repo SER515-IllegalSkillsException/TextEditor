@@ -47,8 +47,15 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private void initializeButtons() {
 		for (int i = 0; i < EditorConstants.TOOL_MENU_RESOURCES.length; i++) {
 			ClassLoader classLoader = getClass().getClassLoader();
-			JButton button = new JButton(new ImageIcon(
-					classLoader.getResource("toolbar-icons/" + EditorConstants.TOOL_MENU_RESOURCES[i] + ".png")));
+			JButton button = new JButton();
+            try {
+                ImageIcon image = new ImageIcon(
+                        classLoader.getResource("toolbar-icons/" + EditorConstants.TOOL_MENU_RESOURCES[i] + ".png"));
+                button.setIcon(image);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 			button.setToolTipText(EditorConstants.TOOL_MENU_ITEM_LABELS[i]);
 			ActionListener actionListener = new ToolButtonsActionListener(EditorConstants.TOOL_MENU_ITEM_LABELS[i]);
 			button.addActionListener(actionListener);
