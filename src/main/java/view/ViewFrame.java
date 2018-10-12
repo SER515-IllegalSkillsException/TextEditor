@@ -4,7 +4,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +15,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
+
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
 import controller.EditController;
-import model.FileModel;
+
 
 /**
  * An Abstract Factory Pattern layout for the views all the View Frame has to do
@@ -64,9 +64,9 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-	
+	/*
         headPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        headPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
+      
 		
 
 		
@@ -96,7 +96,7 @@ public class ViewFrame extends JFrame {
             }
         });
 		
-		
+		*/
 		
 		
 		
@@ -124,7 +124,7 @@ public class ViewFrame extends JFrame {
             }
         });
 		
-		
+	
 		
 		
         headPanel.setPreferredSize(new Dimension(headPanelWidth,2*headPanelHeight));
