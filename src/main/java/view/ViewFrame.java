@@ -5,11 +5,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
-
+import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
-
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
+import controller.EditController;
 
 
 
@@ -45,7 +47,7 @@ public class ViewFrame extends JFrame {
 
 	private static int headPanelHeight = 75;
 	private static int headPanelWidth = 75;
-	//private  JComboBox fontSize,fontType;//xiangwei add fontSize
+	private  JComboBox fontSize,fontType;//xiangwei add fontSize
 
 
 	/**
@@ -63,8 +65,8 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-	/*
-        headPanel.add(new JSeparator(SwingConstants.VERTICAL));
+
+
       
 		
 		
@@ -81,8 +83,8 @@ public class ViewFrame extends JFrame {
         headPanel.add(fontType);
         
         
-        headPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
-        headPanel.add(new JSeparator(SwingConstants.VERTICAL));
+        //headPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
+        //headPanel.add(new JSeparator(SwingConstants.VERTICAL));
         //Adding Action Listener on fontType JComboBox
         fontType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {     
@@ -91,10 +93,10 @@ public class ViewFrame extends JFrame {
             }
         });
 		
-		*/
+	
 		
 		
-		/*
+		
 		fontSize = new JComboBox();//xiangwei add fontSize
 
 
@@ -118,7 +120,7 @@ public class ViewFrame extends JFrame {
                 EditController.setfontsizeText(sizeOfFont);   
             }
         });
-		*/
+	
 	
 		
 		
