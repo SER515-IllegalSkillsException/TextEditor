@@ -7,7 +7,6 @@ import java.awt.Dimension;
 
 
 
-
 import javax.swing.BoxLayout;
 
 import javax.swing.JComponent;
@@ -61,7 +60,10 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-	
+		
+
+		
+
 		
         headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		
@@ -79,7 +81,7 @@ public class ViewFrame extends JFrame {
 		add(headPanel, BorderLayout.PAGE_START);
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
-		setMinimumSize(new Dimension(EditorConstants.FRAME_WIDTH, EditorConstants.FRAME_HEIGHT));
+		setMinimumSize(new Dimension(2*EditorConstants.FRAME_WIDTH, 2*EditorConstants.FRAME_HEIGHT));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
 	}
