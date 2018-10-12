@@ -4,8 +4,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -36,7 +40,7 @@ public class ViewFrame extends JFrame {
 
 	private static int headPanelHeight = 75;
 	private static int headPanelWidth = 75;
-
+	private  JComboBox fontSize;//xiangwei
 
 	/**
 	 * Initializes all the component of the text editor and sets up the layout
@@ -55,6 +59,38 @@ public class ViewFrame extends JFrame {
 		headPanel.add(toolPanel,"Tool Panel");
 		headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		layoutHelper();
+		
+		
+		fontSize = new JComboBox();//xiangwei
+
+
+        for (int i = 5; i <= 100; i++) {
+            fontSize.addItem(i);
+        }
+        fontSize.setMaximumSize(new Dimension(70, 30));
+        fontSize.setToolTipText("Font Size");
+        headPanel.add(fontSize);
+
+        fontSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                String sizeValue = fontSize.getSelectedItem().toString();
+                int sizeOfFont = Integer.parseInt(sizeValue);
+                String fontFamily = textPanel.getFont().getFamily();
+
+                Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
+                textPanel.setFont(font1);
+            }
+        });
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**
