@@ -1,21 +1,21 @@
 package view.ViewPanel;
 
 import constant.EditorConstants;
-import controller.EditController;
+//import controller.EditController;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
+//import java.awt.Dimension;
+//import java.awt.GraphicsEnvironment;
+//import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+//import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -26,7 +26,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     List<JButton> toolButtonList = new ArrayList<JButton>();
     int toolBarPanelSizeWidth = 500;
     int toolBarPanelSizeHeight = 500;
-    private  JComboBox fontSize,fontType;//xiangwei add fontSize
+  //  private  JComboBox fontSize,fontType;//xiangwei add fontSize
    // private JButton boldButton;
    // private final ImageIcon boldIcon = new ImageIcon("icons/bold.png");
 
@@ -44,8 +44,8 @@ public class ToolBarPanel extends AbstractViewPanel {
     protected void initialize() {
         toolbar = new JToolBar("Applications");
         this.initializeButtons();
-        this.initialfontsize();
-        this.initialfonttype(); 
+      //  this.initialfontsize();
+       // this.initialfonttype(); 
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
@@ -78,7 +78,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     }
     
     
-    
+  /*  
     private void initialfontsize() {
     	fontSize = new JComboBox();//xiangwei add fontSize
 
@@ -135,7 +135,7 @@ public class ToolBarPanel extends AbstractViewPanel {
             }
         });
     }
-    
+    */
     /*
     private void initialbold() {
     boldButton = new JButton(boldIcon);
