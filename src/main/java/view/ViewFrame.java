@@ -47,7 +47,7 @@ public class ViewFrame extends JFrame {
 
 	private static int headPanelHeight = 75;
 	private static int headPanelWidth = 75;
-	private  JComboBox fontSize,fontType;//xiangwei add fontSize
+	//private  JComboBox fontSize,fontType;//xiangwei add fontSize
 
 
 	/**
@@ -96,7 +96,7 @@ public class ViewFrame extends JFrame {
 		*/
 		
 		
-		
+		/*
 		fontSize = new JComboBox();//xiangwei add fontSize
 
 
@@ -120,7 +120,7 @@ public class ViewFrame extends JFrame {
                 EditController.setfontsizeText(sizeOfFont);   
             }
         });
-		
+		*/
 	
 		
 		
