@@ -5,7 +5,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import java.awt.GraphicsEnvironment;
+//import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,9 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+//import javax.swing.JSeparator;
 
-import javax.swing.SwingConstants;
+//import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
