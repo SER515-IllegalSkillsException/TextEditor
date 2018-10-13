@@ -32,15 +32,14 @@ public class EditController implements ControllerInterface {
 		c.paste();
 		return;
 	}
-	//xiangwei 
-	/*
+
 	public static void setfonttypeText(String p) {
 		
         int s = c.getFont().getSize();
         c.setFont(new Font(p, Font.PLAIN, s));
 		return;
 	}
-*/
+
 	public static void setfontsizeText(int sizeOfFont) {
 		String fontFamily = c.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);

@@ -1,16 +1,19 @@
 package view.ViewPanel;
 
 import constant.EditorConstants;
+
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 
 import java.awt.BorderLayout;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -21,6 +24,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     List<JButton> toolButtonList = new ArrayList<JButton>();
     int toolBarPanelSizeWidth = 500;
     int toolBarPanelSizeHeight = 500;
+
 
     public ToolBarPanel() {
         this.initialize();
@@ -36,6 +40,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     protected void initialize() {
         toolbar = new JToolBar("Applications");
         this.initializeButtons();
+
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
@@ -66,4 +71,6 @@ public class ToolBarPanel extends AbstractViewPanel {
         return;
 
     }
+    
+    
 }
