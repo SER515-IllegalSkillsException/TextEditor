@@ -31,3 +31,4 @@ hs_err_pid*
 .settings
 .DS_Store
 /bin/
+dependency-reduced-pom.xml

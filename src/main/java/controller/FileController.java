@@ -103,7 +103,6 @@ public class FileController implements ControllerInterface {
             jFileChooser.addChoosableFileFilter(fileTypeFilterPDF);
             jFileChooser.addChoosableFileFilter(fileTypeFilterTxt);
             jFileChooser.addChoosableFileFilter(fileTypeFilterWord);
-            
             if (filePath != null && !filePath.equals("")) {
                 jFileChooser.setCurrentDirectory(new File(filePath));
             } else {

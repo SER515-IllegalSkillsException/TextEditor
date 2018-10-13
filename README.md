@@ -3,9 +3,13 @@
 
 
 ## Running instructions - 
-1. Clone the project
-2. Do a mvn clean install
-3. Run the main class (Main.java) in the src folder (Executable jar will be available soon)
+#### jdk supported - 1.8. Others might work but we have tested extensively for jdk 1.8 only.
+1. git clone https://github.com/SER515-IllegalSkillsException/TextEditor.git
+2. cd TextEditor/
+3. mvn clean package
+
+There will be a jar by the name of "**TextEditor-1.0.jar**" in the **target** folder. Just double click on it and run the application.
+
 
 ## Team Information
 * Debarati Bhattacharyya
