@@ -92,14 +92,10 @@ public class FileController implements ControllerInterface {
         JFileChooser jFileChooser;
         FileNameExtensionFilter fileTypeFilterTxt = new FileNameExtensionFilter("*.txt", "txt");
         FileNameExtensionFilter fileTypeFilterPDF = new FileNameExtensionFilter("*.pdf", "pdf");
-        FileNameExtensionFilter fileTypeFilterJPEG = new FileNameExtensionFilter("JPEG image", "jpg", "jpeg");
-        FileNameExtensionFilter fileTypeFilterPNG = new FileNameExtensionFilter("PNG image", "png");
         FileNameExtensionFilter fileTypeFilterWord = new FileNameExtensionFilter("Word document", "docx");
 
         if (fileName == null && filePath == null || isSaveAs) {
             jFileChooser = new JFileChooser();
-            jFileChooser.addChoosableFileFilter(fileTypeFilterPNG);
-            jFileChooser.addChoosableFileFilter(fileTypeFilterJPEG);
             jFileChooser.addChoosableFileFilter(fileTypeFilterPDF);
             jFileChooser.addChoosableFileFilter(fileTypeFilterTxt);
             jFileChooser.addChoosableFileFilter(fileTypeFilterWord);
