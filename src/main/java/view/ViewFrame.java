@@ -14,9 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-//import javax.swing.JSeparator;
 
-//import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
@@ -83,9 +81,7 @@ public class ViewFrame extends JFrame {
         headPanel.add(fontType);
         
         
-        //headPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
-        //headPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        //Adding Action Listener on fontType JComboBox
+ 
         fontType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {     
             	String p = fontType.getSelectedItem().toString();                     
@@ -97,7 +93,7 @@ public class ViewFrame extends JFrame {
 		
 		
 		
-		fontSize = new JComboBox();//xiangwei add fontSize
+		fontSize = new JComboBox();
 
 
         for (int i = 5; i <= 100; i++) {
