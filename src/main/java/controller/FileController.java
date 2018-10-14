@@ -147,7 +147,9 @@ public class FileController implements ControllerInterface {
                     userConfirmedSave = false;
                     break; //To exit the while loop if user says no and cancels
                 }
-                fileAlreadyExists = checkIfFileExists(fileToSave);
+
+                    fileAlreadyExists = checkIfFileExists(fileToSave);
+
             }
         }
 
@@ -160,7 +162,8 @@ public class FileController implements ControllerInterface {
                 bw.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Save Cancelled");
             }
         } else {
             System.out.println("Cancelled save");
@@ -174,8 +177,18 @@ public class FileController implements ControllerInterface {
      *            File name given as input to use for filepath
      * @return whether the file already exists
      */
-    public static boolean checkIfFileExists(File fileToSaveName) {
-        Path filePathName = fileToSaveName.toPath();
-        return Files.exists(filePathName);
+    public static boolean checkIfFileExists(File fileToSaveName) throws NullPointerException {
+
+        boolean exists = false;
+        if(fileToSaveName == null)
+            return exists;
+
+        else {
+            Path filePathName = fileToSaveName.toPath();
+            exists = Files.exists(filePathName);
+
+
+            return exists;
+        }
     }
 }
