@@ -12,6 +12,7 @@ import javax.swing.event.DocumentListener;
 public class TextPanel extends AbstractViewPanel {
     JScrollPane textPane;
 
+
     public TextPanel() {
         this.initialize();
     }
@@ -31,7 +32,9 @@ public class TextPanel extends AbstractViewPanel {
         FileModel.getInstance().setTextArea(editableArea);
 
 
+
     }
+
 
 //    private static JScrollPane createTextPanel() {
 //

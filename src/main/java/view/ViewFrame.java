@@ -43,9 +43,11 @@ public class ViewFrame extends JFrame {
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
+	public static JFrame thisFrame;
+	public static JComponent thisPane;
 
-	private static int headPanelHeight = 75;
-	private static int headPanelWidth = 75;
+	private static int headPanelHeight = 95;
+	private static int headPanelWidth = 95;
 	private  JComboBox fontSize,fontType;//xiangwei add fontSize
 
 
@@ -127,12 +129,14 @@ public class ViewFrame extends JFrame {
 	
 		
 		
-        headPanel.setPreferredSize(new Dimension(headPanelWidth,2*headPanelHeight));
+        headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
 		
 		
 		
 		
         layoutHelper();
+        thisFrame = this;
+        thisPane = this.textPanel;
 	}
 
 	/**
@@ -156,13 +160,15 @@ public class ViewFrame extends JFrame {
 		return toolPanel;
 	}
 
+	public static JFrame getViewFrame(){return thisFrame;}
+
 	public JPanel getHeadPanel() {
 		return headPanel;
 	}
 
 
-	public JComponent getTextPanel() {
-		return textPanel;
+	public static JComponent getTextPanel() {
+		return thisPane;
 	}
 
 	public JComponent getFooterPanel() {
