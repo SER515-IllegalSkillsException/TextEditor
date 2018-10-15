@@ -32,7 +32,6 @@ public class EditController implements ControllerInterface {
 		c.paste();
 		return;
 	}
-	//xiangwei 
 
 	//font type
 	public static void setfonttypeText(String p) {
