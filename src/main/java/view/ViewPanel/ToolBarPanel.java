@@ -4,7 +4,6 @@ import constant.EditorConstants;
 //import controller.EditController;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
-
 import java.awt.BorderLayout;
 //import java.awt.Dimension;
 //import java.awt.GraphicsEnvironment;
@@ -12,13 +11,11 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-//import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.JPanel;
+import javax.swing.JComponent;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;
@@ -56,7 +53,10 @@ public class ToolBarPanel extends AbstractViewPanel {
     }
 
     private void initializeButtons() {
+//        KeyStroke keyStrokeFind = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK);
+//        KeyStroke keyStrokeReplace = KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK);
         for (int i = 0; i < EditorConstants.TOOL_MENU_RESOURCES.length; i++) {
+
             ClassLoader classLoader = getClass().getClassLoader();
             JButton button = new JButton();
             try {
@@ -72,6 +72,7 @@ public class ToolBarPanel extends AbstractViewPanel {
             button.setBorderPainted(false);
             button.setFocusPainted(false);
             button.setOpaque(true);
+
             toolbar.add(button);
         }
         return;
