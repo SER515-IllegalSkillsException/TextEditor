@@ -11,7 +11,8 @@ public class EditorConstants {
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
 	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
-
+	public static final String[][] FILE_TYPE_CHOICES = {{"*.txt", "txt"}, {"*.pdf", "pdf"}, {"Word document", "docx"}};
+	
 	public static final int[] FILE_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
 			KeyEvent.VK_P };
 //	public static final int[] TOOL_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE, KeyEvent.VK_ESCAPE,
