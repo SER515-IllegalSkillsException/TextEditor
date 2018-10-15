@@ -47,7 +47,6 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
         toolbarPanel.setVisible(true);
-        return;
 
     }
 
@@ -74,7 +73,6 @@ public class ToolBarPanel extends AbstractViewPanel {
 
             toolbar.add(button);
         }
-        return;
 
     }
     
