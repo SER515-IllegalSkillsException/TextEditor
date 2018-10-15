@@ -9,20 +9,16 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
-=======
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
->>>>>>> 8e2bdd022be35d0678af9ec452ede7bfea53826f
+
 import javax.swing.JToolBar;
-import javax.swing.JPanel;
-import javax.swing.JComponent;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
+
 
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;
