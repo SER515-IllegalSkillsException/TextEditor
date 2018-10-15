@@ -6,13 +6,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.BoxLayout;
 
-import javax.swing.JComboBox;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
-import controller.EditController;
+
 
 
 
@@ -50,7 +48,7 @@ public class ViewFrame extends JFrame {
 
 	private static int headPanelHeight = 95;
 	private static int headPanelWidth = 95;
-	private  JComboBox fontSize,fontType;//xiangwei add fontSize
+	//private  JComboBox fontSize,fontType;//xiangwei add fontSize
 	
 	
 	
@@ -74,7 +72,7 @@ public class ViewFrame extends JFrame {
       
 		
 		//font type
-		fontType = new JComboBox();
+	/*	fontType = new JComboBox();
         
         String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
         for (int i = 0; i < fonts.length; i++) {
@@ -97,18 +95,14 @@ public class ViewFrame extends JFrame {
             }
         });
 		
-	
+	*/
 		
 		
-
+/*
 		//font size
 		fontSize = new JComboBox();//xiangwei add fontSize
 
 		
-		fontSize = new JComboBox();
-
-
-
         for (int i = 5; i <= 100; i++) {
             fontSize.addItem(i);
         }
@@ -130,7 +124,7 @@ public class ViewFrame extends JFrame {
             }
         });
 	
-        
+        */
    
 		
 		
