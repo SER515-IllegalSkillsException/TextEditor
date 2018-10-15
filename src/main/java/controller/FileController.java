@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
+
+import constant.EditorConstants;
 import listener.TextChangeListener;
 import model.FileModel;
 
@@ -23,6 +25,7 @@ import model.FileModel;
  * Controller for every action listener for file menu buttons
  * 
  * @author vsriva12
+ * @author Melissa
  *
  */
 public class FileController implements ControllerInterface {
@@ -89,15 +92,10 @@ public class FileController implements ControllerInterface {
         File fileToSave = null;
         
         JFileChooser jFileChooser;
-        FileNameExtensionFilter fileTypeFilterTxt = new FileNameExtensionFilter("*.txt", "txt");
-        FileNameExtensionFilter fileTypeFilterPDF = new FileNameExtensionFilter("*.pdf", "pdf");
-        FileNameExtensionFilter fileTypeFilterWord = new FileNameExtensionFilter("Word document", "docx");
 
         if (fileName == null && filePath == null || isSaveAs) {
             jFileChooser = new JFileChooser();
-            jFileChooser.addChoosableFileFilter(fileTypeFilterPDF);
-            jFileChooser.addChoosableFileFilter(fileTypeFilterTxt);
-            jFileChooser.addChoosableFileFilter(fileTypeFilterWord);
+            setFileTypeChoicesForSave(jFileChooser);
             if (filePath != null && !filePath.equals("")) {
                 jFileChooser.setCurrentDirectory(new File(filePath));
             } else {
@@ -185,5 +183,18 @@ public class FileController implements ControllerInterface {
 
             return exists;
         }
+    }
+    
+    /**
+     * Sets the choices for the types of files one can choose to save the document
+     * @param fileChooser	The JFileChooser used to save the document
+     */
+    public static void setFileTypeChoicesForSave(JFileChooser fileChooser) {
+    	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];;
+    	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
+    		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
+    				EditorConstants.FILE_TYPE_CHOICES[i][1]);
+    		fileChooser.addChoosableFileFilter(fileTypesChoices[i]);
+    	}
     }
 }
