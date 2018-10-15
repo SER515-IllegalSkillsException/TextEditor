@@ -17,10 +17,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 8e2bdd022be35d0678af9ec452ede7bfea53826f
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
@@ -89,13 +86,10 @@ public class ViewFrame extends JFrame {
         fontType.setToolTipText("Font Type");
         headPanel.add(fontType);
         
-        
-<<<<<<< HEAD
+
 
         //Adding Action Listener on fontType JComboBox
-=======
- 
->>>>>>> 8e2bdd022be35d0678af9ec452ede7bfea53826f
+
         fontType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {     
             	String p = fontType.getSelectedItem().toString();                     
@@ -106,13 +100,13 @@ public class ViewFrame extends JFrame {
 	
 		
 		
-<<<<<<< HEAD
+
 		//font size
 		fontSize = new JComboBox();//xiangwei add fontSize
-=======
+
 		
 		fontSize = new JComboBox();
->>>>>>> 8e2bdd022be35d0678af9ec452ede7bfea53826f
+
 
 
         for (int i = 5; i <= 100; i++) {
