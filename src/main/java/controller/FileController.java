@@ -13,9 +13,9 @@ import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-
 import listener.TextChangeListener;
 import model.FileModel;
 
@@ -49,8 +49,8 @@ public class FileController implements ControllerInterface {
 
                 BufferedReader reader = new BufferedReader(fileReader);
                 FileModel.getInstance().getTextArea().read(reader, "");
-                Document updatedDocument = FileModel.getInstance().getTextArea().getDocument();
-                updatedDocument.addDocumentListener(new TextChangeListener());
+                AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
+                updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
                 FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
                 reader.close();
             } catch (FileNotFoundException e) {
@@ -86,10 +86,21 @@ public class FileController implements ControllerInterface {
         boolean fileAlreadyExists = true;
         boolean keepExistingFile = true;
         File fileToSave = null;
+        
         JFileChooser jFileChooser;
+        FileNameExtensionFilter fileTypeFilterTxt = new FileNameExtensionFilter("*.txt", "txt");
+        FileNameExtensionFilter fileTypeFilterPDF = new FileNameExtensionFilter("*.pdf", "pdf");
+        FileNameExtensionFilter fileTypeFilterJPEG = new FileNameExtensionFilter("JPEG image", "jpg", "jpeg");
+        FileNameExtensionFilter fileTypeFilterPNG = new FileNameExtensionFilter("PNG image", "png");
+        FileNameExtensionFilter fileTypeFilterWord = new FileNameExtensionFilter("Word document", "docx");
 
         if (fileName == null && filePath == null || isSaveAs) {
             jFileChooser = new JFileChooser();
+            jFileChooser.addChoosableFileFilter(fileTypeFilterPNG);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterJPEG);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterPDF);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterTxt);
+            jFileChooser.addChoosableFileFilter(fileTypeFilterWord);
             if (filePath != null && !filePath.equals("")) {
                 jFileChooser.setCurrentDirectory(new File(filePath));
             } else {
@@ -135,7 +146,9 @@ public class FileController implements ControllerInterface {
                     userConfirmedSave = false;
                     break; //To exit the while loop if user says no and cancels
                 }
-                fileAlreadyExists = checkIfFileExists(fileToSave);
+
+                    fileAlreadyExists = checkIfFileExists(fileToSave);
+
             }
         }
 
@@ -148,7 +161,8 @@ public class FileController implements ControllerInterface {
                 bw.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Save Cancelled");
             }
         } else {
             System.out.println("Cancelled save");
@@ -162,8 +176,17 @@ public class FileController implements ControllerInterface {
      *            File name given as input to use for filepath
      * @return whether the file already exists
      */
-    public static boolean checkIfFileExists(File fileToSaveName) {
-        Path filePathName = fileToSaveName.toPath();
-        return Files.exists(filePathName);
+    public static boolean checkIfFileExists(File fileToSaveName) throws NullPointerException {
+
+        boolean exists = false;
+        if(fileToSaveName == null) {
+            return exists;
+        } else {
+            Path filePathName = fileToSaveName.toPath();
+            exists = Files.exists(filePathName);
+
+
+            return exists;
+        }
     }
 }

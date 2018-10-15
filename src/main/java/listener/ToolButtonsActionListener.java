@@ -1,8 +1,11 @@
 package listener;
 
 import constant.EditorConstants;
+import controller.EditController;
 import controller.FileController;
-
+import model.FileModel;
+import view.FindReplaceView;
+import view.ViewFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,19 +43,25 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("Print clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
             //TODO: Print stuff by calling controller
+        	EditController.cutText();
             System.out.println("Cut clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
             //TODO: Print stuff by calling controller
+        	EditController.copyText();
             System.out.println("Copy clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[8])) {
             //TODO: Print stuff by calling controller
+        	EditController.pasteText();
             System.out.println("Paste clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[9])) {
             //TODO: Print stuff by calling controller
+
             System.out.println("Find clicked");
+            new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[10])) {
             //TODO: Print stuff by calling controller
             System.out.println("Replace clicked");
+            new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
             //TODO: Print stuff by calling controller
             System.out.println("Info clicked");

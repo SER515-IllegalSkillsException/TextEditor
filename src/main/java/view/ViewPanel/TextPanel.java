@@ -7,10 +7,12 @@ import view.AbstractViewPanel;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.event.DocumentListener;
+import javax.swing.text.AbstractDocument;
 
 public class TextPanel extends AbstractViewPanel {
     JScrollPane textPane;
+    static JTextArea editableArea;
+
 
     public TextPanel() {
         this.initialize();
@@ -25,13 +27,21 @@ public class TextPanel extends AbstractViewPanel {
     protected void initialize() {
         JTextArea editableArea = new JTextArea();
         editableArea.setLineWrap(true);
-        DocumentListener textChangeListener = new TextChangeListener();
-        editableArea.getDocument().addDocumentListener(textChangeListener);
+
+        AbstractDocument textDocument = (AbstractDocument)editableArea.getDocument();
+        textDocument.setDocumentFilter(new TextChangeListener(editableArea));
+//        DocumentListener textChangeListener = new TextChangeListener();
+//        editableArea.getDocument().addDocumentListener(textChangeListener);
         textPane = new JScrollPane(editableArea);
+
         FileModel.getInstance().setTextArea(editableArea);
 
 
+
     }
+
+
+
 
 //    private static JScrollPane createTextPanel() {
 //
