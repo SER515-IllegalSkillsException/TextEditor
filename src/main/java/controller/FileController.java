@@ -190,7 +190,7 @@ public class FileController implements ControllerInterface {
      * @param fileChooser	The JFileChooser used to save the document
      */
     public static void setFileTypeChoicesForSave(JFileChooser fileChooser) {
-    	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];;
+    	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];
     	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
     		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
     				EditorConstants.FILE_TYPE_CHOICES[i][1]);
