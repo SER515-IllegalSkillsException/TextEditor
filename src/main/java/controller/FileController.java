@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
@@ -50,8 +51,8 @@ public class FileController implements ControllerInterface {
 
                 BufferedReader reader = new BufferedReader(fileReader);
                 FileModel.getInstance().getTextArea().read(reader, "");
-                Document updatedDocument = FileModel.getInstance().getTextArea().getDocument();
-                updatedDocument.addDocumentListener(new TextChangeListener());
+                AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
+                updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
                 FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
                 reader.close();
             } catch (FileNotFoundException e) {

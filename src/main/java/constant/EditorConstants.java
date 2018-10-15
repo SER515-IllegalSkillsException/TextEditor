@@ -14,6 +14,8 @@ public class EditorConstants {
 
 	public static final int[] FILE_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
 			KeyEvent.VK_P };
+//	public static final int[] TOOL_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE, KeyEvent.VK_ESCAPE,
+//			KeyEvent.VK_P };
 
 	public static final int FRAME_WIDTH = 600;
 

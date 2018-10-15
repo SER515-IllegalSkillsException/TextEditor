@@ -1,36 +1,116 @@
 package view;
 
-import javax.swing.*;
-import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import listener.FindReplaceActionListener;
 
-public class FindReplaceView extends JDialog implements ActionListener {
+import javax.swing.*;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.HashMap;
+
+/**+
+ * This class initializes the view for the Find And Replace Text Box
+ *
+ * @author Abhinab Mohanty
+ */
+public class FindReplaceView extends JDialog {
+
+
+
+    @Override
+    public void setDefaultCloseOperation(int operation) {
+//        removeHighlights(this.pane);
+        super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }
+    public static void removeHighlights() {
+        Highlighter hilite = pane.getHighlighter();
+        Highlighter.Highlight[] hilites = hilite.getHighlights();
+
+        for (int i = 0; i < hilites.length; i++) {
+            if (hilites[i].getPainter() instanceof DefaultHighlighter.DefaultHighlightPainter) {
+                hilite.removeHighlight(hilites[i]);
+            }
+        }
+    }
+
+    public static JTextField getWhat() {
+        return what;
+    }
+
+
+    public JLabel getReplaceWith() {
+        return replaceWith;
+    }
+
+    public static JTextField getWith() {
+        return with;
+    }
+
+    public static JCheckBox getWord() {
+        return word;
+    }
+
+    public static JCheckBox getMatchCase() {
+        return matchCase;
+    }
+
+    public static JButton getFind() {
+        return find;
+    }
+
+    public static JButton getFindAll() {
+        return findAll;
+    }
+
+    public static JButton getReplace() {
+        return replace;
+    }
+
+    public static JButton getReplaceAll() {
+        return replaceAll;
+    }
+
+//    public static JButton getClose() {
+//        return close;
+//    }
+
+    @Override
+    public JFrame getOwner() {
+        return owner;
+    }
+
+    public static JTextArea getPane() {
+        return pane;
+    }
+
     private JPanel wordPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     private JPanel casePanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     private JPanel inputs = new JPanel(new GridLayout(6, 1));
     private JPanel buttons = new JPanel(new GridLayout(5, 1));
     private JLabel findWhat = new JLabel("Find What");
-    private JTextField what = new JTextField();
     private JLabel replaceWith = new JLabel("Replace With");
-    private JTextField with = new JTextField();
-    private JCheckBox word = new JCheckBox();
     private JLabel wordLabel = new JLabel("Match whole word only");
-    private JCheckBox matchCase = new JCheckBox();
     private JLabel matchCaseLabel = new JLabel("Match case");
-    private JButton find = new JButton("Find");
-    private JButton findAll = new JButton("Find All");
-    private JButton replace = new JButton("Replace");
-    private JButton replaceAll = new JButton("Replace All");
-    private JButton close = new JButton("Close");
-    private JFrame owner;
-    private JTextArea pane;
     private HashMap<Object, Action> actions;
+    private JFrame owner;
+
+    /**+
+     * Static Fields Initialization
+     */
+    private static JTextField what = new JTextField();
+    private static JTextField with = new JTextField();
+    private static JCheckBox word = new JCheckBox();
+    private static JCheckBox matchCase = new JCheckBox();
+    private static JButton find = new JButton("Find");
+    private static JButton findAll = new JButton("Find All");
+    private static JButton replace = new JButton("Replace");
+    private static JButton replaceAll = new JButton("Replace All");
+//    private static JButton close = new JButton("Close");
+    private static JTextArea pane;
+    private static JDialog FRbox;
+
 
     public FindReplaceView(JFrame owner, JTextArea pane)
     {
@@ -46,108 +126,57 @@ public class FindReplaceView extends JDialog implements ActionListener {
         pack();
         setLocationRelativeTo(owner);
         setVisible(true);
+        this.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                removeHighlights();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                removeHighlights();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
+
+
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-        if(e.getSource() == what)
-        {
-            with.requestFocusInWindow();
-        }
-        if(e.getSource() == find)
-        {
-            if(!word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(!word.isSelected() && matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && matchCase.isSelected())
-            {
-            }
-        }
-        if(e.getSource() == findAll)
-        {
-            if(!word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(!word.isSelected() && matchCase.isSelected())
-            {
-                Pattern p = Pattern.compile(what.getText());
-                Matcher m = p.matcher(pane.getText());
-                while (m.find())
-                {
-                    //select that portion of the text
-                    Action action = getActionByName(DefaultEditorKit.selectionForwardAction);
-                    action.actionPerformed(null);
-                }
-            }
-            else if(word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && matchCase.isSelected())
-            {
-            }
-        }
-        else if(e.getSource() == replace)
-        {
-            if(!word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(!word.isSelected() && matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && matchCase.isSelected())
-            {
-            }
-        }
-        else if(e.getSource() == replaceAll)
-        {
-            if(!word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(!word.isSelected() && matchCase.isSelected())
-            {
-                String toReplace = what.getText();
-                String replacement = with.getText();
-                String text = pane.getText();
-                text = text.replaceAll(toReplace, replacement);
-                pane.setText(text);
-            }
-            else if(word.isSelected() && !matchCase.isSelected())
-            {
-            }
-            else if(word.isSelected() && matchCase.isSelected())
-            {
-                String toReplace = "\\b" + what.getText() + "\\b";
-                String replacement = with.getText();
-                String text = pane.getText();
-                text = text.replaceAll(toReplace, replacement);
-                pane.setText(text);
-            }
-        }
-        else if(e.getSource() == close)
-        {
-            dispose();
-        }
-    }
 
     private void initComponents()
     {
-        //findPanel.add(findWhat);
-        //findPanel.add(what);
-        what.addActionListener(this);
-        find.addActionListener(this);
-        findAll.addActionListener(this);
-        replace.addActionListener(this);
-        replaceAll.addActionListener(this);
-        close.addActionListener(this);
+
+        what.addActionListener(new FindReplaceActionListener());
+        find.addActionListener(new FindReplaceActionListener());
+        findAll.addActionListener(new FindReplaceActionListener());
+        replace.addActionListener(new FindReplaceActionListener());
+        replaceAll.addActionListener(new FindReplaceActionListener());
+//        close.addActionListener(new FindReplaceActionListener());
         wordPanel.add(word);
         wordPanel.add(wordLabel);
         casePanel.add(matchCase);
@@ -162,25 +191,9 @@ public class FindReplaceView extends JDialog implements ActionListener {
         buttons.add(findAll);
         buttons.add(replace);
         buttons.add(replaceAll);
-        buttons.add(close);
+//        buttons.add(close);
     }
 
-    //The following two methods allow us to find an
-    //action provided by the editor kit by its name.
-    private HashMap<Object, Action> createActionTable(JTextComponent textComponent)
-    {
-        HashMap<Object, Action> actions = new HashMap<Object, Action>();
-        Action[] actionsArray = textComponent.getActions();
-        for (int i = 0; i < actionsArray.length; i++)
-        {
-            Action a = actionsArray[i];
-            actions.put(a.getValue(Action.NAME), a);
-        }
-        return actions;
-    }
 
-    private Action getActionByName(String name)
-    {
-        return actions.get(name);
-    }
+
 }
