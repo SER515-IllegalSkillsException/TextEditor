@@ -160,7 +160,9 @@ public class ViewFrame extends JFrame {
 		return toolPanel;
 	}
 
-	public static JFrame getViewFrame(){return thisFrame;}
+	public static JFrame getViewFrame(){
+	    return thisFrame;
+	}
 
 	public JPanel getHeadPanel() {
 		return headPanel;

@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-
 import listener.TextChangeListener;
 import model.FileModel;
 
@@ -181,10 +179,9 @@ public class FileController implements ControllerInterface {
     public static boolean checkIfFileExists(File fileToSaveName) throws NullPointerException {
 
         boolean exists = false;
-        if(fileToSaveName == null)
+        if(fileToSaveName == null) {
             return exists;
-
-        else {
+        } else {
             Path filePathName = fileToSaveName.toPath();
             exists = Files.exists(filePathName);
 

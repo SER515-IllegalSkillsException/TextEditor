@@ -3,14 +3,15 @@ package view.ViewPanel;
 import constant.EditorConstants;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.*;
+import javax.swing.JToolBar;
+import javax.swing.JPanel;
+import javax.swing.JComponent;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;

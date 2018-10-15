@@ -7,7 +7,6 @@ import view.AbstractViewPanel;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
 
 public class TextPanel extends AbstractViewPanel {

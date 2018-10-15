@@ -1,14 +1,25 @@
 package view;
 
 import listener.FindReplaceActionListener;
+import org.jetbrains.annotations.Contract;
 
-import javax.swing.*;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.HashMap;
 
 /**+
  * This class initializes the view for the Find And Replace Text Box
@@ -35,6 +46,7 @@ public class FindReplaceView extends JDialog {
         }
     }
 
+    @Contract(pure = true)
     public static JTextField getWhat() {
         return what;
     }
@@ -44,30 +56,37 @@ public class FindReplaceView extends JDialog {
         return replaceWith;
     }
 
+    @Contract(pure = true)
     public static JTextField getWith() {
         return with;
     }
 
+    @Contract(pure = true)
     public static JCheckBox getWord() {
         return word;
     }
 
+    @Contract(pure = true)
     public static JCheckBox getMatchCase() {
         return matchCase;
     }
 
+    @Contract(pure = true)
     public static JButton getFind() {
         return find;
     }
 
+    @Contract(pure = true)
     public static JButton getFindAll() {
         return findAll;
     }
 
+    @Contract(pure = true)
     public static JButton getReplace() {
         return replace;
     }
 
+    @Contract(pure = true)
     public static JButton getReplaceAll() {
         return replaceAll;
     }
@@ -93,7 +112,6 @@ public class FindReplaceView extends JDialog {
     private JLabel replaceWith = new JLabel("Replace With");
     private JLabel wordLabel = new JLabel("Match whole word only");
     private JLabel matchCaseLabel = new JLabel("Match case");
-    private HashMap<Object, Action> actions;
     private JFrame owner;
 
     /**+
@@ -109,11 +127,10 @@ public class FindReplaceView extends JDialog {
     private static JButton replaceAll = new JButton("Replace All");
 //    private static JButton close = new JButton("Close");
     private static JTextArea pane;
-    private static JDialog FRbox;
 
 
-    public FindReplaceView(JFrame owner, JTextArea pane)
-    {
+
+    public FindReplaceView(JFrame owner, JTextArea pane) {
         super(owner, "Find & Replace", true);
         this.owner = owner;
         this.pane = pane;
@@ -168,8 +185,7 @@ public class FindReplaceView extends JDialog {
     }
 
 
-    private void initComponents()
-    {
+    private void initComponents() {
 
         what.addActionListener(new FindReplaceActionListener());
         find.addActionListener(new FindReplaceActionListener());
