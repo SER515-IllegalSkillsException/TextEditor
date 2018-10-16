@@ -95,6 +95,8 @@ public class ToolBarPanel extends AbstractViewPanel {
         fontType.setMaximumSize(new Dimension(170, 30));
         fontType.setToolTipText("Font Type");
         toolbar.add(fontType);
+        
+        
         fontType.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {     
             	String p = fontType.getSelectedItem().toString();                     
