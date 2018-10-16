@@ -11,13 +11,15 @@ import model.FileModel;
  * Controller for every action listener for edit menu buttons
  * 
  * @author dbhatt14
+ * @author xiangwei zheng
  *
  */
 public class EditController implements ControllerInterface {
+	 /**
+     * Function edits and formats the user selected text.
+     */
 	
 	static JTextArea textSpace = FileModel.getInstance().getTextArea();
-	
-	// edit file functions like cut, copy and paste
 	
 	public static void cutText() {
 		textSpace.addMouseListener(new MouseAdapter() {
@@ -48,7 +50,8 @@ public class EditController implements ControllerInterface {
         textSpace.setFont(new Font(p, Font.PLAIN, s));
 		return;
 	}
-    //font size
+    
+	//font size
 	public static void setfontsizeText(int sizeOfFont) {
 		
 		String fontFamily = textSpace.getFont().getFamily();
