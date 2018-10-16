@@ -1,12 +1,13 @@
 package view.ViewPanel;
 
 import constant.EditorConstants;
-
+import controller.EditController;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     int toolBarPanelSizeWidth = 500;
     int toolBarPanelSizeHeight = 500;
     private  JComboBox fontType;
+    private  JComboBox fontSize;
 
     public ToolBarPanel() {
         this.initialize();
@@ -44,6 +46,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbar = new JToolBar("Applications");
         this.initializeButtons();
         this.initfontype();
+        this.initfontsize();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         
@@ -92,7 +95,38 @@ public class ToolBarPanel extends AbstractViewPanel {
         fontType.setMaximumSize(new Dimension(170, 30));
         fontType.setToolTipText("Font Type");
         toolbar.add(fontType);
+        fontType.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {     
+            	String p = fontType.getSelectedItem().toString();                     
+                EditController.setfonttypeText(p);          
+            }
+        });
     }
     
+    private void initfontsize() {
+		fontSize = new JComboBox();//xiangwei add fontSize
+
+
+        for (int i = 5; i <= 100; i++) {
+            fontSize.addItem(i);
+        }
+        fontSize.setMaximumSize(new Dimension(70, 30));
+        fontSize.setToolTipText("Font Size");
+        toolbar.add(fontSize);
+        
+        
+
+        
+        fontSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+               String sizeValue = fontSize.getSelectedItem().toString();
+
+            	
+                int sizeOfFont = Integer.parseInt(sizeValue);
+                
+                EditController.setfontsizeText(sizeOfFont);   
+            }
+        });
+    }
     
 }
