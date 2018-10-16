@@ -50,12 +50,11 @@ public class EditController implements ControllerInterface {
 	}
     //font size
 	public static void setfontsizeText(int sizeOfFont) {
+		
 		String fontFamily = textSpace.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
         textSpace.setFont(font1);
 		return;
 	}
 	
- 
-
 }

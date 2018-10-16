@@ -1,11 +1,13 @@
 package view.ViewPanel;
 
 import constant.EditorConstants;
-
+import controller.EditController;
 import listener.ToolButtonsActionListener;
 import view.AbstractViewPanel;
 import java.awt.BorderLayout;
-
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -27,7 +29,8 @@ public class ToolBarPanel extends AbstractViewPanel {
     List<JButton> toolButtonList = new ArrayList<JButton>();
     int toolBarPanelSizeWidth = 500;
     int toolBarPanelSizeHeight = 500;
-
+    private  JComboBox fontType;
+    private  JComboBox fontSize;
 
     public ToolBarPanel() {
         this.initialize();
@@ -43,12 +46,13 @@ public class ToolBarPanel extends AbstractViewPanel {
     protected void initialize() {
         toolbar = new JToolBar("Applications");
         this.initializeButtons();
-
+        this.initfontype();
+        this.initfontsize();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
+        
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
         toolbarPanel.setVisible(true);
-        return;
 
     }
 
@@ -75,9 +79,55 @@ public class ToolBarPanel extends AbstractViewPanel {
 
             toolbar.add(button);
         }
-        return;
 
     }
     
+    private void initfontype() {
+      fontType = new JComboBox();
+        
+        String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        for (int i = 0; i < fonts.length; i++) {
+    
+            fontType.addItem(fonts[i]);
+        }
+       
+        fontType.setMaximumSize(new Dimension(170, 30));
+        fontType.setToolTipText("Font Type");
+        toolbar.add(fontType);
+        
+        
+        fontType.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {     
+            	String p = fontType.getSelectedItem().toString();                     
+                EditController.setfonttypeText(p);          
+            }
+        });
+    }
+    
+    private void initfontsize() {
+		fontSize = new JComboBox();//xiangwei add fontSize
+
+
+        for (int i = 5; i <= 100; i++) {
+            fontSize.addItem(i);
+        }
+        fontSize.setMaximumSize(new Dimension(70, 30));
+        fontSize.setToolTipText("Font Size");
+        toolbar.add(fontSize);
+        
+        
+
+        
+        fontSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+               String sizeValue = fontSize.getSelectedItem().toString();
+
+            	
+                int sizeOfFont = Integer.parseInt(sizeValue);
+                
+                EditController.setfontsizeText(sizeOfFont);   
+            }
+        });
+    }
     
 }
