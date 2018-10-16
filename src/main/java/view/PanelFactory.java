@@ -18,7 +18,7 @@ public class PanelFactory {
 	/**
 	 * default serial version id
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor to perform tasks on initialization

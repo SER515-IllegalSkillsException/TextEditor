@@ -1,8 +1,6 @@
 package view;
 
 import listener.FindReplaceActionListener;
-import org.jetbrains.annotations.Contract;
-
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.JDialog;
@@ -46,7 +44,7 @@ public class FindReplaceView extends JDialog {
         }
     }
 
-    @Contract(pure = true)
+
     public static JTextField getWhat() {
         return what;
     }
@@ -56,37 +54,37 @@ public class FindReplaceView extends JDialog {
         return replaceWith;
     }
 
-    @Contract(pure = true)
+
     public static JTextField getWith() {
         return with;
     }
 
-    @Contract(pure = true)
+
     public static JCheckBox getWord() {
         return word;
     }
 
-    @Contract(pure = true)
+
     public static JCheckBox getMatchCase() {
         return matchCase;
     }
 
-    @Contract(pure = true)
+
     public static JButton getFind() {
         return find;
     }
 
-    @Contract(pure = true)
+
     public static JButton getFindAll() {
         return findAll;
     }
 
-    @Contract(pure = true)
+
     public static JButton getReplace() {
         return replace;
     }
 
-    @Contract(pure = true)
+
     public static JButton getReplaceAll() {
         return replaceAll;
     }

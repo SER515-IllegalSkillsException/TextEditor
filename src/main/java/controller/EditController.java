@@ -20,32 +20,29 @@ public class EditController implements ControllerInterface {
 		      }
 		});
 		c.cut();
-		return;
 	}
 	
 	public static void copyText() {
 		c.copy();
-		return;
 	}
 	
 	public static void pasteText() {
 		c.paste();
-		return;
 	}
-	//xiangwei 
-	/*
+
+	//font type
 	public static void setfonttypeText(String p) {
 		
         int s = c.getFont().getSize();
         c.setFont(new Font(p, Font.PLAIN, s));
-		return;
 	}
-*/
+    //font size
 	public static void setfontsizeText(int sizeOfFont) {
 		String fontFamily = c.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
         c.setFont(font1);
-		return;
 	}
+	
+ 
 
 }
