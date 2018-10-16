@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 
+@SuppressWarnings("serial")
 public class ToolBarPanel extends AbstractViewPanel {
     JToolBar toolbar;
     JPanel toolbarPanel = new JPanel();
@@ -60,7 +61,7 @@ public class ToolBarPanel extends AbstractViewPanel {
             JButton button = new JButton();
             try {
                 ImageIcon image = new ImageIcon(
-                        classLoader.getResource("toolbar-icons/" + EditorConstants.TOOL_MENU_RESOURCES[i] + ".png"));
+                		classLoader.getResource("toolbar-icons/" + EditorConstants.TOOL_MENU_RESOURCES[i] + ".png"));
                 button.setIcon(image);
             } catch (Exception e) {
                 e.printStackTrace();
