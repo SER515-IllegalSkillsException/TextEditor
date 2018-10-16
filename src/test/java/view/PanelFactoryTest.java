@@ -60,7 +60,7 @@ public class PanelFactoryTest {
 		JToolBar toolbar = (JToolBar) toolPanel.getComponent(0);
 		// Number of tool bar items should be equal to the labels defined in
 		// constants file
-		assertEquals(EditorConstants.TOOL_MENU_ITEM_LABELS.length+EditorConstants.numberbox,
+		assertEquals(EditorConstants.TOOL_MENU_ITEM_LABELS.length+EditorConstants.NUM_BOX,
 				toolbar.getComponentCount());
 
 	}
