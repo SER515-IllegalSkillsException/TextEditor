@@ -28,7 +28,7 @@ public class TextChangeListener extends DocumentFilter {
         this.editedTextArea = textArea;
         FileModel.getInstance().setTextArea(textArea);
     }
-
+/*
     @Override
     public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
         super.remove(fb, offset, length);
@@ -46,6 +46,7 @@ public class TextChangeListener extends DocumentFilter {
         super.replace(fb, offset, length, text, attrs);
         updateTextValue(fb);
     }
+    */
     //	public void insertUpdate(DocumentEvent event) {
 //		updateTextValue(event);
 //
