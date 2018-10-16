@@ -30,17 +30,14 @@ public class EditController implements ControllerInterface {
 		      }
 		});
 		textSpace.cut();
-		return;
 	}
 	
 	public static void copyText() {
 		textSpace.copy();
-		return;
 	}
 	
 	public static void pasteText() {
 		textSpace.paste();
-		return;
 	}
 
 	//font type
@@ -48,7 +45,6 @@ public class EditController implements ControllerInterface {
 		
         int s = textSpace.getFont().getSize();
         textSpace.setFont(new Font(p, Font.PLAIN, s));
-		return;
 	}
     
 	//font size
@@ -57,7 +53,6 @@ public class EditController implements ControllerInterface {
 		String fontFamily = textSpace.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
         textSpace.setFont(font1);
-		return;
 	}
 	
 }
