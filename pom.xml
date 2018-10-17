@@ -6,7 +6,7 @@
 
 	<groupId>ise</groupId>
 	<artifactId>TextEditor</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>2.0-SNAPSHOT</version>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
@@ -20,26 +20,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
-		<dependency>
-		    <groupId>org.apache.pdfbox</groupId>
-		    <artifactId>pdfbox</artifactId>
-		    <version>2.0.8</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>3.17</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.tika/tika-parsers -->
-		<dependency>
-		    <groupId>org.apache.tika</groupId>
-		    <artifactId>tika-parsers</artifactId>
-		    <version>1.18</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox-tools</artifactId>
@@ -50,7 +30,6 @@
 			<artifactId>pdf2dom</artifactId>
 			<version>1.6</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
@@ -60,13 +39,13 @@
 				<version>3.0.0</version>
 				<executions>
 					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
+						<id>test</id>
+						<phase>test</phase>
 						<configuration>
 							<configLocation>checkstyle.xml</configLocation>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
-							<failsOnError>false</failsOnError>
+							<failsOnError>true</failsOnError>
 							<linkXRef>false</linkXRef>
 						</configuration>
 						<goals>
@@ -75,7 +54,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -118,7 +96,7 @@
 			</plugin>
 			<!-- Creates an app for mac os -->
 			<plugin>
-			<groupId>sh.tak.appbundler</groupId>
+				<groupId>sh.tak.appbundler</groupId>
 				<artifactId>appbundle-maven-plugin</artifactId>
 				<version>1.2.0</version>
 				<configuration>
@@ -141,7 +119,6 @@
 					<target>7</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 
