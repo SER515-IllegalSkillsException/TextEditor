@@ -1,5 +1,6 @@
-# TextEditor
+# TextEditor [![Travis Build Status](https://travis-ci.com/SER515-IllegalSkillsException/TextEditor.svg?branch=master)](https://travis-ci.com/SER515-IllegalSkillsException/TextEditor)
 > A desktop based text editor software. 
+
 
 
 ## Running instructions - 
