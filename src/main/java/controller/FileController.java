@@ -35,6 +35,7 @@ public class FileController implements ControllerInterface {
     public static void openFile() {
         String filePath = FileModel.getInstance().getFilePath();
         JFileChooser fileChooser = new JFileChooser();
+        setFileTypeChoicesForOpen(fileChooser);
         File fileToOpen = null;
         if (filePath != null && !filePath.equals("")) {
             fileChooser.setCurrentDirectory(new File(filePath));
@@ -190,6 +191,19 @@ public class FileController implements ControllerInterface {
      * @param fileChooser	The JFileChooser used to save the document
      */
     public static void setFileTypeChoicesForSave(JFileChooser fileChooser) {
+    	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];
+    	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
+    		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
+    				EditorConstants.FILE_TYPE_CHOICES[i][1]);
+    		fileChooser.addChoosableFileFilter(fileTypesChoices[i]);
+    	}
+    }
+
+    /**
+     * Set the choices for the types of files one can choose to open the document
+     * @param fileChooser	The JFileChooser used to open the document
+     */
+    public static void setFileTypeChoicesForOpen(JFileChooser fileChooser) {
     	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];
     	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
     		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
