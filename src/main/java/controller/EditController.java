@@ -7,42 +7,52 @@ import javax.swing.JTextArea;
 
 import model.FileModel;
 
+/**
+ * Controller for every action listener for edit menu buttons
+ * 
+ * @author dbhatt14
+ * @author xiangwei zheng
+ *
+ */
 public class EditController implements ControllerInterface {
+	 /**
+     * Function edits and formats the user selected text.
+     */
 	
-	static JTextArea c = FileModel.getInstance().getTextArea();
+	static JTextArea textSpace = FileModel.getInstance().getTextArea();
 	
 	public static void cutText() {
-		c.addMouseListener(new MouseAdapter() {
+		textSpace.addMouseListener(new MouseAdapter() {
 
 		      @Override
 		      public void mouseReleased(MouseEvent e) {
-		        System.out.println(c.getSelectedText());	  
+		        System.out.println(textSpace.getSelectedText());	  
 		      }
 		});
-		c.cut();
+		textSpace.cut();
 	}
 	
 	public static void copyText() {
-		c.copy();
+		textSpace.copy();
 	}
 	
 	public static void pasteText() {
-		c.paste();
+		textSpace.paste();
 	}
 
 	//font type
 	public static void setfonttypeText(String p) {
 		
-        int s = c.getFont().getSize();
-        c.setFont(new Font(p, Font.PLAIN, s));
+        int s = textSpace.getFont().getSize();
+        textSpace.setFont(new Font(p, Font.PLAIN, s));
 	}
-    //font size
+    
+	//font size
 	public static void setfontsizeText(int sizeOfFont) {
-		String fontFamily = c.getFont().getFamily();
+		
+		String fontFamily = textSpace.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
-        c.setFont(font1);
+        textSpace.setFont(font1);
 	}
 	
- 
-
 }
