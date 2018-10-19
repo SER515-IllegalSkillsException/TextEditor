@@ -62,7 +62,6 @@ public class EditController implements ControllerInterface {
 	    } else {
 	    	textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
 	    }
-		return;
 	}
 	
 }
