@@ -10,7 +10,7 @@ public class EditorConstants {
 			"Save As ..", "Print" };
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final int NUM_BOX=2;//add font type and font size
+	public static final int NUM_BOX=3;//add font type and font size
 	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 	public static final String[][] FILE_TYPE_CHOICES = {{"*.txt", "txt"}, {"*.pdf", "pdf"}, {"Word document", "docx"}};
 	
