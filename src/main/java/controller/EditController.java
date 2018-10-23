@@ -55,4 +55,13 @@ public class EditController implements ControllerInterface {
         textSpace.setFont(font1);
 	}
 	
+	  //bold
+		public static void setbold() {
+		if (textSpace.getFont().getStyle() == Font.BOLD){
+			textSpace.setFont(textSpace.getFont().deriveFont(Font.PLAIN));
+	    } else {
+	    	textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
+	    }
+	}
+	
 }

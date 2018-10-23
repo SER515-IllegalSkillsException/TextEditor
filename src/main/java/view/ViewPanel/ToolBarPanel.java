@@ -31,6 +31,10 @@ public class ToolBarPanel extends AbstractViewPanel {
     int toolBarPanelSizeHeight = 500;
     private  JComboBox fontType;
     private  JComboBox fontSize;
+    private JButton boldButton;
+	ClassLoader classLoader = getClass().getClassLoader();
+	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
+    
 
     public ToolBarPanel() {
         this.initialize();
@@ -48,6 +52,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initializeButtons();
         this.initfontype();
         this.initfontsize();
+        this.initbold();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         
@@ -130,4 +135,22 @@ public class ToolBarPanel extends AbstractViewPanel {
         });
     }
     
+    
+    
+    
+    private void initbold() {
+    	
+    	
+        boldButton = new JButton(boldIcon);
+        boldButton.setToolTipText("Bold");
+        boldButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setbold();
+             
+         }
+     });
+        
+        toolbar.add(boldButton);
+    }
 }
