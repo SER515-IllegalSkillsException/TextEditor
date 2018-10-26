@@ -1,5 +1,7 @@
 package listener;
 
+import java.io.Serializable;
+
 import javax.swing.JEditorPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -22,8 +24,12 @@ import model.FileModel;
  * @author Abhinab Mohanty
  *
  */
-public class TextChangeListener extends DocumentFilter {
-    private JEditorPane editedTextArea;
+public class TextChangeListener extends DocumentFilter implements Serializable {
+    /**
+	 * generated serial version id
+	 */
+	private static final long serialVersionUID = -3771996191042890611L;
+	private JEditorPane editedTextArea;
     public TextChangeListener(JEditorPane editableArea) {
         this.editedTextArea = editableArea;
         FileModel.getInstance().setTextArea(editableArea);

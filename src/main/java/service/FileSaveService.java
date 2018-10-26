@@ -1,9 +1,9 @@
 package service;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
-import javax.swing.text.html.HTMLEditorKit;
 
 import constant.EditorConstants;
 import model.FileModel;
@@ -20,7 +19,7 @@ import model.FileModel;
 /**
  * Service methods to save file.
  * 
- * @author varun
+ * @author Varun Srivastava
  *
  */
 public class FileSaveService {
@@ -29,13 +28,16 @@ public class FileSaveService {
 	private boolean keepExistingFile;
 	private File fileToSave;
 	private boolean isSaveAs;
+	private boolean saveToCurrent;
 	JFileChooser jFileChooser;
 	String fileExtension;
+	private final static String DEFAULT_EXTENSION = "txt";
 
 	public FileSaveService(boolean isSaveAs) {
 		userConfirmedSave = true;
 		fileAlreadyExists = true;
 		keepExistingFile = true;
+		saveToCurrent = false;
 		this.isSaveAs = isSaveAs;
 	}
 
@@ -48,7 +50,7 @@ public class FileSaveService {
 
 		// Check if the file already exists
 		fileAlreadyExists = checkIfFileExists(fileToSave);
-		if (fileAlreadyExists) {
+		if (fileAlreadyExists && !saveToCurrent) {
 			prompUserToUpdateOrOverride();
 		}
 
@@ -69,7 +71,7 @@ public class FileSaveService {
 	 * @throws BadLocationException
 	 */
 	private void saveFile() throws BadLocationException {
-		if (userConfirmedSave && (!fileAlreadyExists || !keepExistingFile)) {
+		if (userConfirmedSave && (!fileAlreadyExists || !keepExistingFile || saveToCurrent)) {
 			try {
 				if (fileExtension.equalsIgnoreCase("PDF")) {
 					writePdf();
@@ -90,23 +92,19 @@ public class FileSaveService {
 
 	}
 
+	/**
+	 * Saves the text in the default extension format
+	 * @throws IOException
+	 * @throws BadLocationException
+	 */
 	private void writeText() throws IOException, BadLocationException {
-
-//		String content = FileModel.getInstance().getContent();
 		Document doc = FileModel.getInstance().getTextArea().getDocument();
-		HTMLEditorKit kit = new HTMLEditorKit();
-		BufferedOutputStream out = new BufferedOutputStream(
-				new FileOutputStream(fileToSave));
-//		FileWriter fw = new FileWriter(fileToSave, false);
-		kit.write(out, doc, doc.getStartPosition().getOffset(),
-				doc.getLength());
-//		BufferedWriter bw = new BufferedWriter(fw);
-//		bw.write(content);
-//		bw.flush();
-//		bw.close();
-
+		saveObectToFile(doc, fileToSave);
 	}
 
+	/**
+	 * Saves the text in docx format.
+	 */
 	private void writeDocx() {
 		// TODO Auto-generated method stub
 
@@ -187,6 +185,8 @@ public class FileSaveService {
 
 		} else {
 			fileToSave = new File(filePath);
+			fileExtension = DEFAULT_EXTENSION;
+			saveToCurrent = true;
 
 		}
 
@@ -206,7 +206,7 @@ public class FileSaveService {
 				return EditorConstants.FILE_TYPE_CHOICES[i][1];
 			}
 		}
-		return "txt";
+		return DEFAULT_EXTENSION;
 	}
 
 	/**
@@ -243,6 +243,19 @@ public class FileSaveService {
 
 			return exists;
 		}
+	}
+	
+	/**
+	 * Saving the JEditorPane directly as an object to preserve styling
+	 * @param obj
+	 * @param filepath
+	 * @throws IOException
+	 */
+	private void saveObectToFile(Object obj, File fileToSave) throws IOException {
+		FileOutputStream fileOutputStream = new FileOutputStream(fileToSave);
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+		objectOutputStream.writeObject(obj);
+		objectOutputStream.close();
 	}
 
 }

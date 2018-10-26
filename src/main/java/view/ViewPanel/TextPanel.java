@@ -30,21 +30,11 @@ public class TextPanel extends AbstractViewPanel {
 	@Override
 	protected void initialize() {
 		JEditorPane editableArea = new JEditorPane();
-//		editableArea.setLineWrap(true);
-
 		AbstractDocument textDocument = (AbstractDocument) editableArea
 				.getDocument();
 		textDocument.setDocumentFilter(new TextChangeListener(editableArea));
-//        DocumentListener textChangeListener = new TextChangeListener();
-//        editableArea.getDocument().addDocumentListener(textChangeListener);
 		textPane = new JScrollPane(editableArea);
-
 		FileModel.getInstance().setTextArea(editableArea);
-
 	}
 
-//    private static JScrollPane createTextPanel() {
-//
-//        return scrollableArea;
-//    }
 }
