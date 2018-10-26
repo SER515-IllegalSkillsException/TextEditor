@@ -34,7 +34,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     private JButton boldButton;
 	ClassLoader classLoader = getClass().getClassLoader();
 	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
-    
+	private  JComboBox fontColor;//color
 
     public ToolBarPanel() {
         this.initialize();
@@ -53,6 +53,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontype();
         this.initfontsize();
         this.initbold();
+        this.initfontcolor();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         
@@ -153,4 +154,38 @@ public class ToolBarPanel extends AbstractViewPanel {
         
         toolbar.add(boldButton);
     }
+    //color
+    private void initfontcolor() {
+		fontColor = new JComboBox();//xiangwei add fontSize
+
+		for (int i = 0; i < EditorConstants.COLOR_CHOICES.length; i++) {
+        
+            fontColor.addItem(EditorConstants.COLOR_CHOICES[i]);
+        }
+        
+        fontColor.setMaximumSize(new Dimension(90, 30));
+        fontColor.setToolTipText("Font Color");
+        toolbar.add(fontColor);
+        
+        
+
+        
+        fontColor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+               String colorValue = fontColor.getSelectedItem().toString();
+               int i = 0;
+               for ( ;i < EditorConstants.COLOR_CHOICES.length; i++) {
+            	   if(colorValue==EditorConstants.COLOR_CHOICES[i]) {
+            		   break;
+            	   }
+               }
+               String colorValueHex=EditorConstants.COLOR_CHOICES_HEX[i];
+               System.out.println(colorValue);
+              
+                EditController.setfontcolorText(colorValueHex);   
+            }
+        });
+    }
+    
+    
 }

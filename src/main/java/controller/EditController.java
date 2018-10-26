@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -50,6 +51,7 @@ public class EditController implements ControllerInterface {
     
 	//font size
 	public static void setfontsizeText(int sizeOfFont) {
+
 		
 		String fontFamily = textSpace.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
@@ -64,5 +66,13 @@ public class EditController implements ControllerInterface {
 	    	textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
 	    }
 	}
-	
+		//color
+		public static void setfontcolorText(String colorvalue) {
+			String fontFamily = textSpace.getFont().getFamily();
+			int s = textSpace.getFont().getSize();
+	        Font font1 = new Font(fontFamily, Font.PLAIN, s);
+	        textSpace.setFont(font1);
+	        textSpace.setForeground(Color.decode(colorvalue));
+		}
+		
 }
