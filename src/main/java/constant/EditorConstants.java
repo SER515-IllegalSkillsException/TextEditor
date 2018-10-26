@@ -10,7 +10,7 @@ public class EditorConstants {
 			"Save As ..", "Print" };
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final int NUM_BOX=3;//add font type and font size
+	public static final int NUM_BOX=4;//add font type and font size,color bold
 	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 	public static final String[][] FILE_TYPE_CHOICES = {{"*.txt", "txt"}, {"*.pdf", "pdf"}, {"Word document", "docx"}};
 	
@@ -28,5 +28,9 @@ public class EditorConstants {
 	public static final String TEXTPANEL = "textPanel";
 	public static final String FOOTERPANEL = "footerPanel";
 	public static final String FILE_MENU_TITLE = "File";
+	//color
+	public static final String[] COLOR_CHOICES = {"BLACK",     "WHITE" ,  "BLUE",   "GREEN",  "CYAN",   "GREY" ,"MAGENTA",  "ORANGE",    "RED",   "PINK","YELLOW","PURPLE"};
+	public static final String[] COLOR_CHOICES_HEX = {"#000000","#ffffff","#0000ff","#008000","#00ffff","#808080","#ff00ff","#ffa500","#ff0000","#ffc0cb","#ffff00","#a020f0"};
+	
 
 }
