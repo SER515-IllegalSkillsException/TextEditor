@@ -1,13 +1,16 @@
 
 package controller;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -16,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
+
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
 
 import constant.EditorConstants;
 import listener.TextChangeListener;
@@ -36,7 +42,7 @@ public class FileController implements ControllerInterface {
         String filePath = FileModel.getInstance().getFilePath();
         JFileChooser fileChooser = new JFileChooser();
         setFileTypeChoicesForOpen(fileChooser);
-        File fileToOpen = null;
+//        File fileToOpen = null;
         if (filePath != null && !filePath.equals("")) {
             fileChooser.setCurrentDirectory(new File(filePath));
         } else {
@@ -45,13 +51,17 @@ public class FileController implements ControllerInterface {
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            fileToOpen = new File(filePath);
+//            fileToOpen = new File(filePath);
+//            FileReader fileReader;
 
-            FileReader fileReader;
             try {
-                fileReader = new FileReader(fileToOpen);
-
-                BufferedReader reader = new BufferedReader(fileReader);
+//            	FileInputStream fstream = new FileInputStream(fileToOpen);
+//            	InputStreamReader isr =	new InputStreamReader(fstream);
+            	Tika tika = new Tika();
+                InputStream stream = new FileInputStream(filePath);
+                String plaintext = tika.parseToString(stream);
+                Reader reader = new StringReader(plaintext);
+//                BufferedReader reader = new BufferedReader(fileReader);
                 FileModel.getInstance().getTextArea().read(reader, "");
                 AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
                 updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
@@ -66,7 +76,10 @@ public class FileController implements ControllerInterface {
             } catch (BadLocationException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
+            } catch (TikaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             FileModel.getInstance().setFilePath(filePath);
             FileModel.getInstance().setFilename(fileChooser.getSelectedFile().getName());
 
