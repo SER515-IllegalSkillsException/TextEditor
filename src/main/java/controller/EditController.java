@@ -3,7 +3,8 @@ package controller;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JTextArea;
+
+import javax.swing.JEditorPane;
 
 import model.FileModel;
 
@@ -19,7 +20,7 @@ public class EditController implements ControllerInterface {
      * Function edits and formats the user selected text.
      */
 	
-	static JTextArea textSpace = FileModel.getInstance().getTextArea();
+	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
 	
 	public static void cutText() {
 		textSpace.addMouseListener(new MouseAdapter() {

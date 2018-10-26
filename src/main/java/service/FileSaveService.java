@@ -1,8 +1,8 @@
 package service;
 
-import java.io.BufferedWriter;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +10,9 @@ import java.nio.file.Path;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
 
 import constant.EditorConstants;
 import model.FileModel;
@@ -51,14 +54,21 @@ public class FileSaveService {
 
 		// if everything checks out, start saving to the physical location in
 		// the file system
-		saveFile();
+		try {
+			saveFile();
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	/**
 	 * Writes the content to the user defined path
+	 * 
+	 * @throws BadLocationException
 	 */
-	private void saveFile() {
+	private void saveFile() throws BadLocationException {
 		if (userConfirmedSave && (!fileAlreadyExists || !keepExistingFile)) {
 			try {
 				if (fileExtension.equalsIgnoreCase("PDF")) {
@@ -80,13 +90,20 @@ public class FileSaveService {
 
 	}
 
-	private void writeText() throws IOException {
-		String content = FileModel.getInstance().getContent();
-		FileWriter fw = new FileWriter(fileToSave, false);
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(content);
-		bw.flush();
-		bw.close();
+	private void writeText() throws IOException, BadLocationException {
+
+//		String content = FileModel.getInstance().getContent();
+		Document doc = FileModel.getInstance().getTextArea().getDocument();
+		HTMLEditorKit kit = new HTMLEditorKit();
+		BufferedOutputStream out = new BufferedOutputStream(
+				new FileOutputStream(fileToSave));
+//		FileWriter fw = new FileWriter(fileToSave, false);
+		kit.write(out, doc, doc.getStartPosition().getOffset(),
+				doc.getLength());
+//		BufferedWriter bw = new BufferedWriter(fw);
+//		bw.write(content);
+//		bw.flush();
+//		bw.close();
 
 	}
 

@@ -5,6 +5,7 @@ import model.FileModel;
 import view.AbstractViewPanel;
 
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.AbstractDocument;
@@ -28,8 +29,8 @@ public class TextPanel extends AbstractViewPanel {
 
 	@Override
 	protected void initialize() {
-		JTextArea editableArea = new JTextArea();
-		editableArea.setLineWrap(true);
+		JEditorPane editableArea = new JEditorPane();
+//		editableArea.setLineWrap(true);
 
 		AbstractDocument textDocument = (AbstractDocument) editableArea
 				.getDocument();
