@@ -28,9 +28,12 @@ import listener.FindReplaceActionListener;
  */
 public class FindReplaceView extends JDialog {
 
+    /**
+	 * Generated serial id
+	 */
+	private static final long serialVersionUID = -3592116911553468000L;
 
-
-    @Override
+	@Override
     public void setDefaultCloseOperation(int operation) {
 //        removeHighlights(this.pane);
         super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
