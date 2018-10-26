@@ -2,17 +2,12 @@
 package controller;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
@@ -20,6 +15,7 @@ import javax.swing.text.BadLocationException;
 import constant.EditorConstants;
 import listener.TextChangeListener;
 import model.FileModel;
+import service.FileSaveService;
 
 /**
  * Controller for every action listener for file menu buttons
@@ -32,7 +28,7 @@ public class FileController implements ControllerInterface {
     /**
      * Function opens the user's home directory.
      */
-    public static void openFile() {
+    public void openFile() {
         String filePath = FileModel.getInstance().getFilePath();
         JFileChooser fileChooser = new JFileChooser();
         setFileTypeChoicesForOpen(fileChooser);
@@ -82,128 +78,18 @@ public class FileController implements ControllerInterface {
      *            flag which denotes if the save as button was clicked or just save
      *            button
      */
-    public static void saveFile(boolean isSaveAs) {
-        String fileName = FileModel.getInstance().getFilename();
-        String filePath = FileModel.getInstance().getFilePath();
-        String content = FileModel.getInstance().getContent();
-        boolean userConfirmedSave = true;
-        boolean fileAlreadyExists = true;
-        boolean keepExistingFile = true;
+    public void saveFile(boolean isSaveAs) {
+    	FileSaveService fileSaveService = new FileSaveService(isSaveAs);
+    	fileSaveService.save();
         
-        File fileToSave = null;
-        
-        JFileChooser jFileChooser;
-
-        if (fileName == null && filePath == null || isSaveAs) {
-            jFileChooser = new JFileChooser();
-            setFileTypeChoicesForSave(jFileChooser);
-            if (filePath != null && !filePath.equals("")) {
-                jFileChooser.setCurrentDirectory(new File(filePath));
-            } else {
-                jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-            }
-            int showSaveDialog = jFileChooser.showSaveDialog(null);
-            if (showSaveDialog == JFileChooser.APPROVE_OPTION) {
-                filePath = jFileChooser.getSelectedFile().getAbsolutePath();
-                fileToSave = new File(filePath);
-                FileModel.getInstance().setFilePath(filePath);
-                FileModel.getInstance().setFilename(jFileChooser.getSelectedFile().getName());
-            } else {
-                userConfirmedSave = false;
-            }
-
-        } else {
-            fileToSave = new File(filePath);
-
-        }
-        
-        fileAlreadyExists = checkIfFileExists(fileToSave);
-
-        while (fileAlreadyExists && keepExistingFile) {
-            int saveResponse = JOptionPane.showConfirmDialog(null,
-                    "File already exists. Do you wish to replace it?", "Replace file?", JOptionPane.YES_NO_OPTION);
-            if (saveResponse == JOptionPane.YES_OPTION) {
-                keepExistingFile = false;
-                break;
-            } else if (saveResponse == JOptionPane.NO_OPTION) {
-                jFileChooser = new JFileChooser();
-                if (filePath != null && !filePath.equals("")) {
-                    jFileChooser.setCurrentDirectory(new File(filePath));
-                } else {
-                    jFileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-                }
-                int showSaveDialog = jFileChooser.showSaveDialog(null);
-                if (showSaveDialog == JFileChooser.APPROVE_OPTION) {
-                    filePath = jFileChooser.getSelectedFile().getAbsolutePath();
-                    fileToSave = new File(filePath);
-                    FileModel.getInstance().setFilePath(filePath);
-                    FileModel.getInstance().setFilename(jFileChooser.getSelectedFile().getName());
-                } else {
-                    userConfirmedSave = false;
-                    break; //To exit the while loop if user says no and cancels
-                }
-
-                    fileAlreadyExists = checkIfFileExists(fileToSave);
-
-            }
-        }
-
-        if (userConfirmedSave && (!fileAlreadyExists || !keepExistingFile)) {
-            try {
-                FileWriter fw = new FileWriter(fileToSave, false);
-                BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(content);
-                bw.flush();
-                bw.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-//                e.printStackTrace();
-                System.out.println("Save Cancelled");
-            }
-        } else {
-            System.out.println("Cancelled save");
-        }
     }
     
-    /**
-     * Checks if a file is already saved in the system
-     * 
-     * @param fileToSaveName
-     *            File name given as input to use for filepath
-     * @return whether the file already exists
-     */
-    public static boolean checkIfFileExists(File fileToSaveName) throws NullPointerException {
-
-        boolean exists = false;
-        if(fileToSaveName == null) {
-            return exists;
-        } else {
-            Path filePathName = fileToSaveName.toPath();
-            exists = Files.exists(filePathName);
-
-
-            return exists;
-        }
-    }
-    
-    /**
-     * Sets the choices for the types of files one can choose to save the document
-     * @param fileChooser	The JFileChooser used to save the document
-     */
-    public static void setFileTypeChoicesForSave(JFileChooser fileChooser) {
-    	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];
-    	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
-    		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
-    				EditorConstants.FILE_TYPE_CHOICES[i][1]);
-    		fileChooser.addChoosableFileFilter(fileTypesChoices[i]);
-    	}
-    }
 
     /**
      * Set the choices for the types of files one can choose to open the document
      * @param fileChooser	The JFileChooser used to open the document
      */
-    public static void setFileTypeChoicesForOpen(JFileChooser fileChooser) {
+    private void setFileTypeChoicesForOpen(JFileChooser fileChooser) {
     	FileNameExtensionFilter[] fileTypesChoices = new FileNameExtensionFilter[EditorConstants.FILE_TYPE_CHOICES.length];
     	for (int i = 0; i < (EditorConstants.FILE_TYPE_CHOICES.length); i++) {
     		fileTypesChoices[i] = new FileNameExtensionFilter(EditorConstants.FILE_TYPE_CHOICES[i][0], 
@@ -211,4 +97,6 @@ public class FileController implements ControllerInterface {
     		fileChooser.addChoosableFileFilter(fileTypesChoices[i]);
     	}
     }
+    
+    
 }

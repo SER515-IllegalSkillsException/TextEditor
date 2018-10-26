@@ -1,23 +1,25 @@
 package view;
 
-import listener.FindReplaceActionListener;
-import javax.swing.JTextArea;
-import javax.swing.WindowConstants;
-import javax.swing.JDialog;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+
+import listener.FindReplaceActionListener;
 
 /**+
  * This class initializes the view for the Find And Replace Text Box
@@ -98,7 +100,7 @@ public class FindReplaceView extends JDialog {
         return owner;
     }
 
-    public static JTextArea getPane() {
+    public static JEditorPane getPane() {
         return pane;
     }
 
@@ -124,14 +126,14 @@ public class FindReplaceView extends JDialog {
     private static JButton replace = new JButton("Replace");
     private static JButton replaceAll = new JButton("Replace All");
 //    private static JButton close = new JButton("Close");
-    private static JTextArea pane;
+    private static JEditorPane pane;
 
 
 
-    public FindReplaceView(JFrame owner, JTextArea pane) {
+    public FindReplaceView(JFrame owner, JEditorPane jEditorPane) {
         super(owner, "Find & Replace", true);
         this.owner = owner;
-        this.pane = pane;
+        this.pane = jEditorPane;
         initComponents();
         //setSize(360, 135);
         Container c = getContentPane();

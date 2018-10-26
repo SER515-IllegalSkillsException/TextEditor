@@ -1,6 +1,6 @@
 package listener;
 
-import javax.swing.JTextArea;
+import javax.swing.JEditorPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -23,63 +23,36 @@ import model.FileModel;
  *
  */
 public class TextChangeListener extends DocumentFilter {
-    private JTextArea editedTextArea;
-    public TextChangeListener(JTextArea textArea) {
-        this.editedTextArea = textArea;
-        FileModel.getInstance().setTextArea(textArea);
+    private JEditorPane editedTextArea;
+    public TextChangeListener(JEditorPane editableArea) {
+        this.editedTextArea = editableArea;
+        FileModel.getInstance().setTextArea(editableArea);
     }
     @Override
     public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
         super.remove(fb, offset, length);
-        updateTextValue(fb);
+        updateTextValue();
     }
 
     @Override
     public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
         super.insertString(fb, offset, string, attr);
-        updateTextValue(fb);
+        updateTextValue();
     }
 
     @Override
     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
         super.replace(fb, offset, length, text, attrs);
-        updateTextValue(fb);
+        updateTextValue();
     }
     
-    //	public void insertUpdate(DocumentEvent event) {
-//		updateTextValue(event);
-//
-//	}
-//
-//	public void removeUpdate(DocumentEvent event) {
-//		updateTextValue(event);
-//
-//	}
-//
-//	public void changedUpdate(DocumentEvent event) {
-//		updateTextValue(event);
-//	}
 
-	private void updateTextValue(FilterBypass fb) {
-
+	private void updateTextValue() {
         AbstractDocument document = (AbstractDocument)editedTextArea.getDocument();
         DocumentFilter df = document.getDocumentFilter();
         document.setDocumentFilter( null );
-
         FileModel.getInstance().setTextArea(editedTextArea);
-      
-        updateTextValue(fb);//line use to pass PMD ,commemt this line after finish the function
         document.setDocumentFilter( df );
-        
-//		try {
-//			String content = event.getDocument().getText(0, event.getDocument().getLength());
-//			FileModel.getInstance().setContent(content);
-//			System.out.println(content);
-//
-////            FileModel.getInstance().setTextArea(TextPanel.getArea());
-//		} catch (BadLocationException e) {
-//			System.out.println("Error occurred" + e.getMessage());
-//		}
 	}
 
 }
