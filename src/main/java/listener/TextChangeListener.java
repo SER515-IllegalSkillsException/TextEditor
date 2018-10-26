@@ -31,19 +31,19 @@ public class TextChangeListener extends DocumentFilter {
     @Override
     public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
         super.remove(fb, offset, length);
-        updateTextValue(fb);
+        updateTextValue();
     }
 
     @Override
     public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
         super.insertString(fb, offset, string, attr);
-        updateTextValue(fb);
+        updateTextValue();
     }
 
     @Override
     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
         super.replace(fb, offset, length, text, attrs);
-        updateTextValue(fb);
+        updateTextValue();
     }
     
     //	public void insertUpdate(DocumentEvent event) {
@@ -60,7 +60,7 @@ public class TextChangeListener extends DocumentFilter {
 //		updateTextValue(event);
 //	}
 
-	private void updateTextValue(FilterBypass fb) {
+	private void updateTextValue() {
 
         AbstractDocument document = (AbstractDocument)editedTextArea.getDocument();
         DocumentFilter df = document.getDocumentFilter();
@@ -68,7 +68,7 @@ public class TextChangeListener extends DocumentFilter {
 
         FileModel.getInstance().setTextArea(editedTextArea);
       
-        updateTextValue(fb);//line use to pass PMD ,commemt this line after finish the function
+//        updateTextValue(fb);//line use to pass PMD ,commemt this line after finish the function
         document.setDocumentFilter( df );
         
 //		try {
