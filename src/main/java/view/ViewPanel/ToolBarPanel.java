@@ -175,8 +175,9 @@ public class ToolBarPanel extends AbstractViewPanel {
                String colorValue = fontColor.getSelectedItem().toString();
                int i = 0;
                for ( ;i < EditorConstants.COLOR_CHOICES.length; i++) {
-            	   if(colorValue==EditorConstants.COLOR_CHOICES[i])
+            	   if(colorValue==EditorConstants.COLOR_CHOICES[i]) {
             		   break;
+            	   }
                }
                String colorValueHex=EditorConstants.COLOR_CHOICES_HEX[i];
                System.out.println(colorValue);
