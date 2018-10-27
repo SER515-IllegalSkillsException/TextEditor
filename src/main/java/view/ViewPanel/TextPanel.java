@@ -1,14 +1,14 @@
 package view.ViewPanel;
 
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.AbstractDocument;
+
 import listener.TextChangeListener;
 import model.FileModel;
 import view.AbstractViewPanel;
-
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.text.AbstractDocument;
 
 public class TextPanel extends AbstractViewPanel {
 	/**
@@ -29,7 +29,7 @@ public class TextPanel extends AbstractViewPanel {
 
 	@Override
 	protected void initialize() {
-		JEditorPane editableArea = new JEditorPane();
+		JTextPane editableArea = new JTextPane();
 		AbstractDocument textDocument = (AbstractDocument) editableArea
 				.getDocument();
 		textDocument.setDocumentFilter(new TextChangeListener(editableArea));

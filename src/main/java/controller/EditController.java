@@ -6,8 +6,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JEditorPane;
 import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
+
 import model.FileModel;
 
 /**
@@ -18,72 +20,66 @@ import model.FileModel;
  *
  */
 public class EditController implements ControllerInterface {
-	 /**
-     * Function edits and formats the user selected text.
-     */
-	
+	/**
+	 * Function edits and formats the user selected text.
+	 */
+
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
-	
+
 	public static void cutText() {
 		textSpace.addMouseListener(new MouseAdapter() {
 
-		      @Override
-		      public void mouseReleased(MouseEvent e) {
-		        System.out.println(textSpace.getSelectedText());	  
-		      }
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println(textSpace.getSelectedText());
+			}
 		});
 		textSpace.cut();
 	}
-	
+
 	public static void copyText() {
 		textSpace.copy();
 	}
-	
+
 	public static void pasteText() {
 		textSpace.paste();
 	}
 
-	//font type
-	public static void setfonttypeText(String p) {		
-        int s = textSpace.getFont().getSize();
-        textSpace.setFont(new Font(p, Font.PLAIN, s));
+	// font type
+	public static void setfonttypeText(String p) {
+
+		int s = textSpace.getFont().getSize();
+		textSpace.setFont(new Font(p, Font.PLAIN, s));
 	}
-    
-	//font size
+
+	// font size
 	public static void setfontsizeText(int sizeOfFont) {
-		String fontFamily = textSpace.getFont().getFamily();
-        Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
-        textSpace.setFont(font1);
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontSize, sizeOfFont);
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end, attR, false);
 	}
-	
-	public static   void   insert(String   str,   AttributeSet   attrSet)   {     
-        Document   doc   =   textSpace.getDocument();     
-        str   ="\n"   +   str   ;     
-        try   {     
-            doc.insertString(doc.getLength(),   str,   attrSet);     
-        }     
-        catch   (BadLocationException   e)   {     
-            System.out.println("BadLocationException:   "   +   e);     
-        }     
-    }     
-	
-	
-	
-	  //bold
-		public static void setbold() {
-		if (textSpace.getFont().getStyle() == Font.BOLD){
+
+	// bold
+	public static void setbold() {
+		if (textSpace.getFont().getStyle() == Font.BOLD) {
 			textSpace.setFont(textSpace.getFont().deriveFont(Font.PLAIN));
-	    } else {
-	    	textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
-	    }
-	}
-		//color
-		public static void setfontcolorText(String colorvalue) {
-			String fontFamily = textSpace.getFont().getFamily();
-			int s = textSpace.getFont().getSize();
-	        Font font1 = new Font(fontFamily, Font.PLAIN, s);
-	        textSpace.setFont(font1);
-	        textSpace.setForeground(Color.decode(colorvalue));
+		} else {
+			textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
 		}
-		
+	}
+
+	// color
+	public static void setfontcolorText(String colorvalue) {
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.Foreground, Color.decode(colorvalue));
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end, attR, false);
+		textSpace.setSelectedTextColor(Color.decode(colorvalue));
+	}
+
 }
