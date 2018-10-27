@@ -34,6 +34,8 @@ public class ToolBarPanel extends AbstractViewPanel {
     private JButton boldButton;
 	ClassLoader classLoader = getClass().getClassLoader();
 	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
+    private JButton italicButton;
+	private final ImageIcon italicIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Italic.png"));
 	private  JComboBox fontColor;//color
 
     public ToolBarPanel() {
@@ -53,6 +55,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontype();
         this.initfontsize();
         this.initbold();
+        this.inititalic();
         this.initfontcolor();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
@@ -153,6 +156,23 @@ public class ToolBarPanel extends AbstractViewPanel {
      });
         
         toolbar.add(boldButton);
+    }
+    
+    
+    private void inititalic() {
+    	
+    	
+        italicButton = new JButton(italicIcon);
+        italicButton.setToolTipText("Italic");
+        italicButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setitalic();
+             
+         }
+     });
+        
+        toolbar.add(italicButton);
     }
     //color
     private void initfontcolor() {
