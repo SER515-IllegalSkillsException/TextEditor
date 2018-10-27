@@ -72,28 +72,22 @@ public class EditController implements ControllerInterface {
 
 	// bold
 	public static void setbold() {
-		StyledDocument document = (StyledDocument) textSpace.getDocument();
-		
+		StyledDocument document = (StyledDocument) textSpace.getDocument();		
 		StyleContext context = StyleContext.getDefaultStyleContext();	
-	
-		Element element = document.getCharacterElement(0);
+		int start = textSpace.getSelectionStart();
+		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-
-		if(StyleConstants.isBold(attributeNew)) {
-			
+	    System.out.println(StyleConstants.isBold(attributeNew));
+		if(StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
-
 		}
 		else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
-
 		}
-		int start = textSpace.getSelectionStart();
+		//int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);
-		
-
+		document.setCharacterAttributes(start, end, attR, false);	
 	}
 
 	// color
@@ -105,6 +99,24 @@ public class EditController implements ControllerInterface {
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end, attR, false);
 		textSpace.setSelectedTextColor(Color.decode(colorvalue));
+	}
+	
+	public static void setitalic() {
+        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		int start = textSpace.getSelectionStart();
+		Element element = document.getCharacterElement(start);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+		if(StyleConstants.isItalic(attributeNew)) {			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
+		}
+		else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
+		}
+		//int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end, attR, false);		
 	}
 
 }
