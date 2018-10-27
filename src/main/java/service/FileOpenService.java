@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
 import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import javax.swing.text.AbstractDocument;
 import constant.EditorConstants;
+import listener.TextChangeListener;
 import model.FileModel;
 
 public class FileOpenService {
@@ -34,7 +34,10 @@ public class FileOpenService {
 				FileInputStream in = new FileInputStream(fileToOpen);
 				ObjectInputStream inputStream = new ObjectInputStream(in);
 				JTextPane pane = (JTextPane) inputStream.readObject();
-				FileModel.getInstance().getTextArea().setDocument(pane.getDocument());
+				AbstractDocument paneDocument = (AbstractDocument) pane
+						.getDocument();
+				paneDocument.setDocumentFilter(new TextChangeListener(pane));
+				FileModel.getInstance().getTextArea().setDocument(paneDocument);
 				inputStream.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

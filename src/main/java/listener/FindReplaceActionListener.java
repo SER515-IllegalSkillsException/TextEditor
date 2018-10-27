@@ -118,10 +118,7 @@ public class FindReplaceActionListener implements ActionListener {
         } else if(e.getSource() == FindReplaceView.getClose()){
                 closeOperations();
                 FindReplaceView.onClose();
-
         }
-
-
 
     }
 
