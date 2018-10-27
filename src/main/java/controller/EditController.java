@@ -1,10 +1,8 @@
 package controller;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
 
 import javax.swing.JEditorPane;
 import javax.swing.text.AttributeSet;
@@ -82,10 +80,10 @@ public class EditController implements ControllerInterface {
 		if(StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
 		}
-		else {
+		else 
+		{
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
 		}
-		//int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end, attR, false);	
 	}
@@ -111,10 +109,10 @@ public class EditController implements ControllerInterface {
 		if(StyleConstants.isItalic(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
 		}
-		else {
+		else 
+		{
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
 		}
-		//int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end, attR, false);		
 	}
