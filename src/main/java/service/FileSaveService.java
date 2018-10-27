@@ -11,7 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -108,8 +107,7 @@ public class FileSaveService {
 	 * @throws BadLocationException
 	 */
 	private void writeText() throws IOException, BadLocationException {
-		Document doc = FileModel.getInstance().getTextArea().getDocument();
-		saveObectToFile(doc, fileToSave);
+		saveObectToFile(FileModel.getInstance().getTextArea(), fileToSave);
 	}
 
 	/**
