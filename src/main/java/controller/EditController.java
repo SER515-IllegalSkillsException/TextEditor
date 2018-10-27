@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JEditorPane;
-
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import model.FileModel;
 
 /**
@@ -43,20 +44,30 @@ public class EditController implements ControllerInterface {
 	}
 
 	//font type
-	public static void setfonttypeText(String p) {
-		
+	public static void setfonttypeText(String p) {		
         int s = textSpace.getFont().getSize();
         textSpace.setFont(new Font(p, Font.PLAIN, s));
 	}
     
 	//font size
 	public static void setfontsizeText(int sizeOfFont) {
-
-		
 		String fontFamily = textSpace.getFont().getFamily();
         Font font1 = new Font(fontFamily, Font.PLAIN, sizeOfFont);
         textSpace.setFont(font1);
 	}
+	
+	public static   void   insert(String   str,   AttributeSet   attrSet)   {     
+        Document   doc   =   textSpace.getDocument();     
+        str   ="\n"   +   str   ;     
+        try   {     
+            doc.insertString(doc.getLength(),   str,   attrSet);     
+        }     
+        catch   (BadLocationException   e)   {     
+            System.out.println("BadLocationException:   "   +   e);     
+        }     
+    }     
+	
+	
 	
 	  //bold
 		public static void setbold() {
