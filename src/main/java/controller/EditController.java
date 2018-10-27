@@ -79,9 +79,7 @@ public class EditController implements ControllerInterface {
 	    System.out.println(StyleConstants.isBold(attributeNew));
 		if(StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
-		}
-		else 
-		{
+		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
 		}
 		int end = textSpace.getSelectionEnd();
@@ -108,9 +106,7 @@ public class EditController implements ControllerInterface {
 	    AttributeSet attR;
 		if(StyleConstants.isItalic(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
-		}
-		else 
-		{
+		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
 		}
 		int end = textSpace.getSelectionEnd();
