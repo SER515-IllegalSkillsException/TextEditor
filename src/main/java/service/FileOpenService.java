@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
+import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
 
 import constant.EditorConstants;
 import model.FileModel;
@@ -33,8 +33,8 @@ public class FileOpenService {
 			try {
 				FileInputStream in = new FileInputStream(fileToOpen);
 				ObjectInputStream inputStream = new ObjectInputStream(in);
-				Document doc = (Document) inputStream.readObject();
-				FileModel.getInstance().getTextArea().setDocument(doc);
+				JTextPane pane = (JTextPane) inputStream.readObject();
+				FileModel.getInstance().getTextArea().setDocument(pane.getDocument());
 				inputStream.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
