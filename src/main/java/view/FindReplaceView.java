@@ -15,10 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
-
 import listener.FindReplaceActionListener;
 
 /**+
@@ -78,7 +74,9 @@ public class FindReplaceView extends JDialog {
         return replaceAll;
     }
 
-    public static JButton getClose() { return close; }
+    public static JButton getClose() {
+        return close;
+    }
 
     @Override
     public JFrame getOwner() {
@@ -201,8 +199,8 @@ public class FindReplaceView extends JDialog {
         buttons.add(close);
     }
 
-    public static void OnClose(){
-         instance.dispose();
+    public static void onClose(){
+        instance.dispose();
     }
 
 }

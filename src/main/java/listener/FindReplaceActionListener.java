@@ -2,7 +2,7 @@ package listener;
 
 import view.FindReplaceView;
 
-import javax.swing.*;
+import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -117,7 +117,7 @@ public class FindReplaceActionListener implements ActionListener {
             }
         } else if(e.getSource() == FindReplaceView.getClose()){
                 closeOperations();
-                FindReplaceView.OnClose();
+                FindReplaceView.onClose();
 
         }
 
