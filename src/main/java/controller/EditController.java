@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
+
 import javax.swing.JEditorPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.Element;
 
 import model.FileModel;
 
@@ -47,9 +50,14 @@ public class EditController implements ControllerInterface {
 
 	// font type
 	public static void setfonttypeText(String p) {
+		
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontFamily, p);
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end, attR, false);
 
-		int s = textSpace.getFont().getSize();
-		textSpace.setFont(new Font(p, Font.PLAIN, s));
 	}
 
 	// font size
@@ -64,11 +72,28 @@ public class EditController implements ControllerInterface {
 
 	// bold
 	public static void setbold() {
-		if (textSpace.getFont().getStyle() == Font.BOLD) {
-			textSpace.setFont(textSpace.getFont().deriveFont(Font.PLAIN));
-		} else {
-			textSpace.setFont(textSpace.getFont().deriveFont(Font.BOLD));
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
+		
+		StyleContext context = StyleContext.getDefaultStyleContext();	
+	
+		Element element = document.getCharacterElement(0);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+
+		if(StyleConstants.isBold(attributeNew)) {
+			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
+
 		}
+		else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
+
+		}
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end, attR, false);
+		
+
 	}
 
 	// color
