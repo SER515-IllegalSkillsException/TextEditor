@@ -76,7 +76,7 @@ public class EditController implements ControllerInterface {
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-	    System.out.println(StyleConstants.isBold(attributeNew));
+	    //System.out.println(StyleConstants.isBold(attributeNew));
 		if(StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
 		} else {
