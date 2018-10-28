@@ -4,11 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.Reader;
+import java.io.StringReader;
+
 import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+
 import constant.EditorConstants;
 import listener.TextChangeListener;
 import model.FileModel;
@@ -31,14 +40,17 @@ public class FileOpenService {
 			fileToOpen = new File(filePath);
 
 			try {
-				FileInputStream in = new FileInputStream(fileToOpen);
-				ObjectInputStream inputStream = new ObjectInputStream(in);
-				JTextPane pane = (JTextPane) inputStream.readObject();
-				AbstractDocument paneDocument = (AbstractDocument) pane
-						.getDocument();
-				paneDocument.setDocumentFilter(new TextChangeListener(pane));
-				FileModel.getInstance().getTextArea().setDocument(paneDocument);
-				inputStream.close();
+				Tika tika = new Tika();
+                InputStream stream = new FileInputStream(filePath);
+                // need to change based on metadata.
+                String plaintext = tika.parseToString(stream);
+                Reader reader = new StringReader(plaintext);
+                FileModel.getInstance().getTextArea().read(reader, "");
+                
+                AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
+                updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
+                FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
+                reader.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,7 +60,10 @@ public class FileOpenService {
 				// } catch (BadLocationException e) {
 				// // TODO Auto-generated catch block
 				// e.printStackTrace();
-			} catch (ClassNotFoundException e) {
+			} catch (TikaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
