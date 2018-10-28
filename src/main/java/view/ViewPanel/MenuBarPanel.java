@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import constant.EditorConstants;
+import listener.EditButtonsActionsListener;
 import listener.FileButtonsActionsListener;
 import view.AbstractViewPanel;
 
@@ -30,7 +31,7 @@ public class MenuBarPanel extends AbstractViewPanel {
 	int menuBarPanelSizeHeight = 800;
     JMenu editMenu;
     JMenuItem[] editMenuItems;
-    String[] editMenuItemLabels = {"Cut", "Copy", "Paste", "Select all", "Find and replace"};
+//    String[] editMenuItemLabels =
     int editMenuItemsNumber = 5;
 
 	public MenuBarPanel() {
@@ -75,14 +76,21 @@ public class MenuBarPanel extends AbstractViewPanel {
 			fileMenu.add(fileMenuItems[i]);
 		}
 		
-	editMenu = new JMenu("Edit");
+	editMenu = new JMenu(EditorConstants.EDIT_MENU_TITLE);
         editMenuItems = new JMenuItem[editMenuItemsNumber];
         for (int i = 0; i < editMenuItemsNumber; i++) {
-            editMenuItems[i] = new JMenuItem(editMenuItemLabels[i]);
+            editMenuItems[i] = new JMenuItem(EditorConstants.EDIT_MENU_ITEM_LABELS[i]);
+			ActionListener actionListener = new EditButtonsActionsListener(EditorConstants.EDIT_MENU_ITEM_LABELS[i]);
+			// Adding shortcut keys for the file menu
+			KeyStroke keyStroke = KeyStroke.getKeyStroke(EditorConstants.EDIT_MENU_ITEMS_SHORTCUTS[i],
+					KeyEvent.CTRL_DOWN_MASK);
+			editMenuItems[i].setAccelerator(keyStroke);
+			editMenuItems[i].addActionListener(actionListener);
+			editMenu.add(editMenuItems[i]);
         }
         
-        for (int i = 0; i < editMenuItemsNumber; i++) {
-            editMenu.add(editMenuItems[i]);
-        }
+//        for (int i = 0; i < editMenuItemsNumber; i++) {
+//
+//        }
 	}
 }

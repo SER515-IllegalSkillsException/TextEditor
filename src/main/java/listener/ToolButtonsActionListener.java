@@ -24,49 +24,40 @@ public class ToolButtonsActionListener implements ActionListener{
      * Override action performed function of action listener which adds listeners to buttons of toolbar menu
      */
     public void actionPerformed(ActionEvent e) {
+    	FileController fileController = new FileController();
         if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[0])) {
             //TODO: New file stuff by calling controller
             System.out.println("New file clicked.");
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[1])) {
             //TODO: Open file stuff by calling controller
-            FileController.openFile();
-//            System.out.println("Open file clicked");
+        	fileController.openFile();
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[2])) {
-            FileController.saveFile(false);
+        	fileController.saveFile(false);
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[3])) {
-            FileController.saveFile(true);
+        	fileController.saveFile(true);
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[4])) {
-            //TODO: Print stuff by calling controller
             System.out.println("Close clicked");
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[5])) {
-            //TODO: Print stuff by calling controller
             System.out.println("Print clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
-            //TODO: Print stuff by calling controller
         	EditController.cutText();
             System.out.println("Cut clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
-            //TODO: Print stuff by calling controller
         	EditController.copyText();
             System.out.println("Copy clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[8])) {
-            //TODO: Print stuff by calling controller
         	EditController.pasteText();
             System.out.println("Paste clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[9])) {
-            //TODO: Print stuff by calling controller
 
             System.out.println("Find clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[10])) {
-            //TODO: Print stuff by calling controller
             System.out.println("Replace clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
-            //TODO: Print stuff by calling controller
             System.out.println("Info clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[12])) {
-            //TODO: Print stuff by calling controller
             System.out.println("Help clicked");
         }
     }

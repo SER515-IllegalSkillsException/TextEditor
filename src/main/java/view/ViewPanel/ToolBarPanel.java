@@ -11,15 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-
 import javax.swing.JToolBar;
+import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
 
 @SuppressWarnings("serial")
@@ -34,7 +31,9 @@ public class ToolBarPanel extends AbstractViewPanel {
     private JButton boldButton;
 	ClassLoader classLoader = getClass().getClassLoader();
 	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
-    
+    private JButton italicButton;
+	private final ImageIcon italicIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Italic.png"));
+	private  JComboBox fontColor;//color
 
     public ToolBarPanel() {
         this.initialize();
@@ -53,17 +52,16 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontype();
         this.initfontsize();
         this.initbold();
+        this.inititalic();
+        this.initfontcolor();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
-        
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
         toolbarPanel.setVisible(true);
 
     }
 
     private void initializeButtons() {
-//        KeyStroke keyStrokeFind = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK);
-//        KeyStroke keyStrokeReplace = KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK);
         for (int i = 0; i < EditorConstants.TOOL_MENU_RESOURCES.length; i++) {
 
             ClassLoader classLoader = getClass().getClassLoader();
@@ -153,4 +151,55 @@ public class ToolBarPanel extends AbstractViewPanel {
         
         toolbar.add(boldButton);
     }
+    
+    
+    private void inititalic() {
+    	
+    	
+        italicButton = new JButton(italicIcon);
+        italicButton.setToolTipText("Italic");
+        italicButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setitalic();
+             
+         }
+     });
+        
+        toolbar.add(italicButton);
+    }
+    //color
+    private void initfontcolor() {
+		fontColor = new JComboBox();//xiangwei add fontSize
+
+		for (int i = 0; i < EditorConstants.COLOR_CHOICES.length; i++) {
+        
+            fontColor.addItem(EditorConstants.COLOR_CHOICES[i]);
+        }
+        
+        fontColor.setMaximumSize(new Dimension(90, 30));
+        fontColor.setToolTipText("Font Color");
+        toolbar.add(fontColor);
+        
+        
+
+        
+        fontColor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+               String colorValue = fontColor.getSelectedItem().toString();
+               int i = 0;
+               for ( ;i < EditorConstants.COLOR_CHOICES.length; i++) {
+            	   if(colorValue==EditorConstants.COLOR_CHOICES[i]) {
+            		   break;
+            	   }
+               }
+               String colorValueHex=EditorConstants.COLOR_CHOICES_HEX[i];
+               System.out.println(colorValue);
+              
+                EditController.setfontcolorText(colorValueHex);   
+            }
+        });
+    }
+    
+    
 }
