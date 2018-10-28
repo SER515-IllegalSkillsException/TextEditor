@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -114,8 +118,18 @@ public class FileSaveService {
 	 * Saves the text in docx format.
 	 */
 	private void writeDocx() {
-		// TODO Auto-generated method stub
-
+		XWPFDocument wordDocument = new XWPFDocument();
+		try {
+			FileOutputStream wordFileOutputStream = new FileOutputStream(fileToSave);
+			XWPFParagraph paragraphForWordDoc = wordDocument.createParagraph();
+			XWPFRun run = paragraphForWordDoc.createRun();
+			run.setText(FileModel.getInstance().getTextArea().getText());
+			wordDocument.write(wordFileOutputStream);
+			wordFileOutputStream.close();
+			wordDocument.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
