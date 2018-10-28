@@ -54,7 +54,7 @@ public class EditController implements ControllerInterface {
 		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontFamily, p);
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);
+		document.setCharacterAttributes(start, end-start, attR, false);
 
 	}
 
@@ -65,7 +65,7 @@ public class EditController implements ControllerInterface {
 		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontSize, sizeOfFont);
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);
+		document.setCharacterAttributes(start, end-start, attR, false);
 	}
 
 	// bold
@@ -73,6 +73,7 @@ public class EditController implements ControllerInterface {
 		StyledDocument document = (StyledDocument) textSpace.getDocument();		
 		StyleContext context = StyleContext.getDefaultStyleContext();	
 		int start = textSpace.getSelectionStart();
+        int end = textSpace.getSelectionEnd();
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
@@ -82,8 +83,8 @@ public class EditController implements ControllerInterface {
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
 		}
-		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);	
+
+		document.setCharacterAttributes(start, end-start, attR, false);
 	}
 
 	// color
@@ -93,7 +94,7 @@ public class EditController implements ControllerInterface {
 		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.Foreground, Color.decode(colorvalue));
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);
+		document.setCharacterAttributes(start, end-start, attR, false);
 		textSpace.setSelectedTextColor(Color.decode(colorvalue));
 	}
 	
@@ -110,7 +111,7 @@ public class EditController implements ControllerInterface {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
 		}
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end, attR, false);		
+		document.setCharacterAttributes(start, end-start, attR, false);
 	}
 
 }

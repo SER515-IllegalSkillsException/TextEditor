@@ -15,10 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
-
 import listener.FindReplaceActionListener;
 
 /**+
@@ -32,22 +28,6 @@ public class FindReplaceView extends JDialog {
 	 * Generated serial id
 	 */
 	private static final long serialVersionUID = -3592116911553468000L;
-
-	@Override
-    public void setDefaultCloseOperation(int operation) {
-//        removeHighlights(this.pane);
-        super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    }
-    public static void removeHighlights() {
-        Highlighter hilite = pane.getHighlighter();
-        Highlighter.Highlight[] hilites = hilite.getHighlights();
-
-        for (int i = 0; i < hilites.length; i++) {
-            if (hilites[i].getPainter() instanceof DefaultHighlighter.DefaultHighlightPainter) {
-                hilite.removeHighlight(hilites[i]);
-            }
-        }
-    }
 
 
     public static JTextField getWhat() {
@@ -94,9 +74,9 @@ public class FindReplaceView extends JDialog {
         return replaceAll;
     }
 
-//    public static JButton getClose() {
-//        return close;
-//    }
+    public static JButton getClose() {
+        return close;
+    }
 
     @Override
     public JFrame getOwner() {
@@ -116,6 +96,7 @@ public class FindReplaceView extends JDialog {
     private JLabel wordLabel = new JLabel("Match whole word only");
     private JLabel matchCaseLabel = new JLabel("Match case");
     private JFrame owner;
+    private static JDialog instance;
 
     /**+
      * Static Fields Initialization
@@ -128,7 +109,7 @@ public class FindReplaceView extends JDialog {
     private static JButton findAll = new JButton("Find All");
     private static JButton replace = new JButton("Replace");
     private static JButton replaceAll = new JButton("Replace All");
-//    private static JButton close = new JButton("Close");
+    private static JButton close = new JButton("Close");
     private static JEditorPane pane;
 
 
@@ -137,7 +118,10 @@ public class FindReplaceView extends JDialog {
         super(owner, "Find & Replace", true);
         this.owner = owner;
         this.pane = jEditorPane;
+
+        instance = this;
         initComponents();
+
         //setSize(360, 135);
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
@@ -146,6 +130,7 @@ public class FindReplaceView extends JDialog {
         pack();
         setLocationRelativeTo(owner);
         setVisible(true);
+
         this.addWindowListener(new WindowListener() {
 
             @Override
@@ -155,12 +140,12 @@ public class FindReplaceView extends JDialog {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                removeHighlights();
+
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-                removeHighlights();
+                System.out.println("On Close");
             }
 
             @Override
@@ -180,7 +165,8 @@ public class FindReplaceView extends JDialog {
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-
+                FindReplaceActionListener.closeOperations();
+                System.out.println("On Deactivated");
             }
         });
 
@@ -195,7 +181,7 @@ public class FindReplaceView extends JDialog {
         findAll.addActionListener(new FindReplaceActionListener());
         replace.addActionListener(new FindReplaceActionListener());
         replaceAll.addActionListener(new FindReplaceActionListener());
-//        close.addActionListener(new FindReplaceActionListener());
+        close.addActionListener(new FindReplaceActionListener());
         wordPanel.add(word);
         wordPanel.add(wordLabel);
         casePanel.add(matchCase);
@@ -210,9 +196,11 @@ public class FindReplaceView extends JDialog {
         buttons.add(findAll);
         buttons.add(replace);
         buttons.add(replaceAll);
-//        buttons.add(close);
+        buttons.add(close);
     }
 
-
+    public static void onClose(){
+        instance.dispose();
+    }
 
 }

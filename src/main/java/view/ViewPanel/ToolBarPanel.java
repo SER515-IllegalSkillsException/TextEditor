@@ -11,15 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-
 import javax.swing.JToolBar;
+import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
 
 @SuppressWarnings("serial")
@@ -59,15 +56,12 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontcolor();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
-        
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
         toolbarPanel.setVisible(true);
 
     }
 
     private void initializeButtons() {
-//        KeyStroke keyStrokeFind = KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK);
-//        KeyStroke keyStrokeReplace = KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK);
         for (int i = 0; i < EditorConstants.TOOL_MENU_RESOURCES.length; i++) {
 
             ClassLoader classLoader = getClass().getClassLoader();
