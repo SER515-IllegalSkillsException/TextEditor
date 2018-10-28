@@ -27,16 +27,17 @@ public class FileButtonsActionsListener implements ActionListener {
 	 * Override action performed function of action listener which adds listeners to buttons of file menu
 	 */
 	public void actionPerformed(ActionEvent e) {
+		FileController fileController = new FileController();
 		if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[0])) {
 			//TODO: New file stuff by calling controller
 			System.out.println("New file clicked.");
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[1])) {
 			//TODO: Open file stuff by calling controller
-			FileController.openFile();
+			fileController.openFile();
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[2])) {
-			FileController.saveFile(false);
+			fileController.saveFile(false);
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[3])) {
-			FileController.saveFile(true);
+			fileController.saveFile(true);
 		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[4])) {
 			//TODO: Print stuff by calling controller
 			System.out.println("Print clicked");

@@ -1,6 +1,6 @@
 package model;
 
-import javax.swing.JTextArea;
+import javax.swing.JEditorPane;
 
 /**
  * Model class to store all information regarding the current file.
@@ -13,7 +13,7 @@ public class FileModel implements ModelInterface {
     private String filename;
     private String filePath;
     private String content;
-    private JTextArea textArea;
+    private JEditorPane textArea;
     
     private FileModel() {
     	content = "";
@@ -54,12 +54,12 @@ public class FileModel implements ModelInterface {
 		this.content = content;
 	}
 
-	public JTextArea getTextArea() {
+	public JEditorPane getTextArea() {
 		return textArea;
 	}
 
-	public void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
+	public void setTextArea(JEditorPane editableArea) {
+		this.textArea = editableArea;
 	}
     
     
