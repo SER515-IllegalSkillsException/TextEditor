@@ -33,6 +33,8 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
     private JButton italicButton;
 	private final ImageIcon italicIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Italic.png"));
+	private JButton underlineButton;
+	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
 	private  JComboBox fontColor;//color
 
     public ToolBarPanel() {
@@ -53,6 +55,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontsize();
         this.initbold();
         this.inititalic();
+        this.initUnderline();
         this.initfontcolor();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
@@ -167,6 +170,22 @@ public class ToolBarPanel extends AbstractViewPanel {
      });
         
         toolbar.add(italicButton);
+    }
+    
+    private void initUnderline() {
+    	
+    	
+        underlineButton = new JButton(underlineIcon);
+        underlineButton.setToolTipText("Underline");
+        underlineButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	//To be added
+             
+         }
+     });
+        
+        toolbar.add(underlineButton);
     }
     //color
     private void initfontcolor() {
