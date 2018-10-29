@@ -122,12 +122,8 @@ public class FileSaveService {
 		XWPFDocument wordDocument = new XWPFDocument();
 		try {
 			FileOutputStream wordFileOutputStream = new FileOutputStream(fileToSave);
-			XWPFParagraph paragraphForWordDoc = wordDocument.createParagraph();
-			XWPFRun run = paragraphForWordDoc.createRun();
-			
 			String text = FileModel.getInstance().getTextArea().getText();
-			run.setText(text);
-			//this.separateParagraphsForDocx(text, wordDocument);
+			this.separateParagraphsForDocx(text, wordDocument);
 			wordDocument.write(wordFileOutputStream);
 			wordFileOutputStream.close();
 			wordDocument.close();
@@ -137,24 +133,25 @@ public class FileSaveService {
 	}
 	
 	/**
-	 * Helper method to format Word documents for multiple paragraph formatting
+	 * Helper method to format Word documents to preserve formatting of multiple 
+	 * paragraphs
 	 * @param input
 	 * @param wordDoc
 	 */
 	private void separateParagraphsForDocx(String input, XWPFDocument wordDoc) {
-		char newlineChar = '\n';
+		char returnChar = '\r';
 		while (input.length() != 0) {
 			XWPFParagraph currentParagraph = wordDoc.createParagraph();
 			XWPFRun run = currentParagraph.createRun();
 			
-			int newlineIndex = input.indexOf(newlineChar);
-			if (newlineIndex == -1) {
+			int returnCharIndex = input.indexOf(returnChar);
+			if (returnCharIndex == -1) {
 				run.setText(input);
 				break;
 			} else {
-				String updatedPriorParagraph = input.substring(0, newlineIndex);
+				String updatedPriorParagraph = input.substring(0, returnCharIndex);
 				run.setText(updatedPriorParagraph);
-				input = input.substring(newlineIndex);
+				input = input.substring(returnCharIndex + 1);
 			}
 		}
 	}
