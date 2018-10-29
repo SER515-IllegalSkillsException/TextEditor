@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -152,8 +151,7 @@ public class FileSaveService {
 			if (newlineIndex == -1) {
 				run.setText(input);
 				break;
-			}
-			else {
+			} else {
 				String updatedPriorParagraph = input.substring(0, newlineIndex);
 				run.setText(updatedPriorParagraph);
 				input = input.substring(newlineIndex);
