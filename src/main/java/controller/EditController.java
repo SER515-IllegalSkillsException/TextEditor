@@ -86,6 +86,26 @@ public class EditController implements ControllerInterface {
 
 		document.setCharacterAttributes(start, end-start, attR, false);
 	}
+	
+	
+	
+	public static void setunderline() {
+		StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyleContext context = StyleContext.getDefaultStyleContext();	
+		int start = textSpace.getSelectionStart();
+        int end = textSpace.getSelectionEnd();
+		Element element = document.getCharacterElement(start);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+	    //System.out.println(StyleConstants.isBold(attributeNew));
+		if(StyleConstants.isUnderline(attributeNew)) {			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
+		} else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
+		}
+
+		document.setCharacterAttributes(start, end-start, attR, false);
+	}
 
 	// color
 	public static void setfontcolorText(String colorvalue) {
