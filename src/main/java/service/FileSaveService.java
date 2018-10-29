@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ import model.FileModel;
  * Service methods to save file.
  * 
  * @author Varun Srivastava
+ * @author Melissa Day
  *
  */
 public class FileSaveService {
@@ -123,12 +125,39 @@ public class FileSaveService {
 			FileOutputStream wordFileOutputStream = new FileOutputStream(fileToSave);
 			XWPFParagraph paragraphForWordDoc = wordDocument.createParagraph();
 			XWPFRun run = paragraphForWordDoc.createRun();
-			run.setText(FileModel.getInstance().getTextArea().getText());
+			
+			String text = FileModel.getInstance().getTextArea().getText();
+			run.setText(text);
+			//this.separateParagraphsForDocx(text, wordDocument);
 			wordDocument.write(wordFileOutputStream);
 			wordFileOutputStream.close();
 			wordDocument.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Helper method to format Word documents for multiple paragraph formatting
+	 * @param input
+	 * @param wordDoc
+	 */
+	private void separateParagraphsForDocx(String input, XWPFDocument wordDoc) {
+		char newlineChar = '\n';
+		while (input.length() != 0) {
+			XWPFParagraph currentParagraph = wordDoc.createParagraph();
+			XWPFRun run = currentParagraph.createRun();
+			
+			int newlineIndex = input.indexOf(newlineChar);
+			if (newlineIndex == -1) {
+				run.setText(input);
+				break;
+			}
+			else {
+				String updatedPriorParagraph = input.substring(0, newlineIndex);
+				run.setText(updatedPriorParagraph);
+				input = input.substring(newlineIndex);
+			}
 		}
 	}
 	
