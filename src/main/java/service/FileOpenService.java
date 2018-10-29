@@ -5,14 +5,10 @@ import listener.TextChangeListener;
 import model.FileModel;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 //import java.io.ObjectInputStream;
 import java.io.Reader;
-import java.io.StringReader;
-
 import javax.swing.JFileChooser;
 //import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -20,7 +16,6 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.BadLocationException;
 
 import org.apache.tika.Tika;
-import org.apache.tika.exception.TikaException;
 
 
 
@@ -30,7 +25,7 @@ public class FileOpenService {
 		String filePath = FileModel.getInstance().getFilePath();
 		JFileChooser fileChooser = new JFileChooser();
 		setFileTypeChoicesForOpen(fileChooser);
-//		File fileToOpen = null;
+		File fileToOpen = null;
 		if (filePath != null && !filePath.equals("")) {
 			fileChooser.setCurrentDirectory(new File(filePath));
 		} else {
@@ -39,14 +34,11 @@ public class FileOpenService {
 		int result = fileChooser.showOpenDialog(null);
 		if (result == JFileChooser.APPROVE_OPTION) {
 			filePath = fileChooser.getSelectedFile().getAbsolutePath();
-//			fileToOpen = new File(filePath);
+			fileToOpen = new File(filePath);
 
 			try {
 				Tika tika = new Tika();
-                InputStream stream = new FileInputStream(filePath);
-                // need to change based on metadata.
-                String plaintext = tika.parseToString(stream);
-                Reader reader = new StringReader(plaintext);
+                Reader reader	= tika.parse(fileToOpen);
                 FileModel.getInstance().getTextArea().read(reader, "");
                 
                 AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
@@ -62,9 +54,6 @@ public class FileOpenService {
 				// } catch (BadLocationException e) {
 				// // TODO Auto-generated catch block
 				// e.printStackTrace();
-			} catch (TikaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (BadLocationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
