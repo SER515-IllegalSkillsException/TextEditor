@@ -41,15 +41,11 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("Print clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
         	EditController.cutText();
-            System.out.println("Cut clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
         	EditController.copyText();
-            System.out.println("Copy clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[8])) {
         	EditController.pasteText();
-            System.out.println("Paste clicked");
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[9])) {
-
             System.out.println("Find clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[10])) {

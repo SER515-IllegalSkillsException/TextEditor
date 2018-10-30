@@ -32,7 +32,7 @@ public class EditController implements ControllerInterface {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				System.out.println(textSpace.getSelectedText());
+				textSpace.getSelectedText();
 			}
 		});
 		textSpace.cut();
