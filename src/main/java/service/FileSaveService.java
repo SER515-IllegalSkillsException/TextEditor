@@ -39,7 +39,7 @@ public class FileSaveService {
 	private boolean saveToCurrent;
 	JFileChooser jFileChooser;
 	String fileExtension;
-	private final static String DEFAULT_EXTENSION = "txt";
+	private final static String DEFAULT_EXTENSION = "ise";
 
 	public FileSaveService(boolean isSaveAs) {
 		userConfirmedSave = true;
