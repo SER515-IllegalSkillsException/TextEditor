@@ -45,24 +45,16 @@ public class FileOpenService {
 			fileToOpen = new File(filePath);
 
 			try {
-				System.out.println(FilenameUtils.isExtension(filePath, "ise"));
+				
 				if (FilenameUtils.isExtension(filePath, "ise")) {
-					
 					FileInputStream in = new FileInputStream(fileToOpen);
-					System.out.println(1);
 					ObjectInputStream inputStream = new ObjectInputStream(in);
-					System.out.println(2);
 					JTextPane pane = (JTextPane) inputStream.readObject();
-					System.out.println(3);
 					AbstractDocument paneDocument = (AbstractDocument) pane.getDocument();
-					System.out.println(4);
-					paneDocument.setDocumentFilter(new TextChangeListener(pane));
-					System.out.println(5);
+//					paneDocument.setDocumentFilter(new TextChangeListener(pane));
 					FileModel.getInstance().getTextArea().setDocument(paneDocument);
-					System.out.println(6);
 					inputStream.close();
-				}
-				else {	
+				}else {	
 				Tika tika = new Tika();
 				InputStream stream = new FileInputStream(filePath);
                 String plainText = tika.parseToString(stream);
@@ -75,10 +67,6 @@ public class FileOpenService {
                 FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
                 reader.close();
 				}
-//                AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
-//                updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
-//                FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
-//                reader.close();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
