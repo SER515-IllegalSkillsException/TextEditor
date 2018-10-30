@@ -9,7 +9,7 @@
 2. cd TextEditor/
 3. mvn clean package
 
-There will be a jar by the name of "**TextEditor-1.0.jar**" in the **target** folder. Just double click on it and run the application.
+There will be a jar by the name of "**TextEditor-2.0-jar-with-dependencies.jar**" in the **target** folder. Just double click on it and run the application.
 
 
 ## Team Information
