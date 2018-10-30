@@ -33,19 +33,17 @@ public class EditButtonsActionsListener implements ActionListener {
         if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[0])) {
             //TODO: Cut Text by calling controller
             EditController.cutText();
-            System.out.println("Cut clicked.");
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[1])) {
             //TODO: Copy Text stuff by calling
             EditController.copyText();
-            System.out.println("Copy clicked.");
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[2])) {
             EditController.pasteText();
-            System.out.println("Paste clicked.");
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[3])) {
-            System.out.println("Select All clicked.");
+            System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[3]+" clicked.");
+            new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[4])) {
             //TODO: Find stuff by calling controller
-            System.out.println("Find clicked");
+            System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[4]+" clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }
     }

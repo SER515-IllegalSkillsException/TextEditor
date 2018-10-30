@@ -1,17 +1,31 @@
 package service;
 
+import constant.EditorConstants;
+import listener.TextChangeListener;
+import model.FileModel;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+//import java.io.ObjectInputStream;
+import java.io.Reader;
+import java.io.StringReader;
+
 import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
+//import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
-import constant.EditorConstants;
-import listener.TextChangeListener;
-import model.FileModel;
+import javax.swing.text.BadLocationException;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+
+
 
 public class FileOpenService {
 
@@ -31,14 +45,28 @@ public class FileOpenService {
 			fileToOpen = new File(filePath);
 
 			try {
-				FileInputStream in = new FileInputStream(fileToOpen);
-				ObjectInputStream inputStream = new ObjectInputStream(in);
-				JTextPane pane = (JTextPane) inputStream.readObject();
-				AbstractDocument paneDocument = (AbstractDocument) pane
-						.getDocument();
-				paneDocument.setDocumentFilter(new TextChangeListener(pane));
-				FileModel.getInstance().getTextArea().setDocument(paneDocument);
-				inputStream.close();
+				
+				if (FilenameUtils.isExtension(filePath, "ise")) {
+					FileInputStream in = new FileInputStream(fileToOpen);
+					ObjectInputStream inputStream = new ObjectInputStream(in);
+					JTextPane pane = (JTextPane) inputStream.readObject();
+					AbstractDocument paneDocument = (AbstractDocument) pane.getDocument();
+//					paneDocument.setDocumentFilter(new TextChangeListener(pane));
+					FileModel.getInstance().getTextArea().setDocument(paneDocument);
+					inputStream.close();
+				}else {	
+				Tika tika = new Tika();
+				InputStream stream = new FileInputStream(filePath);
+                String plainText = tika.parseToString(stream);
+                Reader reader = new StringReader(plainText);
+//                Reader reader	= tika.parse(fileToOpen);
+                
+                FileModel.getInstance().getTextArea().read(reader, "");
+                AbstractDocument updatedDocument = (AbstractDocument) FileModel.getInstance().getTextArea().getDocument();
+                updatedDocument.setDocumentFilter(new TextChangeListener(FileModel.getInstance().getTextArea()));
+                FileModel.getInstance().setContent(updatedDocument.getText(0, updatedDocument.getLength()));
+                reader.close();
+				}
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,6 +76,12 @@ public class FileOpenService {
 				// } catch (BadLocationException e) {
 				// // TODO Auto-generated catch block
 				// e.printStackTrace();
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TikaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
