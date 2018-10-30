@@ -88,6 +88,7 @@ public class ToolBarPanel extends AbstractViewPanel {
 
     }
     
+    // font type
     private void initfontype() {
       fontType = new JComboBox();
         
@@ -110,6 +111,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         });
     }
     
+    // font size
     private void initfontsize() {
 		fontSize = new JComboBox();//xiangwei add fontSize
 
@@ -136,9 +138,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         });
     }
     
-    
-    
-    
+    // bold
     private void initbold() {
     	
     	
@@ -155,7 +155,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbar.add(boldButton);
     }
     
-    
+    // italic
     private void inititalic() {
     	
     	
@@ -172,6 +172,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbar.add(italicButton);
     }
     
+    // underline
     private void initUnderline() {
     	
     	
@@ -180,14 +181,15 @@ public class ToolBarPanel extends AbstractViewPanel {
         underlineButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent ev) {
        
-        	//To be added
+        	EditController.setUnderline();
              
          }
      });
         
         toolbar.add(underlineButton);
     }
-    //color
+    
+    // color
     private void initfontcolor() {
 		fontColor = new JComboBox();//xiangwei add fontSize
 

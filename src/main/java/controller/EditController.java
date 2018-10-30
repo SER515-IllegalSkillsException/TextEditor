@@ -97,7 +97,8 @@ public class EditController implements ControllerInterface {
 		document.setCharacterAttributes(start, end-start, attR, false);
 		textSpace.setSelectedTextColor(Color.decode(colorvalue));
 	}
-	
+
+	// italic
 	public static void setitalic() {
         StyledDocument document = (StyledDocument) textSpace.getDocument();		
 		StyleContext context = StyleContext.getDefaultStyleContext();
@@ -109,6 +110,23 @@ public class EditController implements ControllerInterface {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
+		}
+		int end = textSpace.getSelectionEnd();
+		document.setCharacterAttributes(start, end-start, attR, false);
+	}
+	
+	// underline
+	public static void setUnderline() {
+        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		int start = textSpace.getSelectionStart();
+		Element element = document.getCharacterElement(start);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+		if(StyleConstants.isUnderline(attributeNew)) {			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
+		} else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
 		}
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end-start, attR, false);
