@@ -28,6 +28,7 @@ import model.FileModel;
  * Service methods to save file.
  * 
  * @author Varun Srivastava
+ * @author Melissa Day
  *
  */
 public class FileSaveService {
@@ -39,7 +40,7 @@ public class FileSaveService {
 	private boolean saveToCurrent;
 	JFileChooser jFileChooser;
 	String fileExtension;
-	private final static String DEFAULT_EXTENSION = "txt";
+	private final static String DEFAULT_EXTENSION = "ise";
 
 	public FileSaveService(boolean isSaveAs) {
 		userConfirmedSave = true;
@@ -121,14 +122,37 @@ public class FileSaveService {
 		XWPFDocument wordDocument = new XWPFDocument();
 		try {
 			FileOutputStream wordFileOutputStream = new FileOutputStream(fileToSave);
-			XWPFParagraph paragraphForWordDoc = wordDocument.createParagraph();
-			XWPFRun run = paragraphForWordDoc.createRun();
-			run.setText(FileModel.getInstance().getTextArea().getText());
+			String text = FileModel.getInstance().getTextArea().getText();
+			this.separateParagraphsForDocx(text, wordDocument);
 			wordDocument.write(wordFileOutputStream);
 			wordFileOutputStream.close();
 			wordDocument.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Helper method to format Word documents to preserve formatting of multiple 
+	 * paragraphs
+	 * @param input
+	 * @param wordDoc
+	 */
+	private void separateParagraphsForDocx(String input, XWPFDocument wordDoc) {
+		char returnChar = '\r';
+		while (input.length() != 0) {
+			XWPFParagraph currentParagraph = wordDoc.createParagraph();
+			XWPFRun run = currentParagraph.createRun();
+			
+			int returnCharIndex = input.indexOf(returnChar);
+			if (returnCharIndex == -1) {
+				run.setText(input);
+				break;
+			} else {
+				String updatedPriorParagraph = input.substring(0, returnCharIndex);
+				run.setText(updatedPriorParagraph);
+				input = input.substring(returnCharIndex + 1);
+			}
 		}
 	}
 	
