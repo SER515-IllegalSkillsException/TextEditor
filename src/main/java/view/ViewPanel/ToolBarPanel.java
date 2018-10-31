@@ -36,8 +36,7 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private JButton underlineButton;
 	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
 	private  JComboBox fontColor;//color
-    private JButton underlineButton;
-	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
+   
     public ToolBarPanel() {
         this.initialize();
 
@@ -58,7 +57,6 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.inititalic();
         this.initUnderline();
         this.initfontcolor();
-        this.initunderline();
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
