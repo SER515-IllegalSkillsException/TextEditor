@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,6 +14,7 @@ import javax.swing.text.StyledDocument;
 import javax.swing.text.Element;
 
 import model.FileModel;
+
 
 /**
  * Controller for every action listener for edit menu buttons
@@ -26,6 +29,8 @@ public class EditController implements ControllerInterface {
 	 */
 
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
+	private static HighlightText languageHighlighter = new HighlightText(Color.GREEN);
+	private static SupportedKeywords kw = new SupportedKeywords();
 
 	public static void cutText() {
 		textSpace.addMouseListener(new MouseAdapter() {
@@ -151,5 +156,17 @@ public class EditController implements ControllerInterface {
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end-start, attR, false);
 	}
+
+	public static void setinitjavahighlight() {
+		// TODO Auto-generated method stub
+		textSpace.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
+                System.out.println("java highlight clicked");//for test only
+            }
+        });
+	}
+	
+	
 
 }
