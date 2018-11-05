@@ -1,7 +1,12 @@
 package controller;
 
-import javax.swing.text.*;
-import java.awt.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
+
+import java.awt.Color;;
 
 public class HighlightText extends DefaultHighlighter.DefaultHighlightPainter{
 
