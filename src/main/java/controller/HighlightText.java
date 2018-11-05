@@ -5,7 +5,6 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
-
 import java.awt.Color;;
 
 public class HighlightText extends DefaultHighlighter.DefaultHighlightPainter{
@@ -16,7 +15,6 @@ public class HighlightText extends DefaultHighlighter.DefaultHighlightPainter{
 
     public void highLight(JTextComponent textComp, String[] pattern) {
         removeHighlights(textComp);
-
         try {
             Highlighter hilite = textComp.getHighlighter();
             Document doc = textComp.getDocument();
@@ -31,7 +29,9 @@ public class HighlightText extends DefaultHighlighter.DefaultHighlightPainter{
                     pos += pattern[i].length();
                 }
             }
-        } catch (BadLocationException e) {}
+        } catch (BadLocationException e) {
+        	System.out.println("java highlight error, please check configuration");//for test only
+        }
 
     }
 
