@@ -36,6 +36,8 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private JButton underlineButton;
 	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
 	private  JComboBox fontColor;//color
+	private  JButton javahighlightButton;//color
+	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
    
     public ToolBarPanel() {
         this.initialize();
@@ -57,6 +59,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.inititalic();
         this.initUnderline();
         this.initfontcolor();
+        this.initjavahighlight();//color
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
@@ -220,6 +223,22 @@ public class ToolBarPanel extends AbstractViewPanel {
                 EditController.setfontcolorText(colorValueHex);   
             }
         });
+    }
+    
+    
+    private void initjavahighlight() {
+    	javahighlightButton = new JButton(javahighlightIcon);
+    	javahighlightButton.setToolTipText("Java");
+    	javahighlightButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setinitjavahighlight();
+             
+         }
+     });
+        
+        toolbar.add(javahighlightButton);
+    	
     }
     
     
