@@ -40,10 +40,9 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
 	private JButton alignrightButton;
 	private final ImageIcon alignrightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_right.png"));
-	/*
 	private JButton alignleftButton;
-	private final ImageIcon alignleftIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
-	*/
+	private final ImageIcon alignleftIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_left.png"));
+
     public ToolBarPanel() {
         this.initialize();
 
@@ -65,8 +64,9 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initUnderline();
         this.initfontcolor();
         this.initjavahighlight();//color
+        this.initalignleft();
         this.initalignright();
-       // this.initalignleft();
+
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
@@ -248,6 +248,21 @@ public class ToolBarPanel extends AbstractViewPanel {
     	
     }
     
+    private void initalignleft() {
+    	alignleftButton = new JButton(alignleftIcon);
+    	alignleftButton.setToolTipText("align left");
+    	alignleftButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setalignleft();
+             
+         }
+     });
+        
+        toolbar.add(alignleftButton);
+    	
+    }
+    
     private void initalignright() {
     	alignrightButton = new JButton(alignrightIcon);
     	alignrightButton.setToolTipText("align right");
@@ -263,20 +278,7 @@ public class ToolBarPanel extends AbstractViewPanel {
     	
     }
     
-    /*
-    private void initalignleft() {
-    	alignleftButton = new JButton(alignleftIcon);
-    	alignleftButton.setToolTipText("align left");
-    	alignleftButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent ev) {
-       
-        	EditController.setalignleft();
-             
-         }
-     });
-        
-        toolbar.add(alignleftButton);
-    	
-    }
-    */
+
+
+
 }
