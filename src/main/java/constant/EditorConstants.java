@@ -11,7 +11,7 @@ public class EditorConstants {
 	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace"};
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final int NUM_BOX=7;//add font type and font size,color bold,italic,underline,java highlight
+	public static final int NUM_BOX=8;//add font type and font size,color bold,italic,underline,java highlight,alignment right
 	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 	public static final String[][] FILE_TYPE_CHOICES = {{"*.txt", "txt"}, {"*.pdf", "pdf"}, {"Word document", "docx"},{"*.ise","ise"}};
 	

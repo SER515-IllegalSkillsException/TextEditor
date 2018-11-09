@@ -12,6 +12,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.Element;
+import javax.swing.text.SimpleAttributeSet;
 
 import model.FileModel;
 
@@ -166,7 +167,26 @@ public class EditController implements ControllerInterface {
             }
         });
 	}
-	
+
+	public static void setalignright() {	
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet right = new SimpleAttributeSet();
+        StyleConstants.setAlignment(right, StyleConstants.ALIGN_CENTER);
+        document.setParagraphAttributes(start, end-1, right, false);
+	}
+/*
+	public static void setalignleft() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet left = new SimpleAttributeSet();
+        StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+        document.setParagraphAttributes(start, end, left, false);
+	}
+	*/
 	
 
 }
