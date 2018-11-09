@@ -42,6 +42,8 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private final ImageIcon alignrightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_right.png"));
 	private JButton alignleftButton;
 	private final ImageIcon alignleftIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_left.png"));
+	private JButton aligncenterButton;
+	private final ImageIcon aligncenterIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_center.png"));
 
     public ToolBarPanel() {
         this.initialize();
@@ -66,6 +68,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initjavahighlight();//color
         this.initalignleft();
         this.initalignright();
+        this.initaligncenter();
 
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
@@ -278,7 +281,21 @@ public class ToolBarPanel extends AbstractViewPanel {
     	
     }
     
-
+    private void initaligncenter() {
+    	aligncenterButton = new JButton(aligncenterIcon);
+    	aligncenterButton.setToolTipText("align center");
+    	aligncenterButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setaligncenter();
+             
+         }
+     });
+        
+        toolbar.add(aligncenterButton);
+    	
+    }
+    
 
 
 }

@@ -183,8 +183,18 @@ public class EditController implements ControllerInterface {
 		int end = textSpace.getSelectionEnd();
 		StyledDocument document = (StyledDocument) textSpace.getDocument();	
 		SimpleAttributeSet right = new SimpleAttributeSet();
-        StyleConstants.setAlignment(right, StyleConstants.ALIGN_CENTER);
+        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
         document.setParagraphAttributes(start, end-1, right, false);
+	}
+
+	public static void setaligncenter() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        document.setParagraphAttributes(start, end-1, center, false);
 	}
 
 
