@@ -197,6 +197,16 @@ public class EditController implements ControllerInterface {
         document.setParagraphAttributes(start, end-1, center, false);
 	}
 
+	public static void setalignjustify() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet justify = new SimpleAttributeSet();
+        StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
+        document.setParagraphAttributes(start, end-1, justify, false);
+	}
+
 
 
 	
