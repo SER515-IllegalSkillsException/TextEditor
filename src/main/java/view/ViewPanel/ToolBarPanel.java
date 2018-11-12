@@ -36,6 +36,16 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private JButton underlineButton;
 	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
 	private  JComboBox fontColor;//color
+	private  JButton javahighlightButton;//color
+	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
+	private JButton alignrightButton;
+	private final ImageIcon alignrightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_right.png"));
+	private JButton alignleftButton;
+	private final ImageIcon alignleftIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_left.png"));
+	private JButton aligncenterButton;
+	private final ImageIcon aligncenterIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_center.png"));
+	private JButton alignjustifyButton;
+	private final ImageIcon alignjustifyIcon = new ImageIcon(classLoader.getResource("toolbar-icons/justify.png"));
 
     public ToolBarPanel() {
         this.initialize();
@@ -57,6 +67,12 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.inititalic();
         this.initUnderline();
         this.initfontcolor();
+        this.initjavahighlight();//color
+        this.initalignleft();
+        this.initalignright();
+        this.initaligncenter();
+        this.initalignjustify();
+
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
@@ -64,7 +80,9 @@ public class ToolBarPanel extends AbstractViewPanel {
 
     }
 
-    private void initializeButtons() {
+
+
+	private void initializeButtons() {
         for (int i = 0; i < EditorConstants.TOOL_MENU_RESOURCES.length; i++) {
 
             ClassLoader classLoader = getClass().getClassLoader();
@@ -223,4 +241,79 @@ public class ToolBarPanel extends AbstractViewPanel {
     }
     
     
+    private void initjavahighlight() {
+    	javahighlightButton = new JButton(javahighlightIcon);
+    	javahighlightButton.setToolTipText("Java");
+    	javahighlightButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setinitjavahighlight();
+             
+         }
+     });
+        
+        toolbar.add(javahighlightButton);
+    	
+    }
+    
+    private void initalignleft() {
+    	alignleftButton = new JButton(alignleftIcon);
+    	alignleftButton.setToolTipText("align left");
+    	alignleftButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setalignleft();
+             
+         }
+     });
+        
+        toolbar.add(alignleftButton);
+    	
+    }
+    
+    private void initalignright() {
+    	alignrightButton = new JButton(alignrightIcon);
+    	alignrightButton.setToolTipText("align right");
+    	alignrightButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setalignright();
+             
+         }
+     });
+        
+        toolbar.add(alignrightButton);
+    	
+    }
+    
+    private void initaligncenter() {
+    	aligncenterButton = new JButton(aligncenterIcon);
+    	aligncenterButton.setToolTipText("align center");
+    	aligncenterButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setaligncenter();
+             
+         }
+     });
+        
+        toolbar.add(aligncenterButton);
+    	
+    }
+    
+    private void initalignjustify() {
+    	alignjustifyButton = new JButton(alignjustifyIcon);
+    	alignjustifyButton.setToolTipText("align justify");
+    	alignjustifyButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setalignjustify();
+             
+         }
+     });
+        
+        toolbar.add(alignjustifyButton);
+    	
+    }
+
 }

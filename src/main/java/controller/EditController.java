@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,8 +12,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.Element;
+import javax.swing.text.SimpleAttributeSet;
 
 import model.FileModel;
+
 
 /**
  * Controller for every action listener for edit menu buttons
@@ -26,6 +30,8 @@ public class EditController implements ControllerInterface {
 	 */
 
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
+	private static HighlightText languageHighlighter = new HighlightText(Color.GREEN);
+	private static SupportedKeywords kw = new SupportedKeywords();
 
 	public static void cutText() {
 		textSpace.addMouseListener(new MouseAdapter() {
@@ -77,11 +83,31 @@ public class EditController implements ControllerInterface {
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-	    System.out.println(StyleConstants.isBold(attributeNew));
+	    //System.out.println(StyleConstants.isBold(attributeNew));
 		if(StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
+		}
+
+		document.setCharacterAttributes(start, end-start, attR, false);
+	}
+	
+	
+	
+	public static void setunderline() {
+		StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyleContext context = StyleContext.getDefaultStyleContext();	
+		int start = textSpace.getSelectionStart();
+        int end = textSpace.getSelectionEnd();
+		Element element = document.getCharacterElement(start);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+	    //System.out.println(StyleConstants.isBold(attributeNew));
+		if(StyleConstants.isUnderline(attributeNew)) {			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
+		} else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
 		}
 
 		document.setCharacterAttributes(start, end-start, attR, false);
@@ -131,5 +157,58 @@ public class EditController implements ControllerInterface {
 		int end = textSpace.getSelectionEnd();
 		document.setCharacterAttributes(start, end-start, attR, false);
 	}
+
+	public static void setinitjavahighlight() {
+		// TODO Auto-generated method stub
+		textSpace.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
+                System.out.println("java highlight clicked");//for test only
+            }
+        });
+	}
+	
+	public static void setalignleft() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet left = new SimpleAttributeSet();
+        StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+        document.setParagraphAttributes(start, end, left, false);
+	}
+
+	public static void setalignright() {	
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet right = new SimpleAttributeSet();
+        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+        document.setParagraphAttributes(start, end-1, right, false);
+	}
+
+	public static void setaligncenter() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        document.setParagraphAttributes(start, end-1, center, false);
+	}
+
+	public static void setalignjustify() {
+		// TODO Auto-generated method stub
+		int start = textSpace.getSelectionStart();
+		int end = textSpace.getSelectionEnd();
+		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		SimpleAttributeSet justify = new SimpleAttributeSet();
+        StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
+        document.setParagraphAttributes(start, end-1, justify, false);
+	}
+
+
+
+	
 
 }
