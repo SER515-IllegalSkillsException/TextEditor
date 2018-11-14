@@ -38,6 +38,8 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private  JComboBox fontColor;//color
 	private  JButton javahighlightButton;//color
 	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
+	private  JButton cpphighlightButton;//color
+	private final ImageIcon cpphighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/cpp.png"));
 	private JButton alignrightButton;
 	private final ImageIcon alignrightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_right.png"));
 	private JButton alignleftButton;
@@ -67,7 +69,8 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.inititalic();
         this.initUnderline();
         this.initfontcolor();
-        this.initjavahighlight();//color
+        this.initjavahighlight();
+        this.initcpphighlight();
         this.initalignleft();
         this.initalignright();
         this.initaligncenter();
@@ -79,6 +82,8 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbarPanel.setVisible(true);
 
     }
+
+
 
 
 
@@ -255,6 +260,22 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbar.add(javahighlightButton);
     	
     }
+    
+	private void initcpphighlight() {
+		// TODO Auto-generated method stub
+    	cpphighlightButton = new JButton(cpphighlightIcon);
+    	cpphighlightButton.setToolTipText("C++");
+    	cpphighlightButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setinitcpphighlight();
+             
+         }
+     });
+        
+        toolbar.add(cpphighlightButton);
+	}
+    
     
     private void initalignleft() {
     	alignleftButton = new JButton(alignleftIcon);

@@ -168,6 +168,17 @@ public class EditController implements ControllerInterface {
         });
 	}
 	
+	public static void setinitcpphighlight() {
+		// TODO Auto-generated method stub
+		textSpace.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
+                System.out.println("java highlight clicked");//for test only
+            }
+        });
+	}
+	
+	
 	public static void setalignleft() {
 		// TODO Auto-generated method stub
 		int start = textSpace.getSelectionStart();
@@ -206,6 +217,8 @@ public class EditController implements ControllerInterface {
         StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
         document.setParagraphAttributes(start, end-1, justify, false);
 	}
+
+
 
 
 
