@@ -24,6 +24,7 @@ public class SupportedKeywords {
             "bool", "explicit", "new", "static_cast", "typeid", "catch", "false", "operator",
             "template", "typename", "class", "friend", "private", "this", "using", "const_cast",
             "inline", "public", "throw", "virtual", "delete", "mutable", "protected", "true", "wchar_t" };
+    
 
 
     

@@ -161,7 +161,7 @@ public class EditController implements ControllerInterface {
 	public static void setinitjavahighlight() {
 		// TODO Auto-generated method stub
 		textSpace.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent ke) {
+			public void keyPressed(KeyEvent ke) {
                 languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
                 System.out.println("java highlight clicked");//for test only
             }
@@ -173,7 +173,7 @@ public class EditController implements ControllerInterface {
 		textSpace.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent ke) {
                 languageHighlighter.highLight(textSpace, kw.getCppKeywords());
-                System.out.println("java highlight clicked");//for test only
+                System.out.println("cpp highlight clicked");//for test only
             }
         });
 	}
@@ -218,10 +218,6 @@ public class EditController implements ControllerInterface {
         document.setParagraphAttributes(start, end-1, justify, false);
 	}
 
-
-
-
-
-	
+		
 
 }
