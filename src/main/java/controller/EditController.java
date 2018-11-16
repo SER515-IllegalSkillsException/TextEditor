@@ -8,11 +8,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JEditorPane;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.Element;
+import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
-import javax.swing.text.Element;
-import javax.swing.text.SimpleAttributeSet;
 
 import model.FileModel;
 
@@ -83,36 +83,27 @@ public class EditController implements ControllerInterface {
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-	    //System.out.println(StyleConstants.isBold(attributeNew));
-		if(StyleConstants.isBold(attributeNew)) {			
+	    int diff = end - start;
+	    boolean isBold = false;
+	    if(diff > 0) {
+	    	isBold = StyleConstants.isItalic(attributeNew);
+	    } else {
+	    	isBold = FileModel.getInstance().isBold();
+	    	start--;
+	    	diff = 1;
+	    }
+		if(isBold || StyleConstants.isBold(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
+			FileModel.getInstance().setBold(false);
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
+			FileModel.getInstance().setBold(true);
 		}
 
-		document.setCharacterAttributes(start, end-start, attR, false);
+		document.setCharacterAttributes(start, diff, attR, false);
 	}
 	
 	
-	
-	public static void setunderline() {
-		StyledDocument document = (StyledDocument) textSpace.getDocument();		
-		StyleContext context = StyleContext.getDefaultStyleContext();	
-		int start = textSpace.getSelectionStart();
-        int end = textSpace.getSelectionEnd();
-		Element element = document.getCharacterElement(start);
-	    AttributeSet attributeNew = element.getAttributes();
-	    AttributeSet attR;
-	    //System.out.println(StyleConstants.isBold(attributeNew));
-		if(StyleConstants.isUnderline(attributeNew)) {			
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
-		} else {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
-		}
-
-		document.setCharacterAttributes(start, end-start, attR, false);
-	}
-
 	// color
 	public static void setfontcolorText(String colorvalue) {
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
@@ -132,13 +123,25 @@ public class EditController implements ControllerInterface {
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-		if(StyleConstants.isItalic(attributeNew)) {			
+	    int end = textSpace.getSelectionEnd();
+	    int diff = end-start;
+	    boolean isItalicOn = false;
+	    if(diff > 0) {
+	    	isItalicOn = StyleConstants.isItalic(attributeNew);
+	    } else {
+	    	isItalicOn = FileModel.getInstance().isItalic();
+	    	start--;
+	    	diff = 1;
+	    }
+		if(isItalicOn || StyleConstants.isItalic(attributeNew)) {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
+			FileModel.getInstance().setItalic(!isItalicOn); // Switched off italic button
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
+			FileModel.getInstance().setItalic(!isItalicOn); //switched on italic button
 		}
-		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end-start, attR, false);
+		
+		document.setCharacterAttributes(start, diff, attR, false);
 	}
 	
 	// underline
@@ -149,13 +152,25 @@ public class EditController implements ControllerInterface {
 		Element element = document.getCharacterElement(start);
 	    AttributeSet attributeNew = element.getAttributes();
 	    AttributeSet attR;
-		if(StyleConstants.isUnderline(attributeNew)) {			
+	    int end = textSpace.getSelectionEnd();
+	    int diff = end - start;
+	    boolean isUnderlined = false;
+	    if(diff > 0) {
+	    	isUnderlined = StyleConstants.isUnderline(attributeNew);
+	    } else {
+	    	isUnderlined = FileModel.getInstance().isUnderlined();
+	    	start--;
+	    	diff = 1;
+	    }
+		if(isUnderlined || StyleConstants.isUnderline(attributeNew)) {			
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
+			FileModel.getInstance().setUnderlined(false);
 		} else {
 			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
+			FileModel.getInstance().setUnderlined(true);
 		}
-		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end-start, attR, false);
+		document.setCharacterAttributes(start, diff, attR, false);
+//		textSpace.requestFocusInWindow();
 	}
 
 	public static void setinitjavahighlight() {
