@@ -105,6 +105,8 @@ public class FileOpenService {
 	                    	EditController.setinitcpphighlight();
 	                    case 2:
 	                    	EditController.setinitpythonhighlight();
+	                    default:
+	                    	System.out.println("not java/cpp/python file");
 	                }
 	            }
 	        }
