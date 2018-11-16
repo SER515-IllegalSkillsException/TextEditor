@@ -25,9 +25,13 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 
+import controller.EditController;
+import controller.SupportedKeywords;
 
 
 public class FileOpenService {
+	
+	private static SupportedKeywords kw = new SupportedKeywords();
 
 	public void open() {
 		String filePath = FileModel.getInstance().getFilePath();
@@ -88,6 +92,25 @@ public class FileOpenService {
 			}
 			FileModel.getInstance().setFilePath(filePath);
 			FileModel.getInstance().setFilename(fileChooser.getSelectedFile().getName());
+			//xiangwei for test filename
+			//automatively highlight when open java/cpp/python file
+			System.out.println(fileChooser.getSelectedFile().getName());
+			String[] list = kw.getSupportedLanguages();
+			for (int i = 0; i < list.length; i++) {
+	            if (fileChooser.getSelectedFile().getName().endsWith(list[i])) {
+	                switch (i) {
+	                    case 0:
+	                        EditController.setinitjavahighlight();
+	                    case 1:
+	                    	EditController.setinitcpphighlight();
+	                    case 2:
+	                    	EditController.setinitpythonhighlight();
+	                }
+	            }
+	        }
+	    
+			
+			
 
 		} else {
 			System.out.println("User Cancelled Open");
@@ -108,5 +131,7 @@ public class FileOpenService {
 			fileChooser.addChoosableFileFilter(fileTypesChoices[i]);
 		}
 	}
+	
+
 
 }
