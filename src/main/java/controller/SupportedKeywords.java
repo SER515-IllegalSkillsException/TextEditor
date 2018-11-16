@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SupportedKeywords {
 
-    private String[] supportedLanguages = {".java",".cpp"};
+    private String[] supportedLanguages = {".java",".cpp",".python"};
 
     private String[] java = {"abstract", "assert", "boolean",
             "break", "byte", "case", "catch", "char", "class", "const",
@@ -25,7 +25,9 @@ public class SupportedKeywords {
             "template", "typename", "class", "friend", "private", "this", "using", "const_cast",
             "inline", "public", "throw", "virtual", "delete", "mutable", "protected", "true", "wchar_t" };
     
-
+    private String[] python = {"and","as","assert","break","class","continue","def","del","elif","else","except",
+    		"False","finally","for","from","global","if","import","in","is","lambda","None",
+    		"nonlocal","not","or","pass","raise","return","True","try","while","with","yield"};	
 
     
     public String[] getSupportedLanguages() {
@@ -39,6 +41,9 @@ public class SupportedKeywords {
     }
     public String[] getCppKeywords() {
         return cpp;
+    }
+    public String[] getPythonKeywords() {
+        return python;
     }
 
     public ArrayList<String> getbracketCompletions() {
