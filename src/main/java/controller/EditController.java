@@ -214,12 +214,21 @@ public class EditController implements ControllerInterface {
 		// TODO Auto-generated method stub
 		textSpace.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
+                languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
                 System.out.println("cpp highlight clicked");//for test only
             }
         });
 	}
 	
+	public static void setinitpythonhighlight() {
+		// TODO Auto-generated method stub
+		textSpace.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
+                System.out.println("python highlight clicked");//for test only
+            }
+        });
+	}
 	
 	public static void setalignleft() {
 		// TODO Auto-generated method stub
@@ -259,5 +268,7 @@ public class EditController implements ControllerInterface {
         StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
         document.setParagraphAttributes(start, end-1, justify, false);
 	}
+
+
 
 }
