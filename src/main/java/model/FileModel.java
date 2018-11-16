@@ -16,7 +16,8 @@ public class FileModel implements ModelInterface {
     private boolean italic;
     private boolean bold;
     private boolean underlined;
-//    privaye boolean 
+    private boolean strike;
+//  private boolean 
     private JEditorPane textArea;
     
     private FileModel() {
@@ -24,6 +25,7 @@ public class FileModel implements ModelInterface {
     	italic = false;
     	bold = false;
     	underlined = false;
+    	strike = false;
     }
 
     /**
@@ -91,6 +93,15 @@ public class FileModel implements ModelInterface {
 
 	public void setUnderlined(boolean underlined) {
 		this.underlined = underlined;
+	}
+
+	public boolean isStrikeThrough() {
+		return strike;
+	}
+
+	public void setStrikethrough(boolean strike) {
+		this.strike = strike;
+		
 	}
     
     
