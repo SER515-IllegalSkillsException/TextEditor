@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SupportedKeywords {
 
-    private String[] supportedLanguages = {".java"};
+    private String[] supportedLanguages = {".java",".cpp"};
 
     private String[] java = {"abstract", "assert", "boolean",
             "break", "byte", "case", "catch", "char", "class", "const",
@@ -16,6 +16,16 @@ public class SupportedKeywords {
             "long", "native", "return", "short", "static", "strictfp", "super", "switch",
             "synchronized", "this", "throw", "throws", "transient", "true",
             "try", "void", "volatile", "while", "String"};
+    private String[] cpp = { "auto", "const", "double", "float", "int", "short",
+            "struct", "unsigned", "break", "continue", "else", "for", "long", "signed",
+            "switch", "void", "case", "default", "enum", "goto", "register", "sizeof",
+            "typedef", "volatile", "char", "do", "extern", "if", "return", "static",
+            "union", "while", "asm", "dynamic_cast", "namespace", "reinterpret_cast", "try",
+            "bool", "explicit", "new", "static_cast", "typeid", "catch", "false", "operator",
+            "template", "typename", "class", "friend", "private", "this", "using", "const_cast",
+            "inline", "public", "throw", "virtual", "delete", "mutable", "protected", "true", "wchar_t" };
+    
+
 
     
     public String[] getSupportedLanguages() {
@@ -26,6 +36,9 @@ public class SupportedKeywords {
     private String[] bCompletions = { "}", ")" };
     public String[] getJavaKeywords() {
         return java;
+    }
+    public String[] getCppKeywords() {
+        return cpp;
     }
 
     public ArrayList<String> getbracketCompletions() {
