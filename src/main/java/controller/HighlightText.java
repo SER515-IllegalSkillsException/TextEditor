@@ -21,16 +21,16 @@ public class HighlightText extends DefaultHighlighter.DefaultHighlightPainter{
             String text = doc.getText(0, doc.getLength());
             for (int i = 0; i < pattern.length; i++) {
                 int pos = 0;
-                System.out.println(pattern+"choose pattern");//for test only
+                //System.out.println(pattern+"choose pattern");//for test only
 
                 while ((pos = text.indexOf(pattern[i], pos)) >= 0) {
                 	hilite.addHighlight(pos, pos + pattern[i].length(), this);
-                	System.out.println(pattern[i]);//for test only
+                	System.out.println(pattern[i]+"start"+pos+"end"+(pos + pattern[i].length()));//for test only
                     pos += pattern[i].length();
                 }
             }
         } catch (BadLocationException e) {
-        	System.out.println("java highlight error, please check configuration");//for test only
+        	System.out.println("highlight error, please check configuration");//for test only
         }
 
     }

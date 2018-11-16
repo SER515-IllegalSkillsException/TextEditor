@@ -202,6 +202,7 @@ public class EditController implements ControllerInterface {
 
 	public static void setinitjavahighlight() {
 		// TODO Auto-generated method stub
+		languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
                 languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
@@ -212,9 +213,10 @@ public class EditController implements ControllerInterface {
 	
 	public static void setinitcpphighlight() {
 		// TODO Auto-generated method stub
+		languageHighlighter.highLight(textSpace, kw.getCppKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
+                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
                 System.out.println("cpp highlight clicked");//for test only
             }
         });
@@ -222,9 +224,10 @@ public class EditController implements ControllerInterface {
 	
 	public static void setinitpythonhighlight() {
 		// TODO Auto-generated method stub
+		languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
+                languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
                 System.out.println("python highlight clicked");//for test only
             }
         });
