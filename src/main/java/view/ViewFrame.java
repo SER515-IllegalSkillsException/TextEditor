@@ -1,3 +1,4 @@
+
 package view;
 
 
@@ -5,22 +6,21 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-//import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
+
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-//import javax.swing.JSeparator;
 
-//import javax.swing.SwingConstants;
+
 import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
-import controller.EditController;
+
+
 
 
 /**
@@ -48,9 +48,10 @@ public class ViewFrame extends JFrame {
 
 	private static int headPanelHeight = 95;
 	private static int headPanelWidth = 95;
-	private  JComboBox fontSize,fontType;//xiangwei add fontSize
 
-
+	
+	
+	
 	/**
 	 * Initializes all the component of the text editor and sets up the layout
 	 */
@@ -66,67 +67,9 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-	/*
-        headPanel.add(new JSeparator(SwingConstants.VERTICAL));
-      
-		
-
-		
-		fontType = new JComboBox();
-
-        
-        String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-
-        for (int i = 0; i < fonts.length; i++) {
-    
-            fontType.addItem(fonts[i]);
-        }
-       
-        fontType.setMaximumSize(new Dimension(170, 30));
-        fontType.setToolTipText("Font Type");
-        headPanel.add(fontType);
-        
-        
-        headPanel.add(new JSeparator(SwingConstants.HORIZONTAL));
-        headPanel.add(new JSeparator(SwingConstants.VERTICAL));
-
-        //Adding Action Listener on fontType JComboBox
-        fontType.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {     
-            	String p = fontType.getSelectedItem().toString();                     
-                EditController.setfonttypeText(p);          
-            }
-        });
-		
-		*/
-		
-		
-		
-		fontSize = new JComboBox();//xiangwei add fontSize
-
-
-        for (int i = 5; i <= 100; i++) {
-            fontSize.addItem(i);
-        }
-        fontSize.setMaximumSize(new Dimension(70, 30));
-        fontSize.setToolTipText("Font Size");
-        headPanel.add(fontSize);
-        
         
 
-        
-        fontSize.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-               String sizeValue = fontSize.getSelectedItem().toString();
-
-            	
-                int sizeOfFont = Integer.parseInt(sizeValue);
-                
-                EditController.setfontsizeText(sizeOfFont);   
-            }
-        });
-		
-	
+   
 		
 		
         headPanel.setPreferredSize(new Dimension(headPanelWidth,headPanelHeight));
