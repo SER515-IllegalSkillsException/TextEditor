@@ -42,6 +42,8 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
 	private  JButton cpphighlightButton;
 	private final ImageIcon cpphighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/cpp.png"));
+	private  JButton pythonhighlightButton;
+	private final ImageIcon pythonhighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/python.png"));
 	private JButton alignrightButton;
 	private final ImageIcon alignrightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_right.png"));
 	private JButton alignleftButton;
@@ -73,6 +75,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initfontcolor();
         this.initjavahighlight();
         this.initcpphighlight();
+        this.initpythonhighlight();
         this.initalignleft();
         this.initalignright();
         this.initaligncenter();
@@ -84,6 +87,8 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbarPanel.setVisible(true);
 
     }
+
+
 
 
 
@@ -296,6 +301,22 @@ public class ToolBarPanel extends AbstractViewPanel {
         toolbar.add(cpphighlightButton);
 	}
     
+	
+	private void initpythonhighlight() {
+		// TODO Auto-generated method stub
+    	pythonhighlightButton = new JButton(pythonhighlightIcon);
+    	pythonhighlightButton.setToolTipText("python highlight");
+    	pythonhighlightButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setinitpythonhighlight();
+             
+         }
+     });
+        
+        toolbar.add(pythonhighlightButton);
+		
+	}
     
     private void initalignleft() {
     	alignleftButton = new JButton(alignleftIcon);
