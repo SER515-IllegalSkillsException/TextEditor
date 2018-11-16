@@ -103,7 +103,6 @@ public class EditController implements ControllerInterface {
 		document.setCharacterAttributes(start, diff, attR, false);
 	}
 	
-	
 	// color
 	public static void setfontcolorText(String colorvalue) {
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
@@ -172,6 +171,34 @@ public class EditController implements ControllerInterface {
 		document.setCharacterAttributes(start, diff, attR, false);
 //		textSpace.requestFocusInWindow();
 	}
+	
+	// strikethrough
+	public static void setStrikethrough() {
+        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyleContext context = StyleContext.getDefaultStyleContext();
+		int start = textSpace.getSelectionStart();
+		Element element = document.getCharacterElement(start);
+	    AttributeSet attributeNew = element.getAttributes();
+	    AttributeSet attR;
+	    int end = textSpace.getSelectionEnd();
+	    int diff = end - start;
+	    boolean isStrikethrough = false;
+	    if(diff > 0) {
+	    	isStrikethrough = StyleConstants.isStrikeThrough(attributeNew);
+	    } else {
+	    	isStrikethrough = FileModel.getInstance().isStrikeThrough();
+	    	start--;
+	    	diff = 1;
+	    }
+		if(isStrikethrough || StyleConstants.isStrikeThrough(attributeNew)) {			
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.StrikeThrough,false);
+			FileModel.getInstance().setStrikethrough(false);
+		} else {
+			attR = context.addAttribute(context.getEmptySet(), StyleConstants.StrikeThrough,true);
+			FileModel.getInstance().setStrikethrough(true);
+		}
+		document.setCharacterAttributes(start, diff, attR, false);
+	}
 
 	public static void setinitjavahighlight() {
 		// TODO Auto-generated method stub
@@ -232,7 +259,5 @@ public class EditController implements ControllerInterface {
         StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
         document.setParagraphAttributes(start, end-1, justify, false);
 	}
-
-		
 
 }

@@ -33,9 +33,11 @@ public class ToolBarPanel extends AbstractViewPanel {
 	private final ImageIcon boldIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Bold.png"));
     private JButton italicButton;
 	private final ImageIcon italicIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Italic.png"));
+	private JButton strikeButton;
+	private final ImageIcon strikeIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Strikethrough.png"));
 	private JButton underlineButton;
 	private final ImageIcon underlineIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Underline.png"));
-	private  JComboBox fontColor;//color
+	private  JComboBox fontColor;
 	private  JButton javahighlightButton;
 	private final ImageIcon javahighlightIcon = new ImageIcon(classLoader.getResource("toolbar-icons/Java.png"));
 	private  JButton cpphighlightButton;
@@ -67,6 +69,7 @@ public class ToolBarPanel extends AbstractViewPanel {
         this.initbold();
         this.inititalic();
         this.initUnderline();
+        this.initStrikethrough();
         this.initfontcolor();
         this.initjavahighlight();
         this.initcpphighlight();
@@ -210,6 +213,23 @@ public class ToolBarPanel extends AbstractViewPanel {
      });
         
         toolbar.add(underlineButton);
+    }
+    
+    // strikethrough
+    private void initStrikethrough() {
+    	
+    	
+        strikeButton = new JButton(strikeIcon);
+        strikeButton.setToolTipText("StrikeThrough");
+        strikeButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev) {
+       
+        	EditController.setStrikethrough();
+             
+         }
+     });
+        
+        toolbar.add(strikeButton);
     }
     
     // color
