@@ -13,10 +13,19 @@ public class FileModel implements ModelInterface {
     private String filename;
     private String filePath;
     private String content;
+    private boolean italic;
+    private boolean bold;
+    private boolean underlined;
+    private boolean strike;
+//  private boolean 
     private JEditorPane textArea;
     
     private FileModel() {
     	content = "";
+    	italic = false;
+    	bold = false;
+    	underlined = false;
+    	strike = false;
     }
 
     /**
@@ -60,6 +69,39 @@ public class FileModel implements ModelInterface {
 
 	public void setTextArea(JEditorPane editableArea) {
 		this.textArea = editableArea;
+	}
+
+	public boolean isItalic() {
+		return italic;
+	}
+
+	public void setItalic(boolean italic) {
+		this.italic = italic;
+	}
+
+	public boolean isBold() {
+		return bold;
+	}
+
+	public void setBold(boolean bold) {
+		this.bold = bold;
+	}
+
+	public boolean isUnderlined() {
+		return underlined;
+	}
+
+	public void setUnderlined(boolean underlined) {
+		this.underlined = underlined;
+	}
+
+	public boolean isStrikeThrough() {
+		return strike;
+	}
+
+	public void setStrikethrough(boolean strike) {
+		this.strike = strike;
+		
 	}
     
     

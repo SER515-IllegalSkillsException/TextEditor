@@ -67,7 +67,7 @@ public class ViewFrame extends JFrame {
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-
+        
 
    
 		
