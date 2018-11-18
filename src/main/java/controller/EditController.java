@@ -7,7 +7,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JEditorPane;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -280,10 +282,24 @@ public class EditController implements ControllerInterface {
         document.setParagraphAttributes(start, end-1, justify, false);
 	}
 	
-	public static void undoCut() {
+	/**
+	 * Currently only called for cutText and setBold
+	 * Need to add others later
+	 * (Plan to implement as a stack later)
+	 */
+	public static void undo() {
 		textSpace = oldText;
-		FileModel.getInstance().setTextArea(textSpace);
-		System.out.println("Updated");
+		AbstractDocument document = (AbstractDocument) textSpace.getDocument();
+		try {
+			FileModel.getInstance().setContent(document.getText(0, document.getLength()));
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//FileModel.getInstance().setTextArea(textSpace);
+		JEditorPane updated = FileModel.getInstance().getTextArea();
+		System.out.println("done");
 	}
 
 
