@@ -32,8 +32,16 @@ public class EditController implements ControllerInterface {
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
 	private static HighlightText languageHighlighter = new HighlightText(Color.GREEN);
 	private static SupportedKeywords kw = new SupportedKeywords();
+	
+	static FileModel oldText;
+	static FileModel currentText = FileModel.getInstance();
 
+	EditController(JEditorPane textSpace) {
+		this.textSpace = textSpace;
+	}
+	
 	public static void cutText() {
+		oldText = currentText;
 		textSpace.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -76,6 +84,7 @@ public class EditController implements ControllerInterface {
 
 	// bold
 	public static void setbold() {
+		oldText = currentText;
 		StyledDocument document = (StyledDocument) textSpace.getDocument();		
 		StyleContext context = StyleContext.getDefaultStyleContext();	
 		int start = textSpace.getSelectionStart();
@@ -270,6 +279,11 @@ public class EditController implements ControllerInterface {
 		SimpleAttributeSet justify = new SimpleAttributeSet();
         StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
         document.setParagraphAttributes(start, end-1, justify, false);
+	}
+	
+	public static void undoCut() {
+		currentText = oldText;
+		//FileModel.getInstance().setContent(currentText);
 	}
 
 
