@@ -45,6 +45,10 @@ public class EditButtonsActionsListener implements ActionListener {
             //TODO: Find stuff by calling controller
             System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[4]+" clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
+        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
+            //TODO: Find stuff by calling controller
+            System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[5]+" clicked");
+            EditController.undoCut();
         }
     }
 
