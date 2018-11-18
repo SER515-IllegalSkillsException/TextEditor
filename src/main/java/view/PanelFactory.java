@@ -4,10 +4,11 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import constant.EditorConstants;
-import view.ViewPanel.FooterPanel;
-import view.ViewPanel.MenuBarPanel;
 import view.ViewPanel.TextPanel;
 import view.ViewPanel.ToolBarPanel;
+import view.ViewPanel.ToolBarPanel2;
+import view.ViewPanel.MenuBarPanel;
+import view.ViewPanel.FooterPanel;
 
 /**
  * Will contain the mappings of the div/row on the Jframe to the elements that
@@ -40,6 +41,9 @@ public class PanelFactory {
 		} else if (componentName.equalsIgnoreCase(EditorConstants.TOOLPANEL)) {
 			
 			return new ToolBarPanel().getPanel();
+		} else if (componentName.equalsIgnoreCase(EditorConstants.TOOLPANEL2)) {
+
+			return new ToolBarPanel2().getPanel();
 		} else if(componentName.equalsIgnoreCase(EditorConstants.TEXTPANEL)) {
 			
 			return new TextPanel().getPanel();
@@ -51,11 +55,5 @@ public class PanelFactory {
 		return new JPanel(); //Added only till other components are missing!
 
 	}
-
-
-	/**
-	 * Constructs the JTextArea
-	 * @return The editableArea
-	 */
 
 }

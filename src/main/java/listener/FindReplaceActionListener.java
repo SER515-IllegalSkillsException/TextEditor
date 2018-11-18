@@ -1,5 +1,6 @@
 package listener;
 
+import model.FileModel;
 import view.FindReplaceView;
 
 import javax.swing.JEditorPane;
@@ -194,9 +195,9 @@ public class FindReplaceActionListener implements ActionListener {
                 //TODO: Replace All Case 1 stuff by calling controller
                 String toReplace = FindReplaceView.getWhat().getText();
                 String replacement = FindReplaceView.getWith().getText();
-                String text = FindReplaceView.getPane().getText();
+                String text = FileModel.getInstance().getTextArea().getText();
                 text = text.replaceAll("(?i)"+toReplace, replacement);
-                FindReplaceView.getPane().setText(text);
+                FileModel.getInstance().getTextArea().setText(text);
             } else if(!FindReplaceView.getWord().isSelected() && FindReplaceView.getMatchCase().isSelected()) {
                 String toReplace = FindReplaceView.getWhat().getText();
                 String replacement = FindReplaceView.getWith().getText();
