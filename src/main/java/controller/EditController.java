@@ -30,7 +30,7 @@ public class EditController implements ControllerInterface {
 	 */
 
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
-	private static HighlightText languageHighlighter = new HighlightText(Color.GREEN);
+	private static HighlightText languageHighlighter = new HighlightText(Color.LIGHT_GRAY);
 	private static SupportedKeywords kw = new SupportedKeywords();
 
 	public static void cutText() {
