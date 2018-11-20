@@ -40,14 +40,15 @@ public class ViewFrame extends JFrame {
 
 	private JComponent menuPanel;
 	private JComponent toolPanel;
+	private JComponent toolPanel2;
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
 	public static JFrame thisFrame;
 	public static JComponent thisPane;
 
-	private static int headPanelHeight = 95;
-	private static int headPanelWidth = 95;
+	private static int headPanelHeight = 125;
+	private static int headPanelWidth = 125;
 
 	
 	
@@ -63,10 +64,12 @@ public class ViewFrame extends JFrame {
 
 		menuPanel = PanelFactory.createPanel(EditorConstants.MENUPANEL);
 		toolPanel =  PanelFactory.createPanel(EditorConstants.TOOLPANEL);
+		toolPanel2 =  PanelFactory.createPanel(EditorConstants.TOOLPANEL2);
 		textPanel = PanelFactory.createPanel(EditorConstants.TEXTPANEL);
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
+		headPanel.add(toolPanel2,"Tool Panel 2");
         
 
    

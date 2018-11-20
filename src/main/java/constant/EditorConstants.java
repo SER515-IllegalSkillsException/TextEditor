@@ -11,7 +11,7 @@ public class EditorConstants {
 	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace", "Undo"};
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
-	public static final int NUM_BOX=14;//add font type and font size,color bold,italic,underline,java/cpp/python highlight,alignment right left center justify
+	public static final int NUM_BOX=13;//add font type and font size,color bold,italic,underline,java/cpp/python highlight,alignment right left center justify
 	public static final String[] TOOL_MENU_RESOURCES = {"NewFile","OpenFile","Save","SaveAs","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 	public static final String[][] FILE_TYPE_CHOICES = {{"*.txt", "txt"}, {"*.pdf", "pdf"}, {"Word document", "docx"},{"*.ise","ise"}};
 	
@@ -28,6 +28,7 @@ public class EditorConstants {
 
 	public static final String MENUPANEL = "menuPanel";
 	public static final String TOOLPANEL = "ToolPanel";
+	public static final String TOOLPANEL2 = "ToolPanel2";
 	public static final String TEXTPANEL = "textPanel";
 	public static final String FOOTERPANEL = "footerPanel";
 	public static final String FILE_MENU_TITLE = "File";
