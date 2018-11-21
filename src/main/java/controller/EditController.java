@@ -7,7 +7,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JEditorPane;
+import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -32,8 +34,15 @@ public class EditController implements ControllerInterface {
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
 	private static HighlightText languageHighlighter = new HighlightText(Color.LIGHT_GRAY);
 	private static SupportedKeywords kw = new SupportedKeywords();
+	
+	static JEditorPane oldText;
 
+	EditController(JEditorPane textSpace) {
+		this.textSpace = textSpace;
+	}
+	
 	public static void cutText() {
+		oldText = textSpace;
 		textSpace.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -76,6 +85,7 @@ public class EditController implements ControllerInterface {
 
 	// bold
 	public static void setbold() {
+		oldText = textSpace;
 		StyledDocument document = (StyledDocument) textSpace.getDocument();		
 		StyleContext context = StyleContext.getDefaultStyleContext();	
 		int start = textSpace.getSelectionStart();
@@ -270,6 +280,24 @@ public class EditController implements ControllerInterface {
 		SimpleAttributeSet justify = new SimpleAttributeSet();
         StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
         document.setParagraphAttributes(start, end-1, justify, false);
+	}
+	
+	/**
+	 * Currently only called for cutText and setBold
+	 * Need to add others later
+	 * (Plan to implement as a stack later)
+	 */
+	public static void undo() {
+		textSpace = oldText;
+		AbstractDocument document = (AbstractDocument) textSpace.getDocument();
+		try {
+			FileModel.getInstance().setContent(document.getText(0, document.getLength()));
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("done");
 	}
 
 

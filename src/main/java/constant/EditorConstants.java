@@ -8,7 +8,7 @@ public class EditorConstants {
 	// Menu
 	public static final String[] FILE_MENU_ITEM_LABELS = { "New", "Open", "Save",
 			"Save As ..", "Print" };
-	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace"};
+	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace", "Undo"};
 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
 
 	public static final int NUM_BOX=13;//add font type and font size,color bold,italic,underline,java/cpp/python highlight,alignment right left center justify
@@ -18,7 +18,7 @@ public class EditorConstants {
 	public static final int[] FILE_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
 			KeyEvent.VK_P };
 	public static final int[] EDIT_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_X, KeyEvent.VK_C, KeyEvent.VK_V, KeyEvent.VK_F,
-			KeyEvent.VK_R };
+			KeyEvent.VK_R, KeyEvent.VK_Z};
 //	public static final int[] TOOL_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE, KeyEvent.VK_ESCAPE,
 //			KeyEvent.VK_P };
 
