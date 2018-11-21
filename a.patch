@@ -1,0 +1,136 @@
+diff --git a/src/main/java/constant/EditorConstants.java b/src/main/java/constant/EditorConstants.java
+index a616504..fdc6514 100644
+--- a/src/main/java/constant/EditorConstants.java
++++ b/src/main/java/constant/EditorConstants.java
+@@ -8,7 +8,7 @@ public class EditorConstants {
+ 	// Menu
+ 	public static final String[] FILE_MENU_ITEM_LABELS = { "New", "Open", "Save",
+ 			"Save As ..", "Print" };
+-	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace"};
++	public static final String[] EDIT_MENU_ITEM_LABELS = {"Cut", "Copy", "Paste", "Find", "Replace", "Undo"};
+ 	public static final String[] TOOL_MENU_ITEM_LABELS = {"New","Open","Save","Save As","Close","Print","Cut", "Copy","Paste","Find","Replace","Info","Help"};
+ 
+ 	public static final int NUM_BOX=13;//add font type and font size,color bold,italic,underline,java/cpp/python highlight,alignment right left center justify
+@@ -18,7 +18,7 @@ public class EditorConstants {
+ 	public static final int[] FILE_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE,
+ 			KeyEvent.VK_P };
+ 	public static final int[] EDIT_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_X, KeyEvent.VK_C, KeyEvent.VK_V, KeyEvent.VK_F,
+-			KeyEvent.VK_R };
++			KeyEvent.VK_R, KeyEvent.VK_Z };
+ //	public static final int[] TOOL_MENU_ITEMS_SHORTCUTS = { KeyEvent.VK_N, KeyEvent.VK_O, KeyEvent.VK_S, KeyEvent.VK_SPACE, KeyEvent.VK_ESCAPE,
+ //			KeyEvent.VK_P };
+ 
+diff --git a/src/main/java/listener/EditButtonsActionsListener.java b/src/main/java/listener/EditButtonsActionsListener.java
+index bb4a46f..5801bbc 100644
+--- a/src/main/java/listener/EditButtonsActionsListener.java
++++ b/src/main/java/listener/EditButtonsActionsListener.java
+@@ -2,6 +2,10 @@ package listener;
+ 
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
++
++import javax.swing.undo.CannotUndoException;
++import javax.swing.undo.UndoManager;
++
+ import constant.EditorConstants;
+ import controller.EditController;
+ import model.FileModel;
+@@ -45,6 +49,15 @@ public class EditButtonsActionsListener implements ActionListener {
+             //TODO: Find stuff by calling controller
+             System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[4]+" clicked");
+             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
++        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
++            //TODO: Find stuff by calling controller
++        	final UndoManager undo = FileModel.getInstance().getUndoManager();
++        	try {
++                if (undo.canUndo()) {
++                    undo.undo();
++                }
++            } catch (CannotUndoException ex) {
++            }
+         }
+     }
+ 
+diff --git a/src/main/java/model/FileModel.java b/src/main/java/model/FileModel.java
+index f3b659b..1af3943 100644
+--- a/src/main/java/model/FileModel.java
++++ b/src/main/java/model/FileModel.java
+@@ -1,6 +1,7 @@
+ package model;
+ 
+ import javax.swing.JEditorPane;
++import javax.swing.undo.UndoManager;
+ 
+ /**
+  * Model class to store all information regarding the current file.
+@@ -19,6 +20,7 @@ public class FileModel implements ModelInterface {
+     private boolean strike;
+ //  private boolean 
+     private JEditorPane textArea;
++    private UndoManager undo;
+     
+     private FileModel() {
+     	content = "";
+@@ -26,6 +28,7 @@ public class FileModel implements ModelInterface {
+     	bold = false;
+     	underlined = false;
+     	strike = false;
++    	undo = new UndoManager();
+     }
+ 
+     /**
+@@ -103,6 +106,11 @@ public class FileModel implements ModelInterface {
+ 		this.strike = strike;
+ 		
+ 	}
++
++	public UndoManager getUndoManager() {
++		// TODO Auto-generated method stub
++		return undo;
++	}
+     
+     
+ }
+diff --git a/src/main/java/view/ViewPanel/MenuBarPanel.java b/src/main/java/view/ViewPanel/MenuBarPanel.java
+index 4beee03..e34d277 100644
+--- a/src/main/java/view/ViewPanel/MenuBarPanel.java
++++ b/src/main/java/view/ViewPanel/MenuBarPanel.java
+@@ -32,7 +32,7 @@ public class MenuBarPanel extends AbstractViewPanel {
+     JMenu editMenu;
+     JMenuItem[] editMenuItems;
+ //    String[] editMenuItemLabels =
+-    int editMenuItemsNumber = 5;
++    int editMenuItemsNumber = 6;
+ 
+ 	public MenuBarPanel() {
+ 		this.initialize();
+diff --git a/src/main/java/view/ViewPanel/TextPanel.java b/src/main/java/view/ViewPanel/TextPanel.java
+index 470aaef..1c2d43d 100644
+--- a/src/main/java/view/ViewPanel/TextPanel.java
++++ b/src/main/java/view/ViewPanel/TextPanel.java
+@@ -4,7 +4,10 @@ import javax.swing.JComponent;
+ import javax.swing.JScrollPane;
+ import javax.swing.JTextArea;
+ import javax.swing.JTextPane;
++import javax.swing.event.UndoableEditEvent;
++import javax.swing.event.UndoableEditListener;
+ import javax.swing.text.AbstractDocument;
++import javax.swing.undo.UndoManager;
+ 
+ import listener.TextChangeListener;
+ import model.FileModel;
+@@ -33,6 +36,14 @@ public class TextPanel extends AbstractViewPanel {
+ 		AbstractDocument textDocument = (AbstractDocument) editableArea
+ 				.getDocument();
+ 		textDocument.setDocumentFilter(new TextChangeListener(editableArea));
++		
++		
++		final UndoManager undo = FileModel.getInstance().getUndoManager();
++		textDocument.addUndoableEditListener(new UndoableEditListener() {
++		    public void undoableEditHappened(UndoableEditEvent evt) {
++		        undo.addEdit(evt.getEdit());
++		    }
++		});
+ 		textPane = new JScrollPane(editableArea);
+ 		FileModel.getInstance().setTextArea(editableArea);
+ 	}
