@@ -297,8 +297,6 @@ public class EditController implements ControllerInterface {
 			e.printStackTrace();
 		}
 		
-		//FileModel.getInstance().setTextArea(textSpace);
-		JEditorPane updated = FileModel.getInstance().getTextArea();
 		System.out.println("done");
 	}
 

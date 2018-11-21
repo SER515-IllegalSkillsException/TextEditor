@@ -57,6 +57,7 @@ public class EditButtonsActionsListener implements ActionListener {
         	                    undo.undo();
         	                }
         	            } catch (CannotUndoException ex) {
+        	            	System.out.println(ex.getStackTrace());
         	            }
         }
     }
