@@ -52,7 +52,7 @@ public class ToolButtonsActionListener implements ActionListener{
             System.out.println("Replace clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
-            System.out.println("Info clicked");
+        	FileController.displayInfo();
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[12])) {
             System.out.println("Help clicked");
         }

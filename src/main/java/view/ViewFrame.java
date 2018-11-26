@@ -5,14 +5,15 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
-
-
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -44,6 +45,9 @@ public class ViewFrame extends JFrame {
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
+	private JLabel text;
+	private JPanel panel;
+	private JFrame frame;
 	public static JFrame thisFrame;
 	public static JComponent thisPane;
 
@@ -122,5 +126,26 @@ public class ViewFrame extends JFrame {
 	public JComponent getFooterPanel() {
 		return footerPanel;
 	}
+	
+	public void software() {
+		
+		text = new JLabel();
+		panel = new JPanel(new FlowLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        frame = new JFrame();
+        frame.setVisible(true);
+        frame.setSize(500,300);
+        frame.setTitle("About Software");
+
+        String contentText = "<html><body><p>" +
+        "Name: " + "Simple Text Editor" + "<br />" +
+        "Version: " + "1.0" +
+        "</p></body></html>";
+
+        text.setText(contentText);
+        panel.add(text);
+        frame.add(panel);
+        frame.setLocationRelativeTo(thisFrame);
+    }
 	
 }

@@ -3,6 +3,7 @@ package controller;
 
 import service.FileOpenService;
 import service.FileSaveService;
+import view.ViewFrame;
 
 /**
  * Controller for every action listener for file menu buttons
@@ -31,5 +32,13 @@ public class FileController implements ControllerInterface {
     public void saveFile(boolean isSaveAs) {
     	FileSaveService fileSaveService = new FileSaveService(isSaveAs);
     	fileSaveService.save();
+    }
+    
+    /**
+     * Displays the software info
+     */
+    public static void displayInfo() {
+    	ViewFrame viewframe = new ViewFrame();
+    	viewframe.software();
     }
 }
