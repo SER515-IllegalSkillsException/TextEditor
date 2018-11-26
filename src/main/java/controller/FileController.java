@@ -39,6 +39,14 @@ public class FileController implements ControllerInterface {
      */
     public static void displayInfo() {
     	ViewFrame viewframe = new ViewFrame();
-    	viewframe.software();
+    	viewframe.softwareInfo();
+    }
+    
+    /**
+     * Displays the software help
+     */
+    public static void displayHelp() {
+    	ViewFrame viewframe = new ViewFrame();
+    	viewframe.softwareHelp();
     }
 }

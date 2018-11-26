@@ -54,7 +54,7 @@ public class ToolButtonsActionListener implements ActionListener{
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
         	FileController.displayInfo();
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[12])) {
-            System.out.println("Help clicked");
+        	FileController.displayHelp();
         }
     }
 }
