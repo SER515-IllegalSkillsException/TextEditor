@@ -2,6 +2,10 @@ package listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
+
 import constant.EditorConstants;
 import controller.EditController;
 import model.FileModel;
@@ -45,6 +49,16 @@ public class EditButtonsActionsListener implements ActionListener {
             //TODO: Find stuff by calling controller
             System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[4]+" clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
+        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
+        	            //TODO: Find stuff by calling controller
+        	        	final UndoManager undo = FileModel.getInstance().getUndoManager();
+        	        	try {
+        	                if (undo.canUndo()) {
+        	                    undo.undo();
+        	                }
+        	            } catch (CannotUndoException ex) {
+        	            	System.out.println(ex.getStackTrace());
+        	            }
         }
     }
 

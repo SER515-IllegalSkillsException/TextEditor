@@ -4,15 +4,24 @@ package view;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-
-
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -40,14 +49,18 @@ public class ViewFrame extends JFrame {
 
 	private JComponent menuPanel;
 	private JComponent toolPanel;
+	private JComponent toolPanel2;
 	private JPanel headPanel;
 	private JComponent textPanel;
 	private JComponent footerPanel;
+	private JLabel text;
+	private JPanel panel;
+	private JFrame frame;
 	public static JFrame thisFrame;
 	public static JComponent thisPane;
 
-	private static int headPanelHeight = 95;
-	private static int headPanelWidth = 95;
+	private static int headPanelHeight = 125;
+	private static int headPanelWidth = 125;
 
 	
 	
@@ -63,11 +76,13 @@ public class ViewFrame extends JFrame {
 
 		menuPanel = PanelFactory.createPanel(EditorConstants.MENUPANEL);
 		toolPanel =  PanelFactory.createPanel(EditorConstants.TOOLPANEL);
+		toolPanel2 =  PanelFactory.createPanel(EditorConstants.TOOLPANEL2);
 		textPanel = PanelFactory.createPanel(EditorConstants.TEXTPANEL);
 		footerPanel = PanelFactory.createPanel(EditorConstants.FOOTERPANEL);
 		headPanel.add(menuPanel,"Menu Panel");
 		headPanel.add(toolPanel,"Tool Panel");
-
+		headPanel.add(toolPanel2,"Tool Panel 2");
+        
 
    
 		
@@ -118,6 +133,65 @@ public class ViewFrame extends JFrame {
 
 	public JComponent getFooterPanel() {
 		return footerPanel;
+	}
+	
+	public void softwareInfo() {
+		
+		text = new JLabel();
+		panel = new JPanel(new FlowLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        frame = new JFrame();
+        frame.setVisible(true);
+        frame.setSize(500,300);
+        frame.setTitle("About Software");
+
+        String contentText = "<html><body><p>" +
+        "Name: " + "Simple Text Editor" + "<br />" +
+        "Version: " + "1.0" +
+        "</p></body></html>";
+
+        text.setText(contentText);
+        panel.add(text);
+        frame.add(panel);
+        frame.setLocationRelativeTo(thisFrame);
+    }
+
+	public void softwareHelp() {
+		
+		text = new JLabel();
+		panel = new JPanel(new FlowLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        frame = new JFrame();
+        frame.setVisible(true);
+        frame.setSize(1100,150);
+        frame.setTitle("Help for Software");
+        JLabel hyperlink = new JLabel("\nVisit to access Help for Text Editor\n");
+        hyperlink.setForeground(Color.BLUE.darker());
+        hyperlink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        hyperlink.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent ev) {
+            	try {
+                    
+                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Text_editor"));
+                     
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        String helpText = "This application is a simple text editor which enables you to create, edit and format text.\n"
+        				+ "For more information on how to use the different features in this editor please visit the below link.";
+               				
+        String contentText = "<html><body><p>" +
+        helpText + "<br />" +
+        "</p></body></html>";
+
+        text.setText(contentText);
+        panel.add(text);
+        panel.add(hyperlink);
+        frame.add(panel);
+        frame.setLocationRelativeTo(thisFrame);
 	}
 	
 }

@@ -1,8 +1,12 @@
 
 package controller;
 
+import java.awt.print.PrinterException;
+
+import model.FileModel;
 import service.FileOpenService;
 import service.FileSaveService;
+import view.ViewFrame;
 
 /**
  * Controller for every action listener for file menu buttons
@@ -32,4 +36,31 @@ public class FileController implements ControllerInterface {
     	FileSaveService fileSaveService = new FileSaveService(isSaveAs);
     	fileSaveService.save();
     }
+    
+    /**
+     * Displays the software info
+     */
+    public static void displayInfo() {
+    	ViewFrame viewframe = new ViewFrame();
+    	viewframe.softwareInfo();
+    }
+    
+    /**
+     * Displays the software help
+     */
+    public static void displayHelp() {
+    	ViewFrame viewframe = new ViewFrame();
+    	viewframe.softwareHelp();
+    }
+
+	public static void printFile() {
+		// TODO Auto-generated method stub
+		try {
+			FileModel.getInstance().getTextArea().print();
+		} catch (PrinterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

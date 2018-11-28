@@ -8,39 +8,42 @@ import controller.FileController;
 
 /**
  * Creates listener functions for every button actions under file menu
+ * 
  * @author vsriva12
  *
  */
 public class FileButtonsActionsListener implements ActionListener {
-	
+
 	private String fileMenuItemLabel;
-	
+
 	/**
-	 * Parameter controller which takes the name of the button as its argument to decide the listener for the button
+	 * Parameter controller which takes the name of the button as its argument to
+	 * decide the listener for the button
+	 * 
 	 * @param fileMenuItemLabel
 	 */
-	public FileButtonsActionsListener(String fileMenuItemLabel){
+	public FileButtonsActionsListener(String fileMenuItemLabel) {
 		this.fileMenuItemLabel = fileMenuItemLabel;
 	}
-	
+
 	/**
-	 * Override action performed function of action listener which adds listeners to buttons of file menu
+	 * Override action performed function of action listener which adds listeners to
+	 * buttons of file menu
 	 */
 	public void actionPerformed(ActionEvent e) {
 		FileController fileController = new FileController();
-		if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[0])) {
-			//TODO: New file stuff by calling controller
+		if (fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[0])) {
+			// TODO: New file stuff by calling controller
 			System.out.println("New file clicked.");
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[1])) {
-			//TODO: Open file stuff by calling controller
+		} else if (fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[1])) {
+			// TODO: Open file stuff by calling controller
 			fileController.openFile();
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[2])) {
+		} else if (fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[2])) {
 			fileController.saveFile(false);
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[3])) {
+		} else if (fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[3])) {
 			fileController.saveFile(true);
-		} else if(fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[4])) {
-			//TODO: Print stuff by calling controller
-			System.out.println("Print clicked");
+		} else if (fileMenuItemLabel.equalsIgnoreCase(EditorConstants.FILE_MENU_ITEM_LABELS[4])) {
+			FileController.printFile();
 		}
 	}
 
