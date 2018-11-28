@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,18 +20,17 @@ import java.net.URISyntaxException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-
-import javax.swing.WindowConstants;
 
 import constant.EditorConstants;
 
+import controller.FileController;
 
+import listener.TextChangeListener;
 
 
 /**
@@ -38,7 +39,7 @@ import constant.EditorConstants;
  * 
  * @author Abhinab Mohanty
  * @author varun Srivastava
- *
+ * @author Debarati Bhattacharyya
  */
 public class ViewFrame extends JFrame {
 
@@ -58,7 +59,7 @@ public class ViewFrame extends JFrame {
 	private JFrame frame;
 	public static JFrame thisFrame;
 	public static JComponent thisPane;
-
+	
 	private static int headPanelHeight = 125;
 	private static int headPanelWidth = 125;
 
@@ -101,13 +102,21 @@ public class ViewFrame extends JFrame {
 	 * Helper function to create layout and put components in their places as per the layout
 	 */
 	private void layoutHelper() {
+
 		setLayout(new BorderLayout());
 		add(headPanel, BorderLayout.PAGE_START);
 		add(textPanel, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.PAGE_END);
 		setMinimumSize(new Dimension(2*EditorConstants.FRAME_WIDTH, 2*EditorConstants.FRAME_HEIGHT));
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	closingCheck();
+            }
+         });
 	}
 
 	public JComponent getMenuPanel() {
@@ -145,10 +154,16 @@ public class ViewFrame extends JFrame {
         frame.setSize(500,300);
         frame.setTitle("About Software");
 
-        String contentText = "<html><body><p>" +
-        "Name: " + "Simple Text Editor" + "<br />" +
-        "Version: " + "1.0" +
-        "</p></body></html>";
+        String contentText = "<html><body><p><center>" +
+        "Name: " + "ISE Text Editor" + "<br />" +
+        "\n" + "<br />" +
+        "Version: " + "1.0" + "<br />" +
+        "\n" + "<br />" +
+        "This text editor allows you to create, edit and format text." + "<br />" +
+        "In addition to all the basic text editor functions, it has an" + "<br />" +
+        "added feature of keyword highlighting for Java, C++ and Python" + "<br />" +
+        "language programs." +
+        "</center></p></body></html>";
 
         text.setText(contentText);
         panel.add(text);
@@ -180,7 +195,7 @@ public class ViewFrame extends JFrame {
             }
         });
         
-        String helpText = "This application is a simple text editor which enables you to create, edit and format text.\n"
+        String helpText = "This application serves as a text editor which enables you to create, edit and format text.\n"
         				+ "For more information on how to use the different features in this editor please visit the below link.";
                				
         String contentText = "<html><body><p>" +
@@ -194,4 +209,20 @@ public class ViewFrame extends JFrame {
         frame.setLocationRelativeTo(thisFrame);
 	}
 	
+	public void closingCheck() {
+		if(TextChangeListener.edit) {
+            Object[] options = {"Save and exit", "Don't Save and exit", "Return"};
+            int n = JOptionPane.showOptionDialog(this, "Do you want to save the file ?", "Question",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (n == 0) {// save and exit
+                FileController.saveFile(true);
+                this.dispose();// dispose all resources and close the application
+            } else if (n == 1) {// don't save and exit
+                this.dispose();// dispose all resources and close the application
+            }
+		}
+		else {
+			System.exit(99);
+		}			
+	}
 }

@@ -32,7 +32,7 @@ public class FileController implements ControllerInterface {
      *            flag which denotes if the save as button was clicked or just save
      *            button
      */
-    public void saveFile(boolean isSaveAs) {
+    public static void saveFile(boolean isSaveAs) {
     	FileSaveService fileSaveService = new FileSaveService(isSaveAs);
     	fileSaveService.save();
     }
