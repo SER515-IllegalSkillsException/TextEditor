@@ -214,14 +214,13 @@ public class ViewFrame extends JFrame {
             Object[] options = {"Save and exit", "Don't Save and exit", "Return"};
             int n = JOptionPane.showOptionDialog(this, "Do you want to save the file ?", "Question",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-            if (n == 0) {// save and exit
+            if (n == 0) {
                 FileController.saveFile(true);
-                this.dispose();// dispose all resources and close the application
-            } else if (n == 1) {// don't save and exit
-                this.dispose();// dispose all resources and close the application
+                this.dispose();
+            } else if (n == 1) {
+                this.dispose();
             }
-		}
-		else {
+		} else {
 			System.exit(99);
 		}			
 	}
