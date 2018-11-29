@@ -24,11 +24,14 @@ import model.FileModel;
  * @author Abhinab Mohanty
  *
  */
+
+
 public class TextChangeListener extends DocumentFilter implements Serializable {
     /**
 	 * generated serial version id
 	 */
 	private static final long serialVersionUID = -3771996191042890611L;
+	public static boolean edit = false;
 	private JEditorPane editedTextArea;
     public TextChangeListener(JEditorPane editableArea) {
         this.editedTextArea = editableArea;
@@ -54,6 +57,7 @@ public class TextChangeListener extends DocumentFilter implements Serializable {
     
 
 	private void updateTextValue() {
+		edit = true;
         AbstractDocument document = (AbstractDocument)editedTextArea.getDocument();
         DocumentFilter df = document.getDocumentFilter();
         document.setDocumentFilter( null );
