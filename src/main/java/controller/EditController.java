@@ -15,6 +15,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 
 import model.FileModel;
 
@@ -288,16 +290,15 @@ public class EditController implements ControllerInterface {
 	 * (Plan to implement as a stack later)
 	 */
 	public static void undo() {
-		textSpace = oldText;
-		AbstractDocument document = (AbstractDocument) textSpace.getDocument();
-		try {
-			FileModel.getInstance().setContent(document.getText(0, document.getLength()));
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("done");
+		 //TODO: Find stuff by calling controller
+    	final UndoManager undo = FileModel.getInstance().getUndoManager();
+    	try {
+            if (undo.canUndo()) {
+                undo.undo();
+            }
+        } catch (CannotUndoException ex) {
+        	System.out.println(ex.getStackTrace());
+        }
 	}
 
 

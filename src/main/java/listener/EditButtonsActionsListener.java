@@ -51,14 +51,15 @@ public class EditButtonsActionsListener implements ActionListener {
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
         	            //TODO: Find stuff by calling controller
-        	        	final UndoManager undo = FileModel.getInstance().getUndoManager();
+        	        	/*final UndoManager undo = FileModel.getInstance().getUndoManager();
         	        	try {
         	                if (undo.canUndo()) {
         	                    undo.undo();
         	                }
         	            } catch (CannotUndoException ex) {
         	            	System.out.println(ex.getStackTrace());
-        	            }
+        	            }*/
+        		EditController.undo();
         } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[6])) {
         	final UndoManager undo = FileModel.getInstance().getUndoManager();
         	try {
