@@ -32,7 +32,7 @@ public class MenuBarPanel extends AbstractViewPanel {
     JMenu editMenu;
     JMenuItem[] editMenuItems;
 //    String[] editMenuItemLabels =
-    int editMenuItemsNumber = 6;
+    int editMenuItemsNumber = 7;
 
 	public MenuBarPanel() {
 		this.initialize();

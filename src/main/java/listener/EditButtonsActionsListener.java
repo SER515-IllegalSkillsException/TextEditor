@@ -59,6 +59,15 @@ public class EditButtonsActionsListener implements ActionListener {
         	            } catch (CannotUndoException ex) {
         	            	System.out.println(ex.getStackTrace());
         	            }
+        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[6])) {
+        	final UndoManager undo = FileModel.getInstance().getUndoManager();
+        	try {
+                if (undo.canRedo()) {
+                    undo.redo();
+                }
+            } catch (CannotUndoException ex) {
+            	System.out.println(ex.getStackTrace());
+            }
         }
     }
 
