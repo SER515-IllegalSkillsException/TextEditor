@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+/*import java.io.ObjectOutputStream;*/
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -308,11 +308,11 @@ public class FileSaveService {
 	 * @param filepath
 	 * @throws IOException
 	 */
-	private void saveObectToFile(Object obj, File fileToSave) throws IOException {
+	/*private void saveObectToFile(Object obj, File fileToSave) throws IOException {
 		FileOutputStream fileOutputStream = new FileOutputStream(fileToSave);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		objectOutputStream.writeObject(obj);
 		objectOutputStream.close();
-	}
+	}*/
 
 }
