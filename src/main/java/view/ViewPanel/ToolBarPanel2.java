@@ -3,26 +3,29 @@ package view.ViewPanel;
 import constant.EditorConstants;
 import controller.EditController;
 import view.AbstractViewPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.Action;
+
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLEditorKit;
 
 
 @SuppressWarnings("serial")
 public class ToolBarPanel2 extends AbstractViewPanel {
     JToolBar toolbar;
     JPanel toolbarPanel = new JPanel();
-    List<JButton> toolButtonList = new ArrayList<JButton>();
     int toolBarPanelSizeWidth = 500;
     int toolBarPanelSizeHeight = 500;
     private  JComboBox fontType;
@@ -51,6 +54,14 @@ public class ToolBarPanel2 extends AbstractViewPanel {
     private final ImageIcon aligncenterIcon = new ImageIcon(classLoader.getResource("toolbar-icons/align_center.png"));
     private JButton alignjustifyButton;
     private final ImageIcon alignjustifyIcon = new ImageIcon(classLoader.getResource("toolbar-icons/justify.png"));
+    
+    //Lists
+    private JButton bulletlistsButton;
+    private final ImageIcon bulletlistsIcon = new ImageIcon(new ImageIcon(classLoader.getResource("toolbar-icons/bulleted-list.png")).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+
+
+    
+    
     public ToolBarPanel2() {
         this.initialize();
 
@@ -78,12 +89,26 @@ public class ToolBarPanel2 extends AbstractViewPanel {
         this.initalignright();
         this.initaligncenter();
         this.initalignjustify();
+        this.initbulletlists();
+
 
         toolbarPanel.setLayout(new BorderLayout());
         toolbarPanel.add(toolbar, BorderLayout.SOUTH);
         toolbarPanel.setSize(toolBarPanelSizeWidth, toolBarPanelSizeHeight);
         toolbarPanel.setVisible(true);
 
+    }
+
+
+    private void initbulletlists() {
+        bulletlistsButton = new JButton(bulletlistsIcon);
+        bulletlistsButton.setToolTipText("Bullet List");
+        Action insertBulletAction = new HTMLEditorKit.InsertHTMLTextAction ("Bullets",
+                "<ul><li> </li></ul>", HTML.Tag.P, HTML.Tag.UL);
+        bulletlistsButton.setAction(insertBulletAction);
+        bulletlistsButton.setIcon(bulletlistsIcon);
+        bulletlistsButton.setRequestFocusEnabled(false);
+        toolbar.add(bulletlistsButton);
     }
 
     // font type
