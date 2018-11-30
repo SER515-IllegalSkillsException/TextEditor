@@ -131,19 +131,6 @@ public class ViewFrame extends JFrame {
 	    return thisFrame;
 	}
 
-	public JPanel getHeadPanel() {
-		return headPanel;
-	}
-
-
-	public static JComponent getTextPanel() {
-		return thisPane;
-	}
-
-	public JComponent getFooterPanel() {
-		return footerPanel;
-	}
-	
 	public void softwareInfo() {
 		
 		text = new JLabel();

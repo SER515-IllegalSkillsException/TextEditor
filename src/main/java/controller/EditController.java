@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JEditorPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.Element;
@@ -13,6 +12,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
@@ -66,6 +66,7 @@ public class EditController implements ControllerInterface {
 	public static void setfonttypeText(String p) {
 
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
+
 		StyleContext context = StyleContext.getDefaultStyleContext();
 		AttributeSet attR = context.addAttribute(context.getEmptySet(),
 				StyleConstants.FontFamily, p);
@@ -326,4 +327,10 @@ public class EditController implements ControllerInterface {
 		}
 	}
 
+
+    public static void setHTMLtype() {
+	    if(textSpace!=null) {
+            textSpace.setEditorKit(new HTMLEditorKit());
+        }
+    }
 }

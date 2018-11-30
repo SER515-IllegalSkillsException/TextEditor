@@ -17,7 +17,6 @@ import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.Action;
-
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -103,9 +102,16 @@ public class ToolBarPanel2 extends AbstractViewPanel {
     private void initbulletlists() {
         bulletlistsButton = new JButton(bulletlistsIcon);
         bulletlistsButton.setToolTipText("Bullet List");
+
         Action insertBulletAction = new HTMLEditorKit.InsertHTMLTextAction ("Bullets",
                 "<ul><li> </li></ul>", HTML.Tag.P, HTML.Tag.UL);
         bulletlistsButton.setAction(insertBulletAction);
+        bulletlistsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditController.setHTMLtype();
+            }
+        });
         bulletlistsButton.setIcon(bulletlistsIcon);
         bulletlistsButton.setRequestFocusEnabled(false);
         toolbar.add(bulletlistsButton);
