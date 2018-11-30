@@ -63,6 +63,27 @@ public class TextChangeListener extends DocumentFilter implements Serializable {
         document.setDocumentFilter( null );
         FileModel.getInstance().setTextArea(editedTextArea);
         document.setDocumentFilter( df );
+        updateWordCount();
 	}
+	
+	private void updateWordCount() {
+		int words = 0;
+		String text =FileModel.getInstance().getTextArea().getText();
+		String[] temp = text.split(System.lineSeparator());
+//		if (temp.length != 0) {
+		for(int i=0; i< temp.length; i++) {
+//			System.out.print(temp[i].split(" +"));
+			System.out.print(temp[i]);
+			String[] lineOfWords = temp[i].split(" +");
+			words += lineOfWords.length;
+		}
+		
+//		temp[0]
+//		int i = temp.length;
+		System.out.print(words);
+		
+	}
+	
+	
 
 }
