@@ -6,7 +6,6 @@ import javax.swing.JTextPane;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.AbstractDocument;
-import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.undo.UndoManager;
 
 import listener.TextChangeListener;
@@ -32,12 +31,9 @@ public class TextPanel extends AbstractViewPanel {
 	@Override
 	protected void initialize() {
 		JTextPane editableArea = new JTextPane();
-		editableArea.setEditorKit(new HTMLEditorKit());
 		AbstractDocument textDocument = (AbstractDocument) editableArea
 				.getDocument();
 		textDocument.setDocumentFilter(new TextChangeListener(editableArea));
-
-
 		final UndoManager undo = FileModel.getInstance().getUndoManager();
 		textDocument.addUndoableEditListener(new UndoableEditListener() {
 		    public void undoableEditHappened(UndoableEditEvent evt) {

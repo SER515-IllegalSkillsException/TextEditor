@@ -34,12 +34,6 @@ public class FindReplaceView extends JDialog {
         return what;
     }
 
-
-    public JLabel getReplaceWith() {
-        return replaceWith;
-    }
-
-
     public static JTextField getWith() {
         return with;
     }
