@@ -4,9 +4,9 @@ import model.FileModel;
 import view.FindReplaceView;
 
 import javax.swing.JEditorPane;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.BadLocationException;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -163,6 +163,17 @@ public class FindReplaceActionListener implements ActionListener {
             if(!FindReplaceView.getWord().isSelected() && !FindReplaceView.getMatchCase().isSelected()) {
                 //TODO: Replace Case 1 stuff by calling controller
                 p = Pattern.compile(FindReplaceView.getWhat().getText(),Pattern.CASE_INSENSITIVE);
+                try {
+                    m = p.matcher(FindReplaceView.getPane().getDocument().getText(0,FindReplaceView.getPane().getDocument().getLength()));
+                } catch (BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+                highlighter = FindReplaceView.getPane().getHighlighter();
+                highlighter.removeAllHighlights();
+                highlightPainter =
+                        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+
+                addSingleHighlight(FindReplaceView.getPane());
                 String replacement = FindReplaceView.getWith().getText();
                 String text = FindReplaceView.getPane().getText();
                 text = text.replaceFirst(p.toString(), replacement);
@@ -171,6 +182,16 @@ public class FindReplaceActionListener implements ActionListener {
             } else if(!FindReplaceView.getWord().isSelected() && FindReplaceView.getMatchCase().isSelected()) {
                 //TODO: Replace Case 2 stuff by calling controller
                 p = Pattern.compile(FindReplaceView.getWhat().getText());
+                try {
+                    m = p.matcher(FindReplaceView.getPane().getDocument().getText(0,FindReplaceView.getPane().getDocument().getLength()));
+                } catch (BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+                highlighter = FindReplaceView.getPane().getHighlighter();
+                highlighter.removeAllHighlights();
+                highlightPainter =
+                        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+                addSingleHighlight(FindReplaceView.getPane());
                 String replacement = FindReplaceView.getWith().getText();
                 String text = FindReplaceView.getPane().getText();
                 text = text.replaceFirst(p.toString(), replacement);
@@ -178,6 +199,16 @@ public class FindReplaceActionListener implements ActionListener {
             } else if(FindReplaceView.getWord().isSelected() && !FindReplaceView.getMatchCase().isSelected()) {
                 //TODO: Replace Case 3 stuff by calling controller
                 p = Pattern.compile("\\b"+FindReplaceView.getWhat().getText()+"\\b",Pattern.CASE_INSENSITIVE);
+                try {
+                    m = p.matcher(FindReplaceView.getPane().getDocument().getText(0,FindReplaceView.getPane().getDocument().getLength()));
+                } catch (BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+                highlighter = FindReplaceView.getPane().getHighlighter();
+                highlighter.removeAllHighlights();
+                highlightPainter =
+                        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+                addSingleHighlight(FindReplaceView.getPane());
                 String replacement = FindReplaceView.getWith().getText();
                 String text = FindReplaceView.getPane().getText();
                 text = text.replaceFirst(p.toString(), replacement);
@@ -185,6 +216,16 @@ public class FindReplaceActionListener implements ActionListener {
             } else if(FindReplaceView.getWord().isSelected() && FindReplaceView.getMatchCase().isSelected()) {
                 //TODO: Replace Case 4 stuff by calling controller
                 p = Pattern.compile("\\b"+FindReplaceView.getWhat().getText()+"\\b");
+                try {
+                    m = p.matcher(FindReplaceView.getPane().getDocument().getText(0,FindReplaceView.getPane().getDocument().getLength()));
+                } catch (BadLocationException e1) {
+                    e1.printStackTrace();
+                }
+                highlighter = FindReplaceView.getPane().getHighlighter();
+                highlighter.removeAllHighlights();
+                highlightPainter =
+                        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+                addSingleHighlight(FindReplaceView.getPane());
                 String replacement = FindReplaceView.getWith().getText();
                 String text = FindReplaceView.getPane().getText();
                 text = text.replaceFirst(p.toString(), replacement);
@@ -270,7 +311,7 @@ public class FindReplaceActionListener implements ActionListener {
             int end   = m.end();
             try {
                 highlighter.addHighlight(start, end, highlightPainter);
-            } catch (BadLocationException e1) {
+               } catch (BadLocationException e1) {
                 e1.printStackTrace();
             }
             pos = end;
