@@ -3,12 +3,15 @@ package listener;
 import java.io.Serializable;
 
 import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
 import model.FileModel;
+
+import view.ViewPanel.FooterPanel;
 
 
 
@@ -70,18 +73,14 @@ public class TextChangeListener extends DocumentFilter implements Serializable {
 		int words = 0;
 		String text =FileModel.getInstance().getTextArea().getText();
 		String[] temp = text.split(System.lineSeparator());
-
 		for(int i=0; i< temp.length; i++) {
 			if(temp[i] != null && !temp[i].isEmpty()){
-			String[] lineOfWords = temp[i].split(" +");
+			String[] lineOfWords = temp[i].split("\\s+");
 			words += lineOfWords.length;
 			}
 		}
-		
-		System.out.print(words);
-		
+		JLabel wordCount = FooterPanel.getWordLabel();
+		wordCount.setText("words = " + words);
 	}
 	
-	
-
 }

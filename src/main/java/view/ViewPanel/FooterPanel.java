@@ -10,7 +10,7 @@ import view.AbstractViewPanel;
 
 
 public class FooterPanel extends AbstractViewPanel {
-
+	static JLabel wordCount = new JLabel("words = 0");
     JPanel footerPanel;
     @Override
     public JComponent getPanel() {
@@ -24,7 +24,12 @@ public class FooterPanel extends AbstractViewPanel {
         footerPanel = new JPanel();
         footerPanel.setLayout(new BorderLayout());
         footerPanel.add(footerLabel,BorderLayout.EAST);
+        footerPanel.add(wordCount,BorderLayout.CENTER);
         footerPanel.setVisible(true);
 
+    }
+    
+    public static JLabel getWordLabel() {
+    	return wordCount;
     }
 }
