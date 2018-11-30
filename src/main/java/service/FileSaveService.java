@@ -95,7 +95,7 @@ public class FileSaveService {
 				} else if (fileExtension.equalsIgnoreCase("TXT")) {
 					writeTxt();
 				} else {
-					writeText();
+					writeISE();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -114,7 +114,7 @@ public class FileSaveService {
 	 * @throws IOException
 	 * @throws BadLocationException
 	 */
-	private void writeText() throws IOException, BadLocationException {
+	private void writeISE() throws IOException, BadLocationException {
 		saveObectToFile(FileModel.getInstance().getTextArea(), fileToSave);
 	}
 
@@ -253,7 +253,8 @@ public class FileSaveService {
 
 		} else {
 			fileToSave = new File(filePath);
-			fileExtension = DEFAULT_EXTENSION;
+			String[] extension = fileName.split("\\.");
+			fileExtension = extension[extension.length-1];
 			saveToCurrent = true;
 
 		}
