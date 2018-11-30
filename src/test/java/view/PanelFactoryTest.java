@@ -50,8 +50,8 @@ public class PanelFactoryTest {
 		JMenuBar fileMenuBar = (JMenuBar) menuPanel.getComponents()[0];
 		// Second element in menu bar is edit
 		JMenu fileMenu = fileMenuBar.getMenu(1);
-		// There should be 5 menu items on Edit menu
-		assertEquals(5, fileMenu.getMenuComponentCount());
+		// There should be 6 menu items on Edit menu
+		assertEquals(EditorConstants.EDIT_MENU_ITEM_LABELS.length, fileMenu.getMenuComponentCount());
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class PanelFactoryTest {
 		JToolBar toolbar = (JToolBar) toolPanel.getComponent(0);
 		// Number of tool bar items should be equal to the labels defined in
 		// constants file
-		assertEquals(EditorConstants.NUM_BOX,
+		assertEquals(EditorConstants.TOOL_MENU_ITEM_LABELS.length,
 				toolbar.getComponentCount());
 
 	}

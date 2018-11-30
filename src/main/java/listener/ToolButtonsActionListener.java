@@ -36,25 +36,29 @@ public class ToolButtonsActionListener implements ActionListener{
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[3])) {
         	fileController.saveFile(true);
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[4])) {
-            System.out.println("Close clicked");
+        	EditController.undo();
         } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[5])) {
+        	EditController.redo();
+        } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
+            System.out.println("Close clicked");
+        } else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
             System.out.println("Print clicked");
-        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[6])) {
-        	EditController.cutText();
-        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[7])) {
-        	EditController.copyText();
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[8])) {
-        	EditController.pasteText();
+        	EditController.cutText();
         }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[9])) {
+        	EditController.copyText();
+        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[10])) {
+        	EditController.pasteText();
+        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
             System.out.println("Find clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
-        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[10])) {
+        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[12])) {
             System.out.println("Replace clicked");
             new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
-        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[11])) {
-            System.out.println("Info clicked");
-        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[12])) {
-            System.out.println("Help clicked");
+        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[13])) {
+        	FileController.displayInfo();
+        }else if(toolItemLabel.equalsIgnoreCase(EditorConstants.TOOL_MENU_ITEM_LABELS[14])) {
+        	FileController.displayHelp();
         }
     }
 }
