@@ -215,7 +215,8 @@ public class ViewFrame extends JFrame {
             int n = JOptionPane.showOptionDialog(this, "Do you want to save the file ?", "Question",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (n == 0) {
-                FileController.saveFile(true);
+            	FileController controller = new FileController();
+            	controller.saveFile(true);
                 this.dispose();
             } else if (n == 1) {
                 this.dispose();

@@ -1,7 +1,9 @@
 package service;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
@@ -23,6 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import constant.EditorConstants;
 import model.FileModel;
+import listener.TextChangeListener;
 
 /**
  * Service methods to save file.
@@ -67,6 +70,7 @@ public class FileSaveService {
 		// the file system
 		try {
 			saveFile();
+			TextChangeListener.edit = false;
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,9 +94,10 @@ public class FileSaveService {
 					writePdf();
 				} else if (fileExtension.equalsIgnoreCase("DOCX")) {
 					writeDocx();
+				} else if (fileExtension.equalsIgnoreCase("TXT")) {
+					writeTxt();
 				} else {
-					writeText();
-
+					writeISE();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -111,7 +116,7 @@ public class FileSaveService {
 	 * @throws IOException
 	 * @throws BadLocationException
 	 */
-	private void writeText() throws IOException, BadLocationException {
+	private void writeISE() throws IOException, BadLocationException {
 		saveObectToFile(FileModel.getInstance().getTextArea(), fileToSave);
 	}
 
@@ -132,6 +137,20 @@ public class FileSaveService {
 		}
 	}
 	
+	/**
+	 * Saves the text in the txt format
+	 * 
+	 * @throws IOException
+	 * @throws BadLocationException
+	 */	
+	private void writeTxt() throws IOException, BadLocationException {
+		System.out.println("Saving Text File");
+		BufferedWriter out = new BufferedWriter(new FileWriter(fileToSave.getPath()));
+        out.write(FileModel.getInstance().getTextArea().getText());
+        out.close();
+        //TextChangeListener.edit = false;
+	}
+
 	/**
 	 * Helper method to format Word documents to preserve formatting of multiple 
 	 * paragraphs
@@ -237,7 +256,8 @@ public class FileSaveService {
 
 		} else {
 			fileToSave = new File(filePath);
-			fileExtension = DEFAULT_EXTENSION;
+			String[] extension = fileName.split("\\.");
+			fileExtension = extension[extension.length-1];
 			saveToCurrent = true;
 
 		}
