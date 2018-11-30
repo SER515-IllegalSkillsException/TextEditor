@@ -15,7 +15,7 @@ public class EditorConstants {
 			"Save", "Save As", "Undo", "Redo", "Close", "Print", "Cut", "Copy",
 			"Paste", "Find", "Replace", "Info", "Help" };
 
-	public static final int NUM_BOX = 13;// add font type and font size,color
+	public static final int NUM_BOX = 16;// add font type and font size,color
 											// bold,italic,underline,java/cpp/python
 											// highlight,alignment right left
 											// center justify
