@@ -15,9 +15,10 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 
 import model.FileModel;
-
 
 /**
  * Controller for every action listener for edit menu buttons
@@ -32,15 +33,16 @@ public class EditController implements ControllerInterface {
 	 */
 
 	static JEditorPane textSpace = FileModel.getInstance().getTextArea();
-	private static HighlightText languageHighlighter = new HighlightText(Color.LIGHT_GRAY);
+	private static HighlightText languageHighlighter = new HighlightText(
+			Color.LIGHT_GRAY);
 	private static SupportedKeywords kw = new SupportedKeywords();
-	
+
 	static JEditorPane oldText;
 
 	EditController(JEditorPane textSpace) {
 		this.textSpace = textSpace;
 	}
-	
+
 	public static void cutText() {
 		oldText = textSpace;
 		textSpace.addMouseListener(new MouseAdapter() {
@@ -63,13 +65,14 @@ public class EditController implements ControllerInterface {
 
 	// font type
 	public static void setfonttypeText(String p) {
-		
+
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
-		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontFamily, p);
+		AttributeSet attR = context.addAttribute(context.getEmptySet(),
+				StyleConstants.FontFamily, p);
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end-start, attR, false);
+		document.setCharacterAttributes(start, end - start, attR, false);
 
 	}
 
@@ -77,134 +80,146 @@ public class EditController implements ControllerInterface {
 	public static void setfontsizeText(int sizeOfFont) {
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
-		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.FontSize, sizeOfFont);
+		AttributeSet attR = context.addAttribute(context.getEmptySet(),
+				StyleConstants.FontSize, sizeOfFont);
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end-start, attR, false);
+		document.setCharacterAttributes(start, end - start, attR, false);
 	}
 
 	// bold
 	public static void setbold() {
 		oldText = textSpace;
-		StyledDocument document = (StyledDocument) textSpace.getDocument();		
-		StyleContext context = StyleContext.getDefaultStyleContext();	
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
+		StyleContext context = StyleContext.getDefaultStyleContext();
 		int start = textSpace.getSelectionStart();
-        int end = textSpace.getSelectionEnd();
+		int end = textSpace.getSelectionEnd();
 		Element element = document.getCharacterElement(start);
-	    AttributeSet attributeNew = element.getAttributes();
-	    AttributeSet attR;
-	    int diff = end - start;
-	    boolean isBold = false;
-	    if(diff > 0) {
-	    	isBold = StyleConstants.isItalic(attributeNew);
-	    } else {
-	    	isBold = FileModel.getInstance().isBold();
-	    	start--;
-	    	diff = 1;
-	    }
-		if(isBold || StyleConstants.isBold(attributeNew)) {			
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,false);
+		AttributeSet attributeNew = element.getAttributes();
+		AttributeSet attR;
+		int diff = end - start;
+		boolean isBold = false;
+		if (diff > 0) {
+			isBold = StyleConstants.isItalic(attributeNew);
+		} else {
+			isBold = FileModel.getInstance().isBold();
+			start--;
+			diff = 1;
+		}
+		if (isBold || StyleConstants.isBold(attributeNew)) {
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Bold, false);
 			FileModel.getInstance().setBold(false);
 		} else {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Bold,true);
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Bold, true);
 			FileModel.getInstance().setBold(true);
 		}
 
 		document.setCharacterAttributes(start, diff, attR, false);
 	}
-	
+
 	// color
 	public static void setfontcolorText(String colorvalue) {
 		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
-		AttributeSet attR = context.addAttribute(context.getEmptySet(), StyleConstants.Foreground, Color.decode(colorvalue));
+		AttributeSet attR = context.addAttribute(context.getEmptySet(),
+				StyleConstants.Foreground, Color.decode(colorvalue));
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		document.setCharacterAttributes(start, end-start, attR, false);
+		document.setCharacterAttributes(start, end - start, attR, false);
 		textSpace.setSelectedTextColor(Color.decode(colorvalue));
 	}
 
 	// italic
 	public static void setitalic() {
-        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
 		int start = textSpace.getSelectionStart();
 		Element element = document.getCharacterElement(start);
-	    AttributeSet attributeNew = element.getAttributes();
-	    AttributeSet attR;
-	    int end = textSpace.getSelectionEnd();
-	    int diff = end-start;
-	    boolean isItalicOn = false;
-	    if(diff > 0) {
-	    	isItalicOn = StyleConstants.isItalic(attributeNew);
-	    } else {
-	    	isItalicOn = FileModel.getInstance().isItalic();
-	    	start--;
-	    	diff = 1;
-	    }
-		if(isItalicOn || StyleConstants.isItalic(attributeNew)) {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,false);
-			FileModel.getInstance().setItalic(!isItalicOn); // Switched off italic button
+		AttributeSet attributeNew = element.getAttributes();
+		AttributeSet attR;
+		int end = textSpace.getSelectionEnd();
+		int diff = end - start;
+		boolean isItalicOn = false;
+		if (diff > 0) {
+			isItalicOn = StyleConstants.isItalic(attributeNew);
 		} else {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Italic,true);
-			FileModel.getInstance().setItalic(!isItalicOn); //switched on italic button
+			isItalicOn = FileModel.getInstance().isItalic();
+			start--;
+			diff = 1;
 		}
-		
+		if (isItalicOn || StyleConstants.isItalic(attributeNew)) {
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Italic, false);
+			FileModel.getInstance().setItalic(!isItalicOn); // Switched off
+															// italic button
+		} else {
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Italic, true);
+			FileModel.getInstance().setItalic(!isItalicOn); // switched on
+															// italic button
+		}
+
 		document.setCharacterAttributes(start, diff, attR, false);
 	}
-	
+
 	// underline
 	public static void setUnderline() {
-        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
 		int start = textSpace.getSelectionStart();
 		Element element = document.getCharacterElement(start);
-	    AttributeSet attributeNew = element.getAttributes();
-	    AttributeSet attR;
-	    int end = textSpace.getSelectionEnd();
-	    int diff = end - start;
-	    boolean isUnderlined = false;
-	    if(diff > 0) {
-	    	isUnderlined = StyleConstants.isUnderline(attributeNew);
-	    } else {
-	    	isUnderlined = FileModel.getInstance().isUnderlined();
-	    	start--;
-	    	diff = 1;
-	    }
-		if(isUnderlined || StyleConstants.isUnderline(attributeNew)) {			
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,false);
+		AttributeSet attributeNew = element.getAttributes();
+		AttributeSet attR;
+		int end = textSpace.getSelectionEnd();
+		int diff = end - start;
+		boolean isUnderlined = false;
+		if (diff > 0) {
+			isUnderlined = StyleConstants.isUnderline(attributeNew);
+		} else {
+			isUnderlined = FileModel.getInstance().isUnderlined();
+			start--;
+			diff = 1;
+		}
+		if (isUnderlined || StyleConstants.isUnderline(attributeNew)) {
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Underline, false);
 			FileModel.getInstance().setUnderlined(false);
 		} else {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.Underline,true);
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.Underline, true);
 			FileModel.getInstance().setUnderlined(true);
 		}
 		document.setCharacterAttributes(start, diff, attR, false);
 //		textSpace.requestFocusInWindow();
 	}
-	
+
 	// strikethrough
 	public static void setStrikethrough() {
-        StyledDocument document = (StyledDocument) textSpace.getDocument();		
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		StyleContext context = StyleContext.getDefaultStyleContext();
 		int start = textSpace.getSelectionStart();
 		Element element = document.getCharacterElement(start);
-	    AttributeSet attributeNew = element.getAttributes();
-	    AttributeSet attR;
-	    int end = textSpace.getSelectionEnd();
-	    int diff = end - start;
-	    boolean isStrikethrough = false;
-	    if(diff > 0) {
-	    	isStrikethrough = StyleConstants.isStrikeThrough(attributeNew);
-	    } else {
-	    	isStrikethrough = FileModel.getInstance().isStrikeThrough();
-	    	start--;
-	    	diff = 1;
-	    }
-		if(isStrikethrough || StyleConstants.isStrikeThrough(attributeNew)) {			
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.StrikeThrough,false);
+		AttributeSet attributeNew = element.getAttributes();
+		AttributeSet attR;
+		int end = textSpace.getSelectionEnd();
+		int diff = end - start;
+		boolean isStrikethrough = false;
+		if (diff > 0) {
+			isStrikethrough = StyleConstants.isStrikeThrough(attributeNew);
+		} else {
+			isStrikethrough = FileModel.getInstance().isStrikeThrough();
+			start--;
+			diff = 1;
+		}
+		if (isStrikethrough || StyleConstants.isStrikeThrough(attributeNew)) {
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.StrikeThrough, false);
 			FileModel.getInstance().setStrikethrough(false);
 		} else {
-			attR = context.addAttribute(context.getEmptySet(), StyleConstants.StrikeThrough,true);
+			attR = context.addAttribute(context.getEmptySet(),
+					StyleConstants.StrikeThrough, true);
 			FileModel.getInstance().setStrikethrough(true);
 		}
 		document.setCharacterAttributes(start, diff, attR, false);
@@ -215,91 +230,101 @@ public class EditController implements ControllerInterface {
 		languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
-                System.out.println("java highlight clicked");//for test only
-            }
-        });
+				languageHighlighter.highLight(textSpace, kw.getJavaKeywords());
+				System.out.println("java highlight clicked");// for test only
+			}
+		});
 	}
-	
+
 	public static void setinitcpphighlight() {
 		// TODO Auto-generated method stub
 		languageHighlighter.highLight(textSpace, kw.getCppKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getCppKeywords());
-                System.out.println("cpp highlight clicked");//for test only
-            }
-        });
+			public void keyPressed(KeyEvent ke) {
+				languageHighlighter.highLight(textSpace, kw.getCppKeywords());
+				System.out.println("cpp highlight clicked");// for test only
+			}
+		});
 	}
-	
+
 	public static void setinitpythonhighlight() {
 		// TODO Auto-generated method stub
 		languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
 		textSpace.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent ke) {
-                languageHighlighter.highLight(textSpace, kw.getPythonKeywords());
-                System.out.println("python highlight clicked");//for test only
-            }
-        });
+			public void keyPressed(KeyEvent ke) {
+				languageHighlighter.highLight(textSpace,
+						kw.getPythonKeywords());
+				System.out.println("python highlight clicked");// for test only
+			}
+		});
 	}
-	
+
 	public static void setalignleft() {
 		// TODO Auto-generated method stub
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		SimpleAttributeSet left = new SimpleAttributeSet();
-        StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
-        document.setParagraphAttributes(start, end, left, false);
+		StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+		document.setParagraphAttributes(start, end, left, false);
 	}
 
-	public static void setalignright() {	
+	public static void setalignright() {
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		SimpleAttributeSet right = new SimpleAttributeSet();
-        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
-        document.setParagraphAttributes(start, end-1, right, false);
+		StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+		document.setParagraphAttributes(start, end - 1, right, false);
 	}
 
 	public static void setaligncenter() {
 		// TODO Auto-generated method stub
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		SimpleAttributeSet center = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        document.setParagraphAttributes(start, end-1, center, false);
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		document.setParagraphAttributes(start, end - 1, center, false);
 	}
 
 	public static void setalignjustify() {
 		// TODO Auto-generated method stub
 		int start = textSpace.getSelectionStart();
 		int end = textSpace.getSelectionEnd();
-		StyledDocument document = (StyledDocument) textSpace.getDocument();	
+		StyledDocument document = (StyledDocument) textSpace.getDocument();
 		SimpleAttributeSet justify = new SimpleAttributeSet();
-        StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
-        document.setParagraphAttributes(start, end-1, justify, false);
+		StyleConstants.setAlignment(justify, StyleConstants.ALIGN_JUSTIFIED);
+		document.setParagraphAttributes(start, end - 1, justify, false);
 	}
-	
+
 	/**
-	 * Currently only called for cutText and setBold
-	 * Need to add others later
-	 * (Plan to implement as a stack later)
+	 * (Plan to implement as a stack later) Undo most recent changes until
+	 * returned to previous state
 	 */
 	public static void undo() {
-		textSpace = oldText;
-		AbstractDocument document = (AbstractDocument) textSpace.getDocument();
+		final UndoManager undo = FileModel.getInstance().getUndoManager();
 		try {
-			FileModel.getInstance().setContent(document.getText(0, document.getLength()));
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if (undo.canUndo()) {
+				undo.undo();
+			}
+		} catch (CannotUndoException ex) {
+			System.out.println(ex.getStackTrace());
 		}
-		
-		System.out.println("done");
 	}
 
-
+	/**
+	 * Redo most changes until no more changes are present
+	 */
+	public static void redo() {
+		final UndoManager undo = FileModel.getInstance().getUndoManager();
+		try {
+			if (undo.canRedo()) {
+				undo.redo();
+			}
+		} catch (CannotUndoException ex) {
+			System.out.println(ex.getStackTrace());
+		}
+	}
 
 }
