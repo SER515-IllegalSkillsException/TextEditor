@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-/*import java.io.ObjectOutputStream;*/
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -92,9 +92,10 @@ public class FileSaveService {
 					writePdf();
 				} else if (fileExtension.equalsIgnoreCase("DOCX")) {
 					writeDocx();
+				} else if (fileExtension.equalsIgnoreCase("TXT")) {
+					writeTxt();
 				} else {
 					writeText();
-
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -114,11 +115,7 @@ public class FileSaveService {
 	 * @throws BadLocationException
 	 */
 	private void writeText() throws IOException, BadLocationException {
-		//saveObectToFile(FileModel.getInstance().getTextArea(), fileToSave);
-		System.out.println("Saving Text File");
-		BufferedWriter out = new BufferedWriter(new FileWriter(fileToSave.getPath()));
-        out.write(FileModel.getInstance().getTextArea().getText());
-        out.close();
+		saveObectToFile(FileModel.getInstance().getTextArea(), fileToSave);
 	}
 
 	/**
@@ -138,6 +135,19 @@ public class FileSaveService {
 		}
 	}
 	
+	/**
+	 * Saves the text in the txt format
+	 * 
+	 * @throws IOException
+	 * @throws BadLocationException
+	 */	
+	private void writeTxt() throws IOException, BadLocationException {
+		System.out.println("Saving Text File");
+		BufferedWriter out = new BufferedWriter(new FileWriter(fileToSave.getPath()));
+        out.write(FileModel.getInstance().getTextArea().getText());
+        out.close();
+	}
+
 	/**
 	 * Helper method to format Word documents to preserve formatting of multiple 
 	 * paragraphs
@@ -308,11 +318,11 @@ public class FileSaveService {
 	 * @param filepath
 	 * @throws IOException
 	 */
-	/*private void saveObectToFile(Object obj, File fileToSave) throws IOException {
+	private void saveObectToFile(Object obj, File fileToSave) throws IOException {
 		FileOutputStream fileOutputStream = new FileOutputStream(fileToSave);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		objectOutputStream.writeObject(obj);
 		objectOutputStream.close();
-	}*/
+	}
 
 }
