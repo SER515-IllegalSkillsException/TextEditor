@@ -3,63 +3,67 @@ package listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.undo.CannotUndoException;
-import javax.swing.undo.UndoManager;
-
 import constant.EditorConstants;
 import controller.EditController;
 import model.FileModel;
 import view.FindReplaceView;
 import view.ViewFrame;
 
-
 /**
  * Creates listener functions for every button actions under edit menu
+ * 
  * @author Abhinab Mohanty
  *
  */
 public class EditButtonsActionsListener implements ActionListener {
 
-    private String editMenuItemLabel;
+	private String editMenuItemLabel;
 
-    /**
-     * Parameter controller which takes the name of the button as its argument to decide the listener for the button
-     * @param editMenuItemLabel
-     */
-    public EditButtonsActionsListener(String editMenuItemLabel){
-        this.editMenuItemLabel = editMenuItemLabel;
-    }
+	/**
+	 * Parameter controller which takes the name of the button as its argument
+	 * to decide the listener for the button
+	 * 
+	 * @param editMenuItemLabel
+	 */
+	public EditButtonsActionsListener(String editMenuItemLabel) {
+		this.editMenuItemLabel = editMenuItemLabel;
+	}
 
-    /**
-     * Override action performed function of action listener which adds listeners to buttons of file menu
-     */
-    public void actionPerformed(ActionEvent e) {
-        if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[0])) {
-            //TODO: Cut Text by calling controller
-            EditController.cutText();
-        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[1])) {
-            //TODO: Copy Text stuff by calling
-            EditController.copyText();
-        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[2])) {
-            EditController.pasteText();
-        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[3])) {
-            System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[3]+" clicked.");
-            new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
-        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[4])) {
-            //TODO: Find stuff by calling controller
-            System.out.println(EditorConstants.EDIT_MENU_ITEM_LABELS[4]+" clicked");
-            new FindReplaceView(ViewFrame.getViewFrame(), FileModel.getInstance().getTextArea());
-        } else if(editMenuItemLabel.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
-        	            //TODO: Find stuff by calling controller
-        	        	final UndoManager undo = FileModel.getInstance().getUndoManager();
-        	        	try {
-        	                if (undo.canUndo()) {
-        	                    undo.undo();
-        	                }
-        	            } catch (CannotUndoException ex) {
-        	            	System.out.println(ex.getStackTrace());
-        	            }
-        }
-    }
+	/**
+	 * Override action performed function of action listener which adds
+	 * listeners to buttons of file menu
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[0])) {
+			// TODO: Cut Text by calling controller
+			EditController.cutText();
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[1])) {
+			// TODO: Copy Text stuff by calling
+			EditController.copyText();
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[2])) {
+			EditController.pasteText();
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[3])) {
+			System.out.println(
+					EditorConstants.EDIT_MENU_ITEM_LABELS[3] + " clicked.");
+			new FindReplaceView(ViewFrame.getViewFrame(),
+					FileModel.getInstance().getTextArea());
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[4])) {
+			System.out.println(
+					EditorConstants.EDIT_MENU_ITEM_LABELS[4] + " clicked");
+			new FindReplaceView(ViewFrame.getViewFrame(),
+					FileModel.getInstance().getTextArea());
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[5])) {
+			EditController.undo();
+		} else if (editMenuItemLabel
+				.equalsIgnoreCase(EditorConstants.EDIT_MENU_ITEM_LABELS[6])) {
+			EditController.redo();
+		}
+	}
 
 }
