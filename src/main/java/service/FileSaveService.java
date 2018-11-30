@@ -25,6 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import constant.EditorConstants;
 import model.FileModel;
+import listener.TextChangeListener;
 
 /**
  * Service methods to save file.
@@ -69,6 +70,7 @@ public class FileSaveService {
 		// the file system
 		try {
 			saveFile();
+			TextChangeListener.edit = false;
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,6 +148,7 @@ public class FileSaveService {
 		BufferedWriter out = new BufferedWriter(new FileWriter(fileToSave.getPath()));
         out.write(FileModel.getInstance().getTextArea().getText());
         out.close();
+        //TextChangeListener.edit = false;
 	}
 
 	/**
