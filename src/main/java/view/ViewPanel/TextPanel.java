@@ -2,11 +2,11 @@ package view.ViewPanel;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.undo.UndoManager;
 
 import listener.TextChangeListener;
@@ -19,7 +19,6 @@ public class TextPanel extends AbstractViewPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	JScrollPane textPane;
-	static JTextArea editableArea;
 
 	public TextPanel() {
 		this.initialize();
@@ -33,6 +32,7 @@ public class TextPanel extends AbstractViewPanel {
 	@Override
 	protected void initialize() {
 		JTextPane editableArea = new JTextPane();
+		editableArea.setEditorKit(new HTMLEditorKit());
 		AbstractDocument textDocument = (AbstractDocument) editableArea
 				.getDocument();
 		textDocument.setDocumentFilter(new TextChangeListener(editableArea));
